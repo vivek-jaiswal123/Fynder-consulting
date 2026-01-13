@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Job Vacancies - Fynder Consulting</title>
+  <style>
+    :root {
+      --primary-blue: #0b63ce;
+      --primary-green: #18a558;
+      --dark-text: #1f2933;
+      --light-bg: #f5f7fa;
+      --white: #ffffff;
+      --border: #e1e4ea;
+      --max-width: 1100px;
+      --radius: 10px;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body { color: var(--dark-text); background: var(--light-bg); line-height: 1.6; }
+
+    .container {
+      width: 100%; max-width: var(--max-width);
+      margin: 0 auto; padding: 0 1rem;
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; }
+    .logo-wrap img { height: 36px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 1.2rem; font-size: 0.9rem; }
+    .nav-links a { color: #374151; padding: 0.3rem 0; border-bottom: 2px solid transparent; text-decoration: none; }
+    .nav-links a:hover { border-bottom-color: var(--primary-blue); }
+    .nav-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+    .nav-toggle span { width: 20px; height: 2px; background: #111827; }
+
+    .jobs-hero { text-align: center; padding: 3rem 0 1.5rem; background: radial-gradient(circle at top left, #e0efff 0, #ffffff 45%); }
+    .jobs-hero h1 { font-size: 2.1rem; margin-bottom: 0.5rem; color: var(--dark-text); }
+    .jobs-hero p { font-size: 1rem; color: #4b5563; max-width: 32rem; margin: 0 auto; }
+
+    .section-header { text-align: center; max-width: 640px; margin: 0 auto 2rem; }
+    .section-header h2 { font-size: 1.6rem; margin-bottom: 0.35rem; color: var(--dark-text); }
+    .section-header p { font-size: 0.95rem; color: #4b5563; }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem; margin-top: 1rem;
+    }
+
+    .job-poster-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+
+    /* NORMAL STATE - Large image, no text */
+    .job-poster-card .poster-image-normal {
+      width: 100%; height: 420px;
+      object-fit: contain; object-position: center;
+      background: #f8fafc; display: block;
+      transition: all 0.4s ease;
+    }
+
+    /* SHOW MORE STATE - Small image, full text */
+    .job-poster-card.show-more .poster-image-normal {
+      height: 200px;
+    }
+
+    .job-poster-card .poster-image-small {
+      width: 100%; height: 0px;
+      object-fit: contain; object-position: center;
+      background: #f8fafc; display: block;
+      transition: all 0.4s ease;
+      opacity: 0;
+    }
+
+    .job-poster-card.show-more .poster-image-small {
+      height: 200px;
+      opacity: 1;
+    }
+
+    .job-poster-content {
+      padding: 1.2rem;
+      flex: 1;
+      transition: all 0.4s ease;
+    }
+
+    /* HIDE TEXT BY DEFAULT */
+    .job-details {
+      display: none;
+      gap: 1rem;
+    }
+
+    .job-poster-card.show-more .job-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .company-name {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--primary-blue); margin-bottom: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    .job-position {
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--dark-text); margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .salary-badge {
+      background: linear-gradient(135deg, var(--primary-green), #16a34a);
+      color: var(--white); padding: 0.4rem 0.8rem;
+      border-radius: 999px; font-size: 0.9rem; font-weight: 600;
+      width: fit-content; margin-bottom: 0.8rem; align-self: flex-start;
+    }
+
+    .full-description {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      white-space: pre-line;
+      border-left: 4px solid var(--primary-green);
+    }
+
+    .job-highlights {
+      list-style: none; display: flex; flex-direction: column; gap: 0.3rem;
+    }
+
+    .job-highlights li {
+      padding: 0.4rem 0; font-size: 0.9rem;
+      color: #374151; position: relative;
+      padding-left: 1.4rem; 
+    }
+
+    .job-highlights li::before {
+      content: '✔'; position: absolute; left: 0;
+      color: var(--primary-green); font-weight: 600;
+    }
+
+    .poster-actions { 
+      display: flex; gap: 0.6rem; margin-top: 1rem; 
+    }
+
+    .poster-whatsapp, .poster-call {
+      flex: 1; padding: 0.75rem; border-radius: 999px;
+      text-align: center; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s ease; text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 0.3rem;
+    }
+
+    .poster-whatsapp { background: #25D366; color: var(--white); }
+    .poster-whatsapp:hover { background: #22c35e; transform: translateY(-1px); }
+
+    .poster-call { background: var(--primary-blue); color: var(--white); }
+    .poster-call:hover { background: #1247a3; transform: translateY(-1px); }
+
+    .toggle-button {
+      background: var(--primary-blue);
+      color: var(--white); border: none;
+      padding: 0.8rem 1.2rem; border-radius: 999px;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s ease;
+      margin: 1rem 0 0 0; width: 100%;
+    }
+
+    .toggle-button:hover {
+      background: #1247a3;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(11, 99, 206, 0.4);
+    }
+
+    .urgent-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: #ef4444; color: var(--white);
+      padding: 0.3rem 0.7rem; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 700;
+      animation: pulse 2s infinite;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @media (max-width: 900px) {
+      .jobs-grid { grid-template-columns: 1fr; }
+      .jobs-hero h1 { font-size: 1.7rem; }
+      .job-poster-card .poster-image-normal { height: 380px; }
+      .job-poster-card.show-more .poster-image-normal { height: 180px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .job-poster-card .poster-image-normal { height: 360px; }
+      .job-poster-card.show-more .poster-image-normal { height: 160px; }
+    }
+
+    footer {
+      background: #020617; color: #e5e7eb;
+      text-align: center; padding: 1.5rem 0; margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Fynder Consulting" class="logo-img">
+        </div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#jobs">Jobs</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-toggle"><span></span><span></span><span></span></div>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="jobs-hero">
+    <div class="container">
+      <h1>🚀 Latest Job Vacancies</h1>
+      <p>Click "Show More" to see full details with smaller image!</p>
+    </div>
+  </section>
+
+  <section id="jobs">
+    <div class="container">
+      <div class="section-header">
+        <h2>Immediate Hiring Opportunities</h2>
+        <p>No registration fees | Direct company hiring | Multiple locations</p>
+      </div>
+      
+      <div class="jobs-grid" id="jobsGrid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Fynder Consulting. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const jobsData = [
+      {
+        image: 'job.jpeg',
+        company: 'AXIS BANK',
+        position: 'Assistant Manager',
+        salary: '₹30,000 Fixed',
+        fullDescription: `🔥 IMMEDIATE HIRING | AXIS BANK (ON-ROLL) 🔥
+Position: Assistant Manager
+💰 Salary: ₹30,000 Fixed
+📍 Location: Multiple Branches – Mumbai
+⏰ Shift: Day Shift
+Eligibility:
+✔ Graduate (Mandatory)
+✔ Age: 19–35 Years
+✔ 1+ Year Sales Experience (Banking/Insurance Preferred)
+✔ English & Hindi
+Role:
+Account Opening | eKYC | Client Handling | Insurance Sales
+📞 Call / WhatsApp: 8263896073
+📧 Email: support@fynderconsulting.com
+✅ 100% Genuine | No Fees | Limited Openings`,
+        whatsapp: 'https://wa.me/918263896073',
+        phone: '8263896073',
+        urgent: true
+      },
+      {
+        image: 'Screenshot-2026-01-10-204656.jpg',
+        company: 'AXIS BANK',
+        position: 'Assistant Manager',
+        salary: '₹30,000 Fixed',
+        fullDescription: `🔥 IMMEDIATE HIRING | AXIS BANK (ON-ROLL) 🔥
+Position: Assistant Manager
+💰 Salary: ₹30,000 Fixed
+📍 Location: Multiple Branches – Mumbai
+⏰ Shift: Day Shift
+Eligibility:
+✔ Graduate (Mandatory)
+✔ Age: 19–35 Years
+✔ 1+ Year Sales Experience (Banking/Insurance Preferred)
+✔ English & Hindi
+Role:
+Account Opening | eKYC | Client Handling | Insurance Sales
+📞 Call / WhatsApp: 8263896073
+📧 Email: support@fynderconsulting.com
+✅ 100% Genuine | No Fees | Limited Openings`,
+        whatsapp: 'https://wa.me/918263896073',
+        phone: '8263896073',
+        urgent: true
+      }
+    ];
+
+    function renderJobs() {
+      const grid = document.getElementById('jobsGrid');
+      grid.innerHTML = jobsData.map(job => `
+        <div class="job-poster-card">
+          ${job.urgent ? '<div class="urgent-badge">URGENT</div>' : ''}
+          
+          <!-- NORMAL IMAGE (Large - Default) -->
+          <img src="${job.image}" alt="${job.company}" class="poster-image-normal" loading="lazy">
+          
+          <!-- SMALL IMAGE (Hidden - Show More state) -->
+          <img src="${job.image}" alt="${job.company}" class="poster-image-small" loading="lazy">
+          
+          <div class="job-poster-content">
+            <div class="company-name">${job.company}</div>
+            <h3 class="job-position">${job.position}</h3>
+            <div class="salary-badge">${job.salary}</div>
+            
+            <!-- HIDDEN JOB DETAILS -->
+            <div class="job-details">
+              <div class="full-description">${job.fullDescription}</div>
+              <ul class="job-highlights">
+                <li>Direct On-Roll Position</li>
+                <li>Multiple Mumbai Locations</li>
+                <li>Day Shift Only</li>
+                <li>No Registration Fees</li>
+                <li>Limited Openings</li>
+              </ul>
+              <div class="poster-actions">
+                <a href="${job.whatsapp}" target="_blank" class="poster-whatsapp">📱 WhatsApp</a>
+                <a href="tel:${job.phone}" class="poster-call">📞 Call</a>
+              </div>
+            </div>
+            
+            <button class="toggle-button">Show More ↓</button>
+          </div>
+        </div>
+      `).join('');
+
+      // **SIMPLE EVENT LISTENERS - 100% WORKING**
+      document.querySelectorAll('.toggle-button').forEach(button => {
+        button.addEventListener('click', function() {
+          const card = this.parentElement.parentElement;
+          card.classList.toggle('show-more');
+          
+          if (card.classList.contains('show-more')) {
+            this.textContent = 'Show Less ↑';
+          } else {
+            this.textContent = 'Show More ↓';
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderJobs);
+  </script>
+</body>
+</html>
