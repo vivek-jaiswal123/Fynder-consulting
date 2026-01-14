@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
@@ -11,17 +11,57 @@
   <meta name="description"
     content="Fynder Consulting provides trusted job recruitment services and PF withdrawal support with transparency and care." />
   <style>
+    /* ==================== CSS VARIABLES & THEMES ==================== */
     :root {
       --primary-blue: #0b63ce;
+      --primary-blue-dark: #0952a8;
       --primary-green: #18a558;
+      --primary-green-dark: #148f4b;
+      --accent-yellow: #facc15;
+      --accent-purple: #8b5cf6;
+      --danger-red: #ef4444;
+      
+      /* Light Theme (Default) */
       --dark-text: #1f2933;
+      --light-text: #6b7280;
+      --lighter-text: #9ca3af;
       --light-bg: #f5f7fa;
       --white: #ffffff;
       --border: #e1e4ea;
-      --accent-yellow: #facc15;
+      --border-light: #f1f5f9;
+      --card-bg: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.98);
+      --hero-gradient: radial-gradient(circle at top left, #e0efff 0, #ffffff 45%);
+      --section-alt-bg: #f9fafb;
+      --footer-bg: #020617;
+      --footer-text: #e5e7eb;
+      
       --max-width: 1100px;
       --radius: 10px;
+      --radius-lg: 16px;
       --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.1);
+      --shadow-medium: 0 10px 40px rgba(15, 23, 42, 0.12);
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Dark Theme */
+    [data-theme="dark"] {
+      --dark-text: #f1f5f9;
+      --light-text: #94a3b8;
+      --lighter-text: #64748b;
+      --light-bg: #0f172a;
+      --white: #1e293b;
+      --border: #334155;
+      --border-light: #1e293b;
+      --card-bg: #1e293b;
+      --header-bg: rgba(30, 41, 59, 0.98);
+      --hero-gradient: radial-gradient(circle at top left, #1e3a5f 0, #0f172a 45%);
+      --section-alt-bg: #0f172a;
+      --footer-bg: #020617;
+      --footer-text: #cbd5e1;
+      --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.3);
+      --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     * {
@@ -34,8 +74,9 @@
 
     body {
       color: var(--dark-text);
-      background: #ffffff;
+      background: var(--white);
       line-height: 1.6;
+      transition: background var(--transition-medium), color var(--transition-medium);
     }
 
     a {
@@ -84,13 +125,13 @@
     }
 
     .btn-outline {
-      background: #ffffff;
+      background: var(--white);
       border: 1px solid var(--primary-blue);
       color: var(--primary-blue);
     }
 
     .btn-outline:hover {
-      background: #e3efff;
+      background: rgba(11, 99, 206, 0.1);
     }
 
     .badge {
@@ -106,55 +147,43 @@
     }
 
     /* Header */
-    /* 1. Increase z-index and perfect sticky positioning */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      /* Increased from 50 */
-      background: rgba(255, 255, 255, 0.98);
-      /* Slightly more opaque */
+      background: var(--header-bg);
       backdrop-filter: blur(12px);
-      /* Stronger blur */
-      border-bottom: 1px solid #e5e7eb;
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all var(--transition-medium);
     }
 
-    /* 2. Add top padding to main content to prevent hero overlap */
     main {
       padding-top: 0;
-      /* Existing */
       margin-top: 0;
     }
 
-    /* 3. Ensure hero starts correctly under sticky nav */
     .hero {
       padding-top: 3rem;
-      /* Increased from 2.5rem to account for nav height */
       margin-top: 0;
     }
 
-    /* 4. Fix all sections to prevent any jump */
     section {
       position: relative;
       z-index: 1;
     }
-
-    /* 5. Smooth scroll offset adjustment (update your JS) */
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.6rem 1rem;
-      /* Reduced from 0.8rem for better logo fit */
     }
 
-    /* Update/Replace logo-wrap (find .logo-wrap and replace) */
     .logo-wrap {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      /* Slightly reduced gap */
     }
 
     .logo-mark {
@@ -181,11 +210,12 @@
     .logo-text span:first-child {
       font-weight: 700;
       font-size: 1rem;
+      color: var(--dark-text);
     }
 
     .logo-text span:last-child {
       font-size: 0.75rem;
-      color: #6b7280;
+      color: var(--light-text);
     }
 
     .nav-links {
@@ -195,12 +225,14 @@
     }
 
     .nav-links a {
-      color: #374151;
+      color: var(--light-text);
       padding: 0.3rem 0;
       border-bottom: 2px solid transparent;
+      transition: all var(--transition-fast);
     }
 
     .nav-links a:hover {
+      color: var(--primary-blue);
       border-bottom-color: var(--primary-blue);
     }
 
@@ -208,6 +240,27 @@
       display: flex;
       gap: 0.6rem;
       align-items: center;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: var(--border-light);
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all var(--transition-fast);
+      margin-right: 0.5rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--border);
+      transform: rotate(15deg);
     }
 
     .nav-toggle {
@@ -220,13 +273,15 @@
     .nav-toggle span {
       width: 20px;
       height: 2px;
-      background: #111827;
+      background: var(--dark-text);
+      transition: all var(--transition-fast);
     }
 
     /* Hero */
     .hero {
-      background: radial-gradient(circle at top left, #e0efff 0, #ffffff 45%);
+      background: var(--hero-gradient);
       padding: 2.5rem 0 2rem;
+      transition: background var(--transition-medium);
     }
 
     .hero-grid {
@@ -239,12 +294,12 @@
     .hero h1 {
       font-size: 2.1rem;
       margin-bottom: 0.5rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .hero p.sub {
       font-size: 1rem;
-      color: #4b5563;
+      color: var(--light-text);
       margin-bottom: 1.2rem;
       max-width: 32rem;
     }
@@ -267,7 +322,7 @@
       display: flex;
       gap: 0.4rem;
       align-items: flex-start;
-      color: #374151;
+      color: var(--light-text);
     }
 
     .hero-highlight span.icon {
@@ -282,7 +337,7 @@
       gap: 1rem;
       margin-top: 1.2rem;
       font-size: 0.85rem;
-      color: #4b5563;
+      color: var(--light-text);
     }
 
     .trust-item {
@@ -293,18 +348,20 @@
 
     .trust-number {
       font-weight: 700;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     /* Hero image card */
     .hero-card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       box-shadow: var(--shadow-soft);
       padding: 1.1rem;
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
     }
 
     .hero-card-header {
@@ -322,7 +379,7 @@
       height: 34px;
       border-radius: 999px;
       overflow: hidden;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--white);
       box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
       margin-left: -10px;
     }
@@ -337,10 +394,11 @@
 
     .hero-card-header-text span {
       display: block;
+      color: var(--dark-text);
     }
 
     .hero-card-header-text span.label {
-      color: #6b7280;
+      color: var(--light-text);
     }
 
     .hero-testimonial {
@@ -348,11 +406,12 @@
       border-radius: 12px;
       padding: 0.7rem;
       font-size: 0.85rem;
-      color: #374151;
+      color: var(--light-text);
+      transition: background var(--transition-medium);
     }
 
     .hero-testimonial strong {
-      color: #111827;
+      color: #f59e0b;
     }
 
     .hero-badges {
@@ -365,9 +424,10 @@
     .hero-badge {
       padding: 0.35rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #4b5563;
-      background: #f9fafb;
+      border: 1px solid var(--border);
+      color: var(--light-text);
+      background: var(--light-bg);
+      transition: all var(--transition-medium);
     }
 
     /* Section base */
@@ -384,12 +444,12 @@
     .section-header h2 {
       font-size: 1.6rem;
       margin-bottom: 0.35rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .section-header p {
       font-size: 0.95rem;
-      color: #4b5563;
+      color: var(--light-text);
     }
 
     /* About */
@@ -398,6 +458,10 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 2rem;
       align-items: flex-start;
+    }
+
+    .about-grid > div > p {
+      color: var(--light-text);
     }
 
     .pill-list {
@@ -410,24 +474,30 @@
     .pill {
       padding: 0.3rem 0.7rem;
       border-radius: 999px;
-      background: #e5f6ff;
-      color: #075985;
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
       font-size: 0.8rem;
       font-weight: 500;
     }
 
+    [data-theme="dark"] .pill {
+      background: rgba(11, 99, 206, 0.2);
+    }
+
     .about-card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 1rem;
       box-shadow: var(--shadow-soft);
       font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
     }
 
     .about-card h3 {
       font-size: 1rem;
       margin-bottom: 0.5rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .about-card ul {
@@ -439,7 +509,7 @@
       display: flex;
       gap: 0.4rem;
       margin-bottom: 0.3rem;
-      color: #4b5563;
+      color: var(--light-text);
     }
 
     .about-card li span {
@@ -455,17 +525,18 @@
     }
 
     .service-card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 1.2rem;
       border: 1px solid var(--border);
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+      transition: all var(--transition-medium);
     }
 
     .service-card h3 {
       font-size: 1.1rem;
       margin-bottom: 0.4rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .service-tag {
@@ -475,8 +546,8 @@
       font-size: 0.8rem;
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
-      background: #ecfdf3;
-      color: #166534;
+      background: rgba(24, 165, 88, 0.1);
+      color: var(--primary-green);
       margin-bottom: 0.6rem;
     }
 
@@ -490,7 +561,7 @@
       gap: 0.5rem;
       margin-bottom: 0.3rem;
       font-size: 0.9rem;
-      color: #4b5563;
+      color: var(--light-text);
     }
 
     .service-card li span {
@@ -500,7 +571,7 @@
 
     .service-note {
       font-size: 0.8rem;
-      color: #6b7280;
+      color: var(--lighter-text);
       margin-top: 0.4rem;
     }
 
@@ -509,9 +580,15 @@
       margin-top: 0.6rem;
       padding: 0.6rem 0.7rem;
       border-radius: 10px;
-      background: #fef3c7;
-      color: #854d0e;
-      border: 1px solid #facc15;
+      background: rgba(250, 204, 21, 0.15);
+      color: #b45309;
+      border: 1px solid rgba(250, 204, 21, 0.5);
+    }
+
+    [data-theme="dark"] .disclaimer {
+      background: rgba(250, 204, 21, 0.1);
+      color: #fbbf24;
+      border-color: rgba(250, 204, 21, 0.3);
     }
 
     /* How it works */
@@ -522,20 +599,21 @@
     }
 
     .step-card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 0.9rem;
       border: 1px solid var(--border);
       font-size: 0.9rem;
       text-align: left;
+      transition: all var(--transition-medium);
     }
 
     .step-number {
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      background: #e0f2fe;
-      color: #0b63ce;
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -544,14 +622,18 @@
       margin-bottom: 0.4rem;
     }
 
+    [data-theme="dark"] .step-number {
+      background: rgba(11, 99, 206, 0.2);
+    }
+
     .step-card h3 {
       font-size: 0.95rem;
       margin-bottom: 0.2rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .step-card p {
-      color: #4b5563;
+      color: var(--light-text);
       font-size: 0.85rem;
     }
 
@@ -570,12 +652,13 @@
     }
 
     .testimonial-card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 14px;
       padding: 0.9rem;
       border: 1px solid var(--border);
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
       font-size: 0.9rem;
+      transition: all var(--transition-medium);
     }
 
     .testimonial-stars {
@@ -586,7 +669,7 @@
 
     .testimonial-body {
       margin-bottom: 0.4rem;
-      color: #374151;
+      color: var(--light-text);
     }
 
     .testimonial-footer {
@@ -604,283 +687,44 @@
 
     .testimonial-meta {
       font-size: 0.8rem;
-      color: #6b7280;
+      color: var(--lighter-text);
     }
 
     .testimonial-note {
       font-size: 0.8rem;
-      color: #6b7280;
+      color: var(--lighter-text);
       margin-top: 0.6rem;
     }
 
     .screenshot-style {
-      background: #f3f4f6;
+      background: var(--light-bg);
       border-radius: 10px;
       padding: 0.7rem;
       font-size: 0.8rem;
-      color: #111827;
-      border: 1px dashed #d1d5db;
+      color: var(--dark-text);
+      border: 1px dashed var(--border);
+      transition: all var(--transition-medium);
     }
 
-    /* Forms & Contact */
-    .forms-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
+    .screenshot-style p {
+      color: var(--dark-text);
     }
 
+    /* Card base */
     .card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       position: relative;
-      /* Add this if not already present */
       padding: 1.2rem;
       box-shadow: var(--shadow-soft);
       border: 1px solid var(--border);
+      transition: all var(--transition-medium);
     }
 
     .card h3 {
       font-size: 1.05rem;
       margin-bottom: 0.5rem;
-      color: #111827;
-    }
-
-    form {
-      display: grid;
-      gap: 0.7rem;
-      margin-top: 0.4rem;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      font-size: 0.9rem;
-    }
-
-    .field-group label {
-      font-weight: 500;
-      color: #374151;
-    }
-
-    .field-group input,
-    .field-group select,
-    .field-group textarea {
-      padding: 0.55rem 0.6rem;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border 0.1s ease, box-shadow 0.1s ease;
-    }
-
-    .field-group input:focus,
-    .field-group select:focus,
-    .field-group textarea:focus {
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
-    }
-
-    .field-helper {
-      font-size: 0.75rem;
-      color: #6b7280;
-    }
-
-    textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    .contact-info {
-      margin-top: 0.9rem;
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    .contact-info p {
-      margin-bottom: 0.3rem;
-    }
-
-    .contact-info strong {
-      color: #111827;
-    }
-
-    .contact-inline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin-top: 0.4rem;
-    }
-
-    /* Footer / legal */
-    footer {
-      margin-top: 2.5rem;
-      background: #020617;
-      color: #e5e7eb;
-      padding: 1.5rem 0 1rem;
-    }
-
-    .footer-top {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: #cbd5f5;
-    }
-
-    .footer-bottom {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: #94a3b8;
-    }
-
-    /* Legal pages simple sections */
-    .legal-section {
-      margin-top: 1.5rem;
-      font-size: 0.85rem;
-      color: #e5e7eb;
-    }
-
-    .legal-section h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-      color: #f9fafb;
-    }
-
-    .legal-section p {
-      margin-bottom: 0.3rem;
-    }
-
-    /* Floating WhatsApp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 18px;
-      right: 18px;
-      z-index: 60;
-    }
-
-    .whatsapp-button {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      background: #25d366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 1.6rem;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .whatsapp-button:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.4);
-      background: #22c35e;
-    }
-
-    .whatsapp-tooltip {
-      position: absolute;
-      right: 64px;
-      bottom: 14px;
-      background: #020617;
-      color: #e5e7eb;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.6);
-      white-space: nowrap;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-
-      .hero-grid,
-      .about-grid,
-      .services-grid,
-      .testimonial-wrap,
-      .forms-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .steps-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .testimonial-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero {
-        padding-top: 2rem;
-      }
-
-      .hero h1 {
-        font-size: 1.7rem;
-      }
-    }
-
-    @media (max-width: 720px) {
-
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-
-      .nav-toggle {
-        display: flex;
-      }
-
-      .nav-mobile {
-        display: none;
-        flex-direction: column;
-        gap: 0.6rem;
-        padding: 0.6rem 1rem 0.9rem;
-        border-top: 1px solid #e5e7eb;
-        background: #ffffff;
-      }
-
-      .nav-mobile a {
-        padding: 0.35rem 0;
-        font-size: 0.95rem;
-        color: #374151;
-      }
-
-      .steps-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      section {
-        padding: 2rem 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .steps-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .trust-strip {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      color: var(--dark-text);
     }
 
     /* Founder section */
@@ -929,12 +773,12 @@
     .founder-content h3 {
       font-size: 1.35rem;
       margin-bottom: 0.45rem;
-      color: #111827;
+      color: var(--dark-text);
     }
 
     .founder-content p {
       font-size: 0.95rem;
-      color: #4b5563;
+      color: var(--light-text);
       margin-bottom: 0.45rem;
     }
 
@@ -948,122 +792,24 @@
     .founder-pill {
       padding: 0.25rem 0.7rem;
       border-radius: 999px;
-      background: #e0f2fe;
-      color: #075985;
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
       font-size: 0.8rem;
       font-weight: 500;
     }
 
+    [data-theme="dark"] .founder-pill {
+      background: rgba(11, 99, 206, 0.2);
+    }
+
     .founder-meta p {
       font-size: 0.9rem;
-      color: #374151;
+      color: var(--light-text);
       margin-bottom: 0.25rem;
     }
 
-    /* Founder responsive */
-    @media (max-width: 900px) {
-      .founder-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .form-toggle {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary-blue);
-      color: white;
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(11, 99, 206, 0.4);
-      transition: all 0.2s ease;
-      z-index: 10;
-    }
-
-    .form-toggle:hover {
-      background: #1247a3;
-      transform: translateX(-50%) translateY(-1px);
-      box-shadow: 0 6px 16px rgba(11, 99, 206, 0.5);
-    }
-
-    .form-toggle::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 5px solid transparent;
-      border-top-color: var(--primary-blue);
-    }
-
-    /* Hidden state */
-    .card.hidden form {
-      display: none;
-    }
-
-    .card.hidden .form-toggle::after {
-      border-top-color: transparent;
-      border-bottom-color: var(--primary-blue);
-      top: -10px;
-    }
-
-    .logo-img {
-      height: 100px;
-      /* Slightly smaller for perfect nav balance */
-      width: 200px;
-      object-fit: contain;
-      display: block;
-      margin-right: 10px;
-    }
-
-    /* Existing nav styles + fixes */
-    .nav-links {
-      display: flex;
-      gap: 1.2rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-mobile {
-      display: none;
-    }
-
-    /* Remove entirely if present */
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-        /* Hide upper nav on mobile */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        gap: 0.6rem;
-        padding: 0.6rem 1rem 0.9rem;
-        border-top: 1px solid #e5e7eb;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      .nav-links.active {
-        /* Show as dropdown under hamburger */
-        display: flex;
-      }
-
-      .nav-toggle {
-        display: flex;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      /* Hide CTAs on mobile, show in links */
+    .founder-meta strong {
+      color: var(--dark-text);
     }
 
     /* Founder Slider Styles */
@@ -1091,9 +837,8 @@
       box-sizing: border-box;
     }
 
-    /* Navigation Arrows */
     .founder-nav-arrow {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
       color: #fff;
       border: none;
       width: 50px;
@@ -1104,21 +849,16 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 4px 15px rgba(11, 99, 206, 0.4);
       flex-shrink: 0;
       z-index: 10;
     }
 
     .founder-nav-arrow:hover {
       transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.6);
     }
 
-    .founder-nav-arrow:active {
-      transform: scale(0.95);
-    }
-
-    /* Dots Navigation */
     .founder-dots {
       display: flex;
       justify-content: center;
@@ -1129,60 +869,534 @@
     .founder-dot {
       width: 12px;
       height: 12px;
-      background: #d1d5db;
+      background: var(--border);
       border-radius: 50%;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .founder-dot.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
       transform: scale(1.3);
     }
 
-    .founder-dot:hover {
-      background: #9ca3af;
+    /* ==================== NEW CONTACT FORM STYLES ==================== */
+    .contact-section {
+      padding: 3rem 0;
+      background: linear-gradient(135deg, rgba(11, 99, 206, 0.03), rgba(24, 165, 88, 0.03));
     }
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      .founder-slider-wrapper {
-        flex-direction: column;
-        gap: 20px;
+    [data-theme="dark"] .contact-section {
+      background: linear-gradient(135deg, rgba(11, 99, 206, 0.05), rgba(24, 165, 88, 0.05));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+
+    .contact-info > p {
+      color: var(--light-text);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      transition: all var(--transition-fast);
+    }
+
+    .contact-method:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .contact-method-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method-icon.phone {
+      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
+      color: white;
+    }
+
+    .contact-method-icon.whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+    }
+
+    .contact-method-icon.email {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+    }
+
+    .contact-method-icon.location {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+    }
+
+    .contact-method-icon.time {
+      background: linear-gradient(135deg, var(--primary-green), #059669);
+      color: white;
+    }
+
+    .contact-method-text h4 {
+      font-size: 0.85rem;
+      color: var(--lighter-text);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-method-text p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin: 0;
+    }
+
+    .contact-method-text a {
+      color: var(--dark-text);
+      transition: color var(--transition-fast);
+    }
+
+    .contact-method-text a:hover {
+      color: var(--primary-blue);
+    }
+
+    /* Contact Form Card */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-medium);
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
+    }
+
+    .contact-form h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 4px rgba(11, 99, 206, 0.1);
+      background: var(--card-bg);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--lighter-text);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Radio Group */
+    .radio-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.75rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--light-bg);
+      transition: all var(--transition-fast);
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .radio-option:hover {
+      border-color: var(--primary-blue);
+    }
+
+    .radio-option.active {
+      border-color: var(--primary-blue);
+      background: rgba(11, 99, 206, 0.1);
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin: 0;
+      accent-color: var(--primary-blue);
+    }
+
+    .radio-option span {
+      font-weight: 500;
+      color: var(--dark-text);
+    }
+
+    /* Conditional Sections */
+    .conditional-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .conditional-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Submit Button */
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.4);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Toast Notifications */
+    .toast-container {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .toast {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-medium);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 300px;
+      animation: slideIn 0.3s ease;
+      border-left: 4px solid var(--primary-green);
+    }
+
+    .toast.error {
+      border-left-color: var(--danger-red);
+    }
+
+    .toast.info {
+      border-left-color: var(--primary-blue);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .toast-icon {
+      font-size: 1.3rem;
+    }
+
+    .toast-message {
+      flex: 1;
+      font-weight: 500;
+      color: var(--dark-text);
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--light-text);
+      padding: 0.25rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 2.5rem;
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 1.5rem 0 1rem;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .legal-section {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .legal-section h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: #f9fafb;
+    }
+
+    .legal-section p {
+      margin-bottom: 0.3rem;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 60;
+    }
+
+    .whatsapp-button {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .whatsapp-button:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.4);
+      background: #22c35e;
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 64px;
+      bottom: 14px;
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.6);
+      white-space: nowrap;
+    }
+
+    .logo-img {
+      height: 100px;
+      width: 200px;
+      object-fit: contain;
+      display: block;
+      margin-right: 10px;
+    }
+
+    /* Section alternate backgrounds */
+    .section-alt {
+      background: var(--section-alt-bg);
+      transition: background var(--transition-medium);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .services-grid,
+      .testimonial-wrap,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .founder-nav-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        z-index: 10;
+      .steps-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .founder-nav-arrow:hover {
-        transform: translateY(-50%) scale(1.1);
+      .testimonial-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .founder-nav-left {
-        left: 5px;
+      .hero {
+        padding-top: 2rem;
       }
 
-      .founder-nav-right {
-        right: 5px;
+      .hero h1 {
+        font-size: 1.7rem;
       }
 
       .founder-grid {
-        flex-direction: column;
-        text-align: center;
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links,
+      .nav-cta .btn {
+        display: none;
       }
 
-      .founder-slide {
-        padding: 0 50px;
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.6rem 1rem 0.9rem;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      section {
+        padding: 2rem 0;
+      }
+
+      .radio-group {
+        flex-direction: column;
+      }
+
+      .radio-option {
+        min-width: 100%;
       }
     }
 
     @media (max-width: 480px) {
+      .steps-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .trust-strip {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .founder-nav-arrow {
         width: 35px;
         height: 35px;
@@ -1191,175 +1405,13 @@
       .founder-slide {
         padding: 0 45px;
       }
-    }
 
-    /* ===== COMBINED FORM SIZE FIX ===== */
-
-    #combined-form {
-      max-width: 640px;
-      /* Perfect website width */
-      margin: 0 auto;
-      /* Center form */
-      padding: 1.4rem 1.5rem;
-      /* Reduce height */
-    }
-
-    /* Reduce form spacing */
-    #combined-form form {
-      gap: 0.6rem;
-    }
-
-    /* Inputs compact */
-    #combined-form input,
-    #combined-form select,
-    #combined-form textarea {
-      padding: 0.5rem 0.6rem;
-      font-size: 0.9rem;
-    }
-
-    /* Section spacing reduced */
-    #combined-form .field-group {
-      gap: 0.2rem;
-    }
-
-    /* Radio buttons alignment */
-    #combined-form .field-group label {
-      font-size: 0.9rem;
-    }
-
-    /* Buttons balanced */
-    #combined-form .btn {
-      margin-top: 0.6rem;
-      padding: 0.65rem 1.3rem;
-      font-size: 0.95rem;
-    }
-
-    /* Hide extra whitespace */
-    #jobSection,
-    #pfSection {
-      margin-top: 0.3rem;
-    }
-
-    /* Mobile optimization */
-    @media (max-width: 640px) {
-      #combined-form {
-        max-width: 100%;
-        padding: 1.1rem;
+      .toast {
+        min-width: auto;
+        margin: 0 1rem;
       }
-    }
 
-    /* ===== CONTACT TWO COLUMN LAYOUT ===== */
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-
-    /* Form sizing */
-    .contact-form-card {
-      max-width: 100%;
-    }
-
-    /* Contact info card */
-    .contact-info-card {
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .contact-info-card p {
-      margin-bottom: 0.8rem;
-    }
-
-    /* Radio group */
-    .radio-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 900px) {
-      .contact-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ===== FINAL CONTACT + FORM SIZE FIX ===== */
-
-    /* Layout balance */
-    .contact-layout {
-      grid-template-columns: 1.4fr 1fr;
-      /* better balance */
-    }
-
-    /* Form card */
-    .contact-form-card {
-      width: 100%;
-      padding: 2rem;
-      /* bigger, premium */
-    }
-
-    /* Contact details card */
-    .contact-info-card {
-      width: 100%;
-      padding: 2rem;
-      /* match form */
-      font-size: 0.95rem;
-    }
-
-    /* Headings */
-    .contact-form-card h3,
-    .contact-info-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Form spacing */
-    .contact-form-card form {
-      gap: 0.9rem;
-      /* more breathing room */
-    }
-
-    /* Inputs */
-    .contact-form-card input,
-    .contact-form-card select,
-    .contact-form-card textarea {
-      padding: 0.65rem 0.75rem;
-      font-size: 0.95rem;
-    }
-
-    /* Textarea height */
-    .contact-form-card textarea {
-      min-height: 100px;
-    }
-
-    /* Radio buttons */
-    .radio-group {
-      gap: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* Button size */
-    .contact-form-card .btn {
-      margin-top: 0.8rem;
-      padding: 0.75rem 1.6rem;
-      font-size: 1rem;
-    }
-
-
-    /* Contact text spacing */
-    .contact-info-card p {
-      margin-bottom: 1rem;
-      line-height: 1.7;
-    }
-
-    /* Mobile fix */
-    @media (max-width: 900px) {
-
-      .contact-form-card,
-      .contact-info-card {
+      .contact-form {
         padding: 1.5rem;
       }
     }
@@ -1367,14 +1419,17 @@
 </head>
 
 <body>
-  <!-- HEADER -->
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
   <!-- HEADER -->
   <header>
     <div class="container">
       <nav class="nav">
         <div class="logo-wrap">
-          <!-- Your logo here -->
-          <img src="logo.png" alt="Fynder Consulting - Jobs Hiring" class="logo-img" />
+          <img src="logo.png" alt="Fynder Consulting - Jobs Hiring" class="logo-img" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="logo-mark" style="display: none;">F</div>
         </div>
         <div class="nav-links" id="navLinks">
           <a href="#home">Home</a>
@@ -1382,16 +1437,19 @@
           <a href="#services">Services</a>
           <a href="#process">Process</a>
           <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+          <a href="#update.html">Job post</a>
         </div>
         <div class="nav-cta">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span id="themeIcon">🌙</span>
+          </button>
           <a href="#contact" data-type="job" class="btn btn-primary">
             Apply for Job
           </a>
           <a href="#contact" data-type="pf" class="btn btn-outline">
-            PF Withdrawal Support
+            PF Support
           </a>
-
-
         </div>
         <div class="nav-toggle" id="navToggle">
           <span></span><span></span><span></span>
@@ -1406,29 +1464,25 @@
       <div class="container hero-grid">
         <div>
           <div class="badge">
-            <span aria-hidden="true">&#9679;</span> Private consultancy, not a
-            government office
+            <span aria-hidden="true">&#9679;</span> Private consultancy, not a government office
           </div>
           <h1>
-            Fynder Consulting &ndash; Trusted Job Recruitment &amp; PF
-            Withdrawal Support
+            Fynder Consulting &ndash; Trusted Job Recruitment &amp; PF Withdrawal Support
           </h1>
           <p class="sub">
-            Fynder Consulting helps people find the right jobs and provides
-            smooth PF withdrawal support with transparency and care.
+            Fynder Consulting helps people find the right jobs and provides smooth PF withdrawal support with transparency and care.
           </p>
 
           <div class="hero-actions">
             <a href="#contact" data-type="job" class="btn btn-primary">
               Apply for Job
             </a>
-
             <a href="#contact" data-type="pf" class="btn btn-outline">
               PF Withdrawal Support
             </a>
-
-            <a href="https://wa.me/911234567890" target="_blank" rel="noopener" class="btn btn-outline">Chat on
-              WhatsApp</a>
+            <a href="https://wa.me/918263896073" target="_blank" rel="noopener" class="btn btn-outline">
+              Chat on WhatsApp
+            </a>
           </div>
 
           <div class="hero-highlights">
@@ -1465,7 +1519,6 @@
         <aside class="hero-card" aria-label="Customer trust preview">
           <div class="hero-card-header">
             <div class="hero-avatar-group">
-              <!-- Replace src with real team/customer photos -->
               <div class="hero-avatar">
                 <img src="https://via.placeholder.com/80x80?text=Team" alt="Fynder team member" />
               </div>
@@ -1485,8 +1538,7 @@
           <div class="hero-testimonial">
             <strong aria-label="5 star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</strong>
             <p>
-              &ldquo;Fynder Consulting helped me withdraw my PF without
-              confusion. Very supportive team.&rdquo; &ndash; Ramesh, Chennai
+              &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo; &ndash; Ramesh, Chennai
             </p>
           </div>
 
@@ -1506,24 +1558,16 @@
         <div class="section-header">
           <h2>About Fynder Consulting</h2>
           <p>
-            Fynder Consulting is a private consultancy that connects
-            candidates with genuine job opportunities and supports them with
-            PF withdrawal related processes.
+            Fynder Consulting is a private consultancy that connects candidates with genuine job opportunities and supports them with PF withdrawal related processes.
           </p>
         </div>
         <div class="about-grid">
           <div>
             <p>
-              Fynder Consulting was started to solve two common problems:
-              finding trustworthy jobs and getting PF money without confusion
-              or delay. Many candidates struggle with unclear information,
-              multiple visits, and lack of proper guidance.
+              Fynder Consulting was started to solve two common problems: finding trustworthy jobs and getting PF money without confusion or delay. Many candidates struggle with unclear information, multiple visits, and lack of proper guidance.
             </p>
             <p style="margin-top: 0.5rem">
-              The team behind Fynder Consulting has hands-on experience in
-              recruitment and employee support services, especially for
-              blue-collar and entry-level office roles. This experience helps
-              provide simple explanations and step-by-step support.
+              The team behind Fynder Consulting has hands-on experience in recruitment and employee support services, especially for blue-collar and entry-level office roles.
             </p>
             <div class="pill-list">
               <div class="pill">
@@ -1540,32 +1584,19 @@
             <ul>
               <li>
                 <span aria-hidden="true">&#9679;</span>
-                <div>
-                  Explains job and PF processes in simple language so anyone
-                  can understand.
-                </div>
+                <div>Explains job and PF processes in simple language.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#9679;</span>
-                <div>
-                  Helps candidates apply for suitable roles based on skills,
-                  experience, and location.
-                </div>
+                <div>Helps candidates apply for suitable roles based on skills and location.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#9679;</span>
-                <div>
-                  Guides customers on PF withdrawal documentation and expected
-                  timelines.
-                </div>
+                <div>Guides customers on PF withdrawal documentation and timelines.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#9679;</span>
-                <div>
-                  Follows a transparent approach: no false promises, clear
-                  scope of services, and written communication wherever
-                  possible.
-                </div>
+                <div>Transparent approach: no false promises, clear scope of services.</div>
               </li>
             </ul>
           </div>
@@ -1574,19 +1605,16 @@
     </section>
 
     <!-- FOUNDER SECTION -->
-    <section id="founder" style="background: #f9fafb">
+    <section id="founder" class="section-alt">
       <div class="container">
         <div class="section-header">
           <h2>Meet the Founders</h2>
           <p>
-            The people leading Fynder Consulting with a clear vision for
-            honest, simple and supportive services.
+            The people leading Fynder Consulting with a clear vision for honest, simple and supportive services.
           </p>
         </div>
 
-        <!-- Slider Container -->
         <div class="founder-slider-wrapper">
-          <!-- Left Arrow -->
           <button class="founder-nav-arrow founder-nav-left" onclick="slideFounder(-1)" aria-label="Previous founder">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1594,103 +1622,68 @@
             </svg>
           </button>
 
-          <!-- Slider -->
           <div class="founder-slider">
             <div class="founder-track">
-
-              <!-- Founder 1 - Niharika Singh -->
+              <!-- Founder 1 -->
               <div class="founder-slide">
                 <div class="founder-grid">
                   <div class="founder-photo-card">
-                    <img src="director.jpeg" alt="Niharika Singh - Founder of Fynder Consulting" />
+                    <img src="director.jpeg" alt="Niharika Singh - Founder of Fynder Consulting" 
+                         onerror="this.src='https://via.placeholder.com/400x340/0b63ce/ffffff?text=Niharika+Singh'" />
                     <div class="founder-badge">Founder &amp; Lead Consultant</div>
                   </div>
                   <div class="founder-content">
                     <h3>Niharika Singh</h3>
                     <p>
-                      Niharika Singh, Founder & Director of Fynder Consulting, brings
-                      7+ years of experience in recruitment and PF support services.
-                      Along with her team, she helps job seekers and working
-                      professionals access genuine job opportunities and receive clear
-                      guidance for PF fund-related matters. Her focus is on
-                      transparency, honest communication, and client satisfaction.
+                      Niharika Singh, Founder & Director of Fynder Consulting, brings 7+ years of experience in recruitment and PF support services.
                     </p>
                     <p>
-                      With experience in recruitment, HR support and PF documentation,
-                      she focuses on clear guidance, honest communication and
-                      practical solutions instead of complicated jargon.
+                      With experience in recruitment, HR support and PF documentation, she focuses on clear guidance, honest communication and practical solutions.
                     </p>
-
                     <div class="founder-highlights">
                       <div class="founder-pill">7+ years in recruitment</div>
                       <div class="founder-pill">Blue-collar &amp; office hiring</div>
                       <div class="founder-pill">PF process guidance</div>
                     </div>
-
                     <div class="founder-meta">
-                      <p>
-                        <strong>Vision:</strong> "The aim is not just to provide a
-                        service, but to guide people honestly and help them take the
-                        right next step."
-                      </p>
-                      <p>
-                        <strong>Message from founder:</strong>
-                        &ldquo;Every customer case is important. The goal is to give
-                        honest advice, not false promises.&rdquo;
-                      </p>
+                      <p><strong>Vision:</strong> "Guide people honestly and help them take the right next step."</p>
+                      <p><strong>Message:</strong> &ldquo;Every customer case is important. The goal is honest advice, not false promises.&rdquo;</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Founder 2 - Add Co-Founder Details Here -->
+              <!-- Founder 2 -->
               <div class="founder-slide">
                 <div class="founder-grid">
                   <div class="founder-photo-card">
-                    <!-- Replace with co-founder's photo -->
-                    <img src="cofounder.jpeg" alt="Co-Founder of Fynder Consulting" />
+                    <img src="cofounder.jpeg" alt="Aruni Singh - Co-Founder of Fynder Consulting"
+                         onerror="this.src='https://via.placeholder.com/400x340/18a558/ffffff?text=Aruni+Singh'" />
                     <div class="founder-badge">Co-Founder &amp; Operations Head</div>
                   </div>
                   <div class="founder-content">
                     <h3>Aruni Singh</h3>
-                    <!-- Replace with actual co-founder name -->
                     <p>
-                      Aruni Singh, Co-Founder of Fynder Consulting, specializes in
-                      operations management and client relations. With 5+ years of
-                      experience in HR consulting, he ensures smooth service delivery
-                      and maintains strong relationships with both clients and candidates.
+                      Aruni Singh, Co-Founder of Fynder Consulting, specializes in operations management and client relations with 5+ years of HR consulting experience.
                     </p>
                     <p>
-                      His expertise lies in streamlining recruitment processes and
-                      ensuring timely resolution of PF-related queries. He believes in
-                      building trust through consistent service quality.
+                      His expertise lies in streamlining recruitment processes and ensuring timely resolution of PF-related queries.
                     </p>
-
                     <div class="founder-highlights">
                       <div class="founder-pill">5+ years in HR consulting</div>
                       <div class="founder-pill">Operations management</div>
                       <div class="founder-pill">Client relations expert</div>
                     </div>
-
                     <div class="founder-meta">
-                      <p>
-                        <strong>Vision:</strong> "Building lasting relationships through
-                        reliable and efficient service delivery."
-                      </p>
-                      <p>
-                        <strong>Message from co-founder:</strong>
-                        &ldquo;We treat every client like family. Your success is our
-                        success.&rdquo;
-                      </p>
+                      <p><strong>Vision:</strong> "Building lasting relationships through reliable service delivery."</p>
+                      <p><strong>Message:</strong> &ldquo;We treat every client like family. Your success is our success.&rdquo;</p>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <!-- Right Arrow -->
           <button class="founder-nav-arrow founder-nav-right" onclick="slideFounder(1)" aria-label="Next founder">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1699,29 +1692,24 @@
           </button>
         </div>
 
-        <!-- Slider Dots -->
         <div class="founder-dots">
           <span class="founder-dot active" onclick="goToFounder(0)"></span>
           <span class="founder-dot" onclick="goToFounder(1)"></span>
         </div>
-
       </div>
     </section>
 
-
     <!-- SERVICES -->
-    <section id="services" style="background: #f9fafb">
+    <section id="services">
       <div class="container">
         <div class="section-header">
           <h2>Services</h2>
           <p>
-            Fynder Consulting provides job recruitment support and PF
-            withdrawal guidance as separate but connected services.
+            Fynder Consulting provides job recruitment support and PF withdrawal guidance as separate but connected services.
           </p>
         </div>
 
         <div class="services-grid">
-          <!-- Job Recruitment -->
           <div class="service-card">
             <div class="service-tag">
               <span aria-hidden="true">&#9679;</span> Job Recruitment Services
@@ -1730,230 +1718,167 @@
             <ul>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Job options across factory work, office staff, IT support,
-                  field work, helpers, and more.
-                </div>
+                <div>Job options across factory work, office staff, IT support, field work, helpers, and more.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Support for both freshers and experienced candidates with
-                  basic counselling.
-                </div>
+                <div>Support for both freshers and experienced candidates with basic counselling.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Location-based job matching to reduce travel and relocation
-                  issues.
-                </div>
+                <div>Location-based job matching to reduce travel and relocation issues.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Step-by-step guidance from application to interview and
-                  selection process.
-                </div>
+                <div>Step-by-step guidance from application to interview and selection process.</div>
               </li>
             </ul>
             <p class="service-note">
-              Note: Fynder Consulting connects candidates with employers and
-              helps in the recruitment process. Final hiring decisions are
-              taken by the employer.
+              Note: Final hiring decisions are taken by the employer.
             </p>
-            <a href="#contact" data-type="job">Apply for Job</a>
-
+            <a href="#contact" data-type="job" class="btn btn-primary" style="margin-top: 1rem;">Apply for Job</a>
           </div>
 
-          <!-- PF Withdrawal Support -->
           <div class="service-card">
-            <div class="service-tag" style="background: #ecfeff; color: #0369a1">
+            <div class="service-tag" style="background: rgba(11, 99, 206, 0.1); color: var(--primary-blue);">
               <span aria-hidden="true">&#9679;</span> PF Withdrawal Support
             </div>
             <h3>Guidance for PF withdrawal</h3>
             <ul>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Explains PF withdrawal options and steps in simple terms.
-                </div>
+                <div>Explains PF withdrawal options and steps in simple terms.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Helps prepare and check required documents before
-                  submission.
-                </div>
+                <div>Helps prepare and check</div>
+                 required documents before submission.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Supports with checking claim status and understanding
-                  updates.
-                </div>
+                <div>Supports with checking claim status and understanding updates.</div>
               </li>
               <li>
                 <span aria-hidden="true">&#10004;</span>
-                <div>
-                  Sets clear expectations on usual timelines based on process
-                  and details provided by you.
-                </div>
+                <div>Sets clear expectations on usual timelines based on process and details provided.</div>
               </li>
             </ul>
             <div class="disclaimer">
-              Fynder Consulting provides support and consultancy services
-              only. Fynder Consulting is not affiliated with EPFO or any
-              government organization and does not represent any government
-              authority.
+              Fynder Consulting provides support and consultancy services only. Not affiliated with EPFO or any government organization.
             </div>
-            <a href="#contact?type=pf" class="btn btn-outline">PF Withdrawal Support</a>
-
+            <a href="#contact" data-type="pf" class="btn btn-outline" style="margin-top: 1rem;">PF Withdrawal Support</a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="process">
+    <section id="process" class="section-alt">
       <div class="container">
         <div class="section-header">
           <h2>How It Works</h2>
           <p>
-            The process is designed to be simple and transparent for both job
-            applications and PF support.
+            The process is designed to be simple and transparent for both job applications and PF support.
           </p>
         </div>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">1</div>
-            <h3>Submit enquiry or application</h3>
-            <p>
-              Fill the job application or PF enquiry form with correct
-              details.
-            </p>
+            <h3>Submit enquiry</h3>
+            <p>Fill the job application or PF enquiry form with correct details.</p>
           </div>
           <div class="step-card">
             <div class="step-number">2</div>
             <h3>Team contacts you</h3>
-            <p>
-              Fynder Consulting team connects through call or WhatsApp to
-              understand your requirement.
-            </p>
+            <p>Our team connects through call or WhatsApp to understand your requirement.</p>
           </div>
           <div class="step-card">
             <div class="step-number">3</div>
             <h3>Document verification</h3>
-            <p>
-              Share required documents safely. You receive guidance on missing
-              or unclear details.
-            </p>
+            <p>Share required documents safely. Get guidance on missing details.</p>
           </div>
           <div class="step-card">
             <div class="step-number">4</div>
             <h3>Job or PF process</h3>
-            <p>
-              Proceed with job placement steps or PF support as per your case.
-            </p>
+            <p>Proceed with job placement steps or PF support as per your case.</p>
           </div>
           <div class="step-card">
             <div class="step-number">5</div>
-            <h3>Completion &amp; feedback</h3>
-            <p>
-              Once the process is completed, you can share feedback or
-              testimonial to help others.
-            </p>
+            <h3>Completion</h3>
+            <p>Once completed, share feedback to help others.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials" style="background: #f9fafb">
+    <section id="testimonials">
       <div class="container">
         <div class="section-header">
           <h2>Customer Feedback</h2>
           <p>
-            Real experiences from customers who used Fynder Consulting for
-            jobs and PF withdrawal support. Photos are displayed only with
-            consent and personal details are kept private.
+            Real experiences from customers who used Fynder Consulting for jobs and PF withdrawal support.
           </p>
         </div>
 
         <div class="testimonial-wrap">
           <div class="testimonial-grid">
             <div class="testimonial-card">
-              <div class="testimonial-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-              </div>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               <div class="testimonial-body">
-                &ldquo;Fynder Consulting helped me withdraw my PF without
-                confusion. Very supportive team.&rdquo;
+                &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo;
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
                   <img src="https://via.placeholder.com/80x80?text=R" alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
-                  Ramesh, Chennai<br />
-                  PF Withdrawal Support
+                  Ramesh, Chennai<br />PF Withdrawal Support
                 </div>
               </div>
             </div>
 
             <div class="testimonial-card">
-              <div class="testimonial-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-              </div>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               <div class="testimonial-body">
-                &ldquo;They guided me for a factory job near my home. The
-                process was simple and honest.&rdquo;
+                &ldquo;They guided me for a factory job near my home. The process was simple and honest.&rdquo;
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
                   <img src="https://via.placeholder.com/80x80?text=S" alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
-                  Sunita, Mumbai<br />
-                  Job Recruitment
+                  Sunita, Mumbai<br />Job Recruitment
                 </div>
               </div>
             </div>
 
             <div class="testimonial-card">
-              <div class="testimonial-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9734;
-              </div>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
               <div class="testimonial-body">
-                &ldquo;PF claim status was clearly explained on WhatsApp. Good
-                communication and follow-up.&rdquo;
+                &ldquo;PF claim status was clearly explained on WhatsApp. Good communication and follow-up.&rdquo;
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
                   <img src="https://via.placeholder.com/80x80?text=A" alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
-                  Ajay, Pune<br />
-                  PF Support
+                  Ajay, Pune<br />PF Support
                 </div>
               </div>
             </div>
 
             <div class="testimonial-card">
-              <div class="testimonial-stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-              </div>
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               <div class="testimonial-body">
-                &ldquo;I got an office job as a fresher. They clearly told me
-                all conditions. No false promises.&rdquo;
+                &ldquo;I got an office job as a fresher. They clearly told me all conditions. No false promises.&rdquo;
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
                   <img src="https://via.placeholder.com/80x80?text=N" alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
-                  Neha, Delhi NCR<br />
-                  Job Recruitment
+                  Neha, Delhi NCR<br />Job Recruitment
                 </div>
               </div>
             </div>
@@ -1961,28 +1886,16 @@
 
           <div>
             <div class="card">
-              <h3>WhatsApp style feedback</h3>
+              <h3>💬 WhatsApp Feedback</h3>
               <div class="screenshot-style">
-                <p>
-                  <strong>Customer:</strong> Thank you, my PF amount is
-                  credited. Process was very smooth. &#128591;
-                </p>
-                <p>
-                  <strong>Fynder:</strong> Happy to hear that your claim is
-                  completed. Thank you for trusting Fynder Consulting.
-                </p>
-                <p style="
-                      margin-top: 0.4rem;
-                      font-size: 0.75rem;
-                      color: #6b7280;
-                    ">
+                <p><strong>Customer:</strong> Thank you, my PF amount is credited. Process was very smooth. 🙏</p>
+                <p><strong>Fynder:</strong> Happy to hear that! Thank you for trusting Fynder Consulting.</p>
+                <p style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--lighter-text);">
                   (Names and phone numbers are blurred for privacy.)
                 </p>
               </div>
               <p class="testimonial-note">
-                Privacy note: Fynder Consulting only uses customer photos and
-                feedback with clear permission. Personal details and phone
-                numbers are always blurred or hidden.
+                Privacy note: Customer photos and feedback used only with clear permission.
               </p>
             </div>
           </div>
@@ -1990,409 +1903,492 @@
       </div>
     </section>
 
-    <!-- FORMS & CONTACT -->
-    <section id="contact">
+    <!-- NEW CONTACT SECTION -->
+    <section id="contact" class="contact-section">
       <div class="container">
-
         <div class="section-header">
-          <h2>Contact & Enquiry</h2>
-          <p>
-            Fill the form and our team will contact you shortly.
-          </p>
+          <h2>📞 Contact & Enquiry</h2>
+          <p>Have questions or need assistance? We're here to help you find your dream job or guide you through PF withdrawal.</p>
         </div>
 
-        <!-- TWO COLUMN LAYOUT -->
-        <div class="contact-layout">
+        <div class="contact-grid">
+          <!-- Left: Contact Info -->
+          <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>Reach out to us through any of the following channels. Our team responds within 24 hours.</p>
 
-          <!-- LEFT: FORM -->
-          <div class="card contact-form-card" id="combined-form">
-            <h3>Job / PF Support Enquiry</h3>
-
-            <form id="smartForm">
-
-              <!-- SERVICE TYPE -->
-              <div class="field-group">
-                <label>What do you need help with?</label>
-                <div class="radio-group">
-                  <label><input type="radio" name="service" value="job"> Job Application</label>
-                  <label><input type="radio" name="service" value="pf"> PF Withdrawal</label>
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon phone">📞</div>
+                <div class="contact-method-text">
+                  <h4>Call Us</h4>
+                  <p><a href="tel:8263896073">+91 8263896073</a></p>
                 </div>
               </div>
 
-              <!-- COMMON -->
-              <div class="field-group">
-                <label>Full Name</label>
-                <input type="text" required />
-              </div>
-
-              <div class="field-group">
-                <label>Phone Number (WhatsApp)</label>
-                <input type="tel" required />
-              </div>
-
-              <!-- JOB -->
-              <div id="jobSection" style="display:none">
-                <div class="field-group">
-                  <label>Job Type</label>
-                  <select>
-                    <option>Factory</option>
-                    <option>Office</option>
-                    <option>IT / Computer</option>
-                    <option>Field Work</option>
-                    <option>Helper</option>
-                  </select>
-                </div>
-
-                <div class="field-group">
-                  <label>Preferred Location</label>
-                  <input type="text" />
+              <div class="contact-method">
+                <div class="contact-method-icon phone">📱</div>
+                <div class="contact-method-text">
+                  <h4>Alternate Number</h4>
+                  <p><a href="tel:9120203725">+91 9120203725</a></p>
                 </div>
               </div>
 
-              <!-- PF -->
-              <div id="pfSection" style="display:none">
-                <div class="field-group">
-                  <label>UAN Available?</label>
-                  <select>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not sure</option>
-                  </select>
-                </div>
-
-                <div class="field-group">
-                  <label>PF Query Type</label>
-                  <select>
-                    <option>Withdrawal</option>
-                    <option>Claim Status</option>
-                    <option>Document Help</option>
-                  </select>
+              <div class="contact-method">
+                <div class="contact-method-icon whatsapp">💬</div>
+                <div class="contact-method-text">
+                  <h4>WhatsApp</h4>
+                  <p><a href="https://wa.me/918263896073" target="_blank">+91 8263896073</a></p>
                 </div>
               </div>
 
-              <div class="field-group">
-                <label>Message</label>
-                <textarea placeholder="Any additional details"></textarea>
+              <div class="contact-method">
+                <div class="contact-method-icon email">✉️</div>
+                <div class="contact-method-text">
+                  <h4>Email Us</h4>
+                  <p><a href="mailto:support@fynderconsulting.com">support@fynderconsulting.com</a></p>
+                </div>
               </div>
 
-              <button class="btn btn-primary" type="submit">
-                Submit Enquiry
-              </button>
+              <div class="contact-method">
+                <div class="contact-method-icon location">📍</div>
+                <div class="contact-method-text">
+                  <h4>Office Address</h4>
+                  <p>Imperial Splendora, Yashwant Smart City, Vasai East – 401208</p>
+                </div>
+              </div>
 
-            </form>
+              <div class="contact-method">
+                <div class="contact-method-icon time">🕐</div>
+                <div class="contact-method-text">
+                  <h4>Working Hours</h4>
+                  <p>Mon – Sat: 10:00 AM – 7:00 PM</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- RIGHT: CONTACT DETAILS -->
-          <div class="card contact-info-card">
-            <h3>Contact Details</h3>
+          <!-- Right: Contact Form -->
+          <form class="contact-form" id="contactForm">
+            <h3>📝 Send us a Message</h3>
 
-            <p><strong>Phone:</strong><br> +91 8263896073<br> +91 9120203725</p>
+            <!-- Service Type Selection -->
+            <div class="form-group">
+              <label>What do you need help with? *</label>
+              <div class="radio-group">
+                <label class="radio-option" id="jobOption">
+                  <input type="radio" name="service" value="job" required>
+                  <span>💼 Job Application</span>
+                </label>
+                <label class="radio-option" id="pfOption">
+                  <input type="radio" name="service" value="pf">
+                  <span>📋 PF Withdrawal</span>
+                </label>
+              </div>
+            </div>
 
-            <p><strong>Email:</strong><br> support@fynderconsulting.com</p>
+            <!-- Common Fields -->
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+            </div>
 
-            <p><strong>Office Address:</strong><br>
-              Imperial Splendora,<br>
-              Yashwant Smart City,<br>
-              Vasai East – 401208
+            <div class="form-group">
+              <label for="phone">Phone Number (WhatsApp) *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="Enter your WhatsApp number">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email (optional)">
+            </div>
+
+            <!-- Job Application Fields -->
+            <div id="jobFields" class="conditional-section">
+              <div class="form-group">
+                <label for="jobType">Job Type Preference *</label>
+                <select id="jobType" name="jobType">
+                  <option value="">Select job type</option>
+                  <option value="factory">Factory / Manufacturing</option>
+                  <option value="office">Office / Admin</option>
+                  <option value="it">IT / Computer</option>
+                  <option value="field">Field Work / Sales</option>
+                  <option value="helper">Helper / Support</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="experience">Experience Level</label>
+                <select id="experience" name="experience">
+                  <option value="">Select experience</option>
+                  <option value="fresher">Fresher (0-1 year)</option>
+                  <option value="junior">1-3 years</option>
+                  <option value="mid">3-5 years</option>
+                  <option value="senior">5+ years</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Preferred Location *</label>
+                <input type="text" id="location" name="location" placeholder="City or area preference">
+              </div>
+            </div>
+
+            <!-- PF Withdrawal Fields -->
+            <div id="pfFields" class="conditional-section">
+              <div class="form-group">
+                <label for="uanStatus">Do you have UAN Number? *</label>
+                <select id="uanStatus" name="uanStatus">
+                  <option value="">Select option</option>
+                  <option value="yes">Yes, I have UAN</option>
+                  <option value="no">No, I don't have UAN</option>
+                  <option value="unsure">Not sure</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="pfQueryType">Type of PF Query *</label>
+                <select id="pfQueryType" name="pfQueryType">
+                  <option value="">Select query type</option>
+                  <option value="withdrawal">Full PF Withdrawal</option>
+                  <option value="partial">Partial Withdrawal (Advance)</option>
+                  <option value="transfer">PF Transfer</option>
+                  <option value="status">Claim Status Check</option>
+                  <option value="document">Document Help</option>
+                  <option value="other">Other Query</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="lastEmployer">Last Employer Name</label>
+                <input type="text" id="lastEmployer" name="lastEmployer" placeholder="Company name where PF was deducted">
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="message">Additional Message</label>
+              <textarea id="message" name="message" placeholder="Tell us more about your requirement or any specific questions..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">
+              <span>📤</span> Submit Enquiry
+            </button>
+
+            <p style="font-size: 0.8rem; color: var(--lighter-text); margin-top: 1rem; text-align: center;">
+              By submitting, you agree to our terms. We'll contact you within 24 hours.
             </p>
-
-            <p><strong>Working Hours:</strong><br>
-              Monday – Saturday<br>
-              10:00 AM – 7:00 PM
-            </p>
-
-            <a href="https://wa.me/918263896073" target="_blank" class="btn btn-outline">
-              Chat on WhatsApp
-            </a>
-          </div>
-
+          </form>
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- FOOTER & LEGAL -->
-    <footer>
-      <div class="container">
-        <div class="footer-top">
-          <div>
-            <div class="logo-wrap" style="margin-bottom: 0.3rem">
-              <div class="logo-mark">F</div>
-              <div class="logo-text">
-                <span>Fynder Consulting</span>
-                <span>Private Consultancy Services</span>
-              </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="logo-wrap" style="margin-bottom: 0.3rem">
+            <div class="logo-mark">F</div>
+            <div class="logo-text">
+              <span style="color: #f9fafb;">Fynder Consulting</span>
+              <span>Private Consultancy Services</span>
             </div>
-            <p style="max-width: 300px">
-              Fynder Consulting is a private consultancy and support service
-              provider offering job recruitment assistance and PF withdrawal
-              guidance.
-            </p>
           </div>
-          <div class="footer-links">
-            <a href="#terms">Terms &amp; Conditions</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#disclaimer">Disclaimer</a>
-          </div>
-        </div>
-
-        <div class="legal-section" id="terms">
-          <h3>Terms &amp; Conditions</h3>
-          <p>
-            Services are provided based on information shared by the customer.
-            Customers are responsible for giving correct and complete details.
-          </p>
-          <p>
-            Fynder Consulting does not guarantee job placement or PF approval.
-            Final decisions are taken by employers and concerned authorities.
+          <p style="max-width: 300px; color: #94a3b8;">
+            Fynder Consulting is a private consultancy offering job recruitment assistance and PF withdrawal guidance.
           </p>
         </div>
-
-        <div class="legal-section" id="privacy">
-          <h3>Privacy Policy</h3>
-          <p>
-            Customer data is collected only to provide services and
-            communication. Personal information is not sold or shared with
-            unrelated third parties.
-          </p>
-          <p>
-            WhatsApp chats, documents, and IDs are handled carefully, and
-            sensitive details are only used for service-related purposes.
-          </p>
-        </div>
-
-        <div class="legal-section" id="disclaimer">
-          <h3>Disclaimer</h3>
-          <p>
-            Fynder Consulting is a private consultancy service and does not
-            represent any government authority.
-          </p>
-          <p>
-            Fynder Consulting is not affiliated with EPFO or any other
-            government body. All PF and job-related decisions are taken by the
-            respective official platforms and employers.
-          </p>
-        </div>
-
-        <div class="footer-bottom">
-          &copy; <span id="year"></span> Fynder Consulting. All rights reserved.
+        <div class="footer-links">
+          <a href="#terms">Terms &amp; Conditions</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#disclaimer">Disclaimer</a>
         </div>
       </div>
-    </footer>
 
-    <!-- FLOATING WHATSAPP -->
-    <div class="whatsapp-float">
-      <div class="whatsapp-tooltip">Chat on WhatsApp</div>
-      <a href="https://wa.me/911234567890" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <div class="whatsapp-button">
-          <!-- Use a simple WhatsApp icon using text or swap with SVG -->
-          &#128172;
-        </div>
-      </a>
+      <div class="legal-section" id="terms">
+        <h3>Terms &amp; Conditions</h3>
+        <p>Services are provided based on information shared by the customer. Customers are responsible for giving correct and complete details.</p>
+        <p>Fynder Consulting does not guarantee job placement or PF approval. Final decisions are taken by employers and concerned authorities.</p>
+      </div>
+
+      <div class="legal-section" id="privacy">
+        <h3>Privacy Policy</h3>
+        <p>Customer data is collected only to provide services and communication. Personal information is not sold or shared with unrelated third parties.</p>
+        <p>WhatsApp chats, documents, and IDs are handled carefully for service-related purposes only.</p>
+      </div>
+
+      <div class="legal-section" id="disclaimer">
+        <h3>Disclaimer</h3>
+        <p>Fynder Consulting is a private consultancy service and does not represent any government authority.</p>
+        <p>Fynder Consulting is not affiliated with EPFO or any government body. All PF and job-related decisions are taken by official platforms and employers.</p>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="year"></span> Fynder Consulting. All rights reserved.
+      </div>
     </div>
+  </footer>
 
-    <script>
-      // Mobile nav toggle - shows ALL tabs under hamburger
-      const navToggle = document.getElementById("navToggle");
-      const navLinks = document.getElementById("navLinks");
-      navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
+  <!-- FLOATING WHATSAPP -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat on WhatsApp</div>
+    <a href="https://wa.me/918263896073" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <div class="whatsapp-button">💬</div>
+    </a>
+  </div>
+
+  <script>
+    // ==================== DOM ELEMENTS ====================
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const contactForm = document.getElementById("contactForm");
+    const toastContainer = document.getElementById("toastContainer");
+    const jobFields = document.getElementById("jobFields");
+    const pfFields = document.getElementById("pfFields");
+    const jobOption = document.getElementById("jobOption");
+    const pfOption = document.getElementById("pfOption");
+
+    // ==================== THEME MANAGEMENT ====================
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
+    initTheme();
+
+    // ==================== MOBILE NAVIGATION ====================
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
       });
+    });
 
-      // Rest of your existing scripts (smooth scroll, forms, etc.)
-
-      // Smooth scroll + auto-open form
-      document.addEventListener("DOMContentLoaded", () => {
-
-        const jobRadio = document.querySelector('input[name="service"][value="job"]');
-        const pfRadio = document.querySelector('input[name="service"][value="pf"]');
-        const jobSection = document.getElementById("jobSection");
-        const pfSection = document.getElementById("pfSection");
-
-        // Handle button clicks
-        document.querySelectorAll('a[href="#contact"]').forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            const type = btn.dataset.type;
-            const contact = document.getElementById("contact");
-
-            if (type === "job" && jobRadio) {
-              jobRadio.checked = true;
-              jobSection.style.display = "block";
-              pfSection.style.display = "none";
-            }
-
-            if (type === "pf" && pfRadio) {
-              pfRadio.checked = true;
-              pfSection.style.display = "block";
-              jobSection.style.display = "none";
-            }
-
-            window.scrollTo({
-              top: contact.offsetTop - 90,
-              behavior: "smooth"
-            });
+    // ==================== SMOOTH SCROLL WITH OFFSET ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
           });
-        });
-
+        }
       });
+    });
 
+    // ==================== FORM SERVICE TYPE TOGGLE ====================
+    const serviceRadios = document.querySelectorAll('input[name="service"]');
+    
+    serviceRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        // Update active state on options
+        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('active'));
+        this.closest('.radio-option').classList.add('active');
+        
+        // Show/hide conditional fields
+        if (this.value === 'job') {
+          jobFields.classList.add('active');
+          pfFields.classList.remove('active');
+        } else if (this.value === 'pf') {
+          pfFields.classList.add('active');
+          jobFields.classList.remove('active');
+        }
+      });
+    });
 
+    // ==================== AUTO-SELECT SERVICE FROM BUTTONS ====================
+    document.querySelectorAll('a[href="#contact"]').forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        const type = this.dataset.type;
+        
+        setTimeout(() => {
+          if (type === "job") {
+            const jobRadio = document.querySelector('input[name="service"][value="job"]');
+            if (jobRadio) {
+              jobRadio.checked = true;
+              jobRadio.dispatchEvent(new Event('change'));
+            }
+          } else if (type === "pf") {
+            const pfRadio = document.querySelector('input[name="service"][value="pf"]');
+            if (pfRadio) {
+              pfRadio.checked = true;
+              pfRadio.dispatchEvent(new Event('change'));
+            }
+          }
+        }, 100);
+      });
+    });
+
+    // Check URL hash on page load
+    function checkUrlHash() {
+      const hash = window.location.hash;
+      if (hash.includes('type=job')) {
+        const jobRadio = document.querySelector('input[name="service"][value="job"]');
+        if (jobRadio) {
+          jobRadio.checked = true;
+          jobRadio.dispatchEvent(new Event('change'));
+        }
+      } else if (hash.includes('type=pf')) {
+        const pfRadio = document.querySelector('input[name="service"][value="pf"]');
+        if (pfRadio) {
+          pfRadio.checked = true;
+          pfRadio.dispatchEvent(new Event('change'));
+        }
+      }
+    }
+
+    // ==================== FORM SUBMISSION ====================
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳</span> Sending...';
+
+      // Simulate form submission
+      setTimeout(() => {
+        // Get form data for potential use
+        const formData = new FormData(contactForm);
+        const serviceType = formData.get('service');
+        
+        // Reset form
+        contactForm.reset();
+        jobFields.classList.remove('active');
+        pfFields.classList.remove('active');
+        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('active'));
+        
+        // Show success message
+        const message = serviceType === 'job' 
+          ? 'Thank you! We\'ll contact you about job opportunities within 24 hours. 💼'
+          : 'Thank you! We\'ll contact you about your PF query within 24 hours. 📋';
+        
+        showToast(message, 'success');
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 1500);
+    });
+
+    // ==================== TOAST NOTIFICATIONS ====================
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      
+      const icons = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️'
+      };
+
+      toast.innerHTML = `
+        <span class="toast-icon">${icons[type]}</span>
+        <span class="toast-message">${message}</span>
+        <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+      `;
+
+      toastContainer.appendChild(toast);
+
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        toast.style.animation = 'slideIn 0.3s ease reverse';
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
+
+    // ==================== FOUNDER SLIDER ====================
+    let currentFounder = 0;
+    const totalFounders = 2;
+    let founderAutoSlide;
+
+    function slideFounder(direction) {
+      currentFounder += direction;
+      if (currentFounder < 0) currentFounder = totalFounders - 1;
+      else if (currentFounder >= totalFounders) currentFounder = 0;
+      updateFounderSlider();
+    }
+
+    function goToFounder(index) {
+      currentFounder = index;
+      updateFounderSlider();
+    }
+
+    function updateFounderSlider() {
+      const track = document.querySelector('.founder-track');
+      if (track) {
+        track.style.transform = `translateX(-${currentFounder * 100}%)`;
+      }
+      
+      const dots = document.querySelectorAll('.founder-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentFounder);
+      });
+    }
+
+    function startFounderAutoSlide() {
+      founderAutoSlide = setInterval(() => slideFounder(1), 6000);
+    }
+
+    function stopFounderAutoSlide() {
+      clearInterval(founderAutoSlide);
+    }
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
       // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Simple form handler (no backend)
-      function handleForm(form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          alert(
-            "Thank you. Your details have been received by Fynder Consulting. The team will contact you shortly."
-          );
-          form.reset();
-        });
+      
+      // Start founder auto-slide
+      startFounderAutoSlide();
+      
+      // Pause slider on hover
+      const sliderWrapper = document.querySelector('.founder-slider-wrapper');
+      if (sliderWrapper) {
+        sliderWrapper.addEventListener('mouseenter', stopFounderAutoSlide);
+        sliderWrapper.addEventListener('mouseleave', startFounderAutoSlide);
       }
+      
+      // Check URL hash for auto-selecting service
+      checkUrlHash();
+    });
 
-      // handleForm(document.getElementById("jobForm"));
-      // handleForm(document.getElementById("pfForm"));
-
-      // Add this script at the end of your existing <script> section
-
-      // Form toggle functionalit
-      document.querySelectorAll(".form-toggle").forEach((toggle) => {
-        toggle.addEventListener("click", function () {
-          const card = this.closest(".card");
-          card.classList.toggle("hidden");
-
-          const isHidden = card.classList.contains("hidden");
-          this.textContent = isHidden ? "Show Form" : "Hide Form";
-        });
-      });
-      // Founder Slider Functionality
-      let currentFounder = 0;
-      const totalFounders = 2; // Update this number if you add more founders
-
-      function slideFounder(direction) {
-        currentFounder += direction;
-
-        // Loop around to create infinite effect
-        if (currentFounder < 0) {
-          currentFounder = totalFounders - 1;
-        } else if (currentFounder >= totalFounders) {
-          currentFounder = 0;
-        }
-
-        updateFounderSlider();
-      }
-
-      function goToFounder(index) {
-        currentFounder = index;
-        updateFounderSlider();
-      }
-
-      function updateFounderSlider() {
-        const track = document.querySelector('.founder-track');
-        if (track) {
-          track.style.transform = `translateX(-${currentFounder * 100}%)`;
-        }
-
-        // Update dots
-        const dots = document.querySelectorAll('.founder-dot');
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentFounder);
-        });
-      }
-
-      // Optional: Auto-slide (remove if not needed)
-      let founderAutoSlide;
-
-      function startFounderAutoSlide() {
-        founderAutoSlide = setInterval(() => {
-          slideFounder(1);
-        }, 6000); // Change slide every 6 seconds
-      }
-
-      function stopFounderAutoSlide() {
-        clearInterval(founderAutoSlide);
-      }
-
-      // Start auto-slide when page loads
-      document.addEventListener('DOMContentLoaded', () => {
-        startFounderAutoSlide();
-
-        // Pause on hover
-        const sliderWrapper = document.querySelector('.founder-slider-wrapper');
-        if (sliderWrapper) {
-          sliderWrapper.addEventListener('mouseenter', stopFounderAutoSlide);
-          sliderWrapper.addEventListener('mouseleave', startFounderAutoSlide);
-        }
-      });
-      const jobSection = document.getElementById("jobSection");
-      const pfSection = document.getElementById("pfSection");
-
-      document.querySelectorAll('input[name="service"]').forEach(radio => {
-        radio.addEventListener("change", () => {
-          if (radio.value === "job") {
-            jobSection.style.display = "block";
-            pfSection.style.display = "none";
-          } else {
-            pfSection.style.display = "block";
-            jobSection.style.display = "none";
-          }
-        });
-      });
-
-      document.getElementById("smartForm").addEventListener("submit", e => {
-        e.preventDefault();
-        alert("Thank you! Fynder Consulting will contact you shortly.");
-        e.target.reset();
-        jobSection.style.display = "none";
-        pfSection.style.display = "none";
-      });
-
-      // ===== AUTO-SELECT JOB / PF ON BUTTON CLICK =====
-      document.addEventListener("DOMContentLoaded", () => {
-
-        function handleContactIntent() {
-          if (!location.hash.startsWith("#contact")) return;
-
-          const params = new URLSearchParams(location.hash.split("?")[1]);
-          const type = params.get("type");
-
-          const jobRadio = document.querySelector('input[name="service"][value="job"]');
-          const pfRadio = document.querySelector('input[name="service"][value="pf"]');
-
-          const jobSection = document.getElementById("jobSection");
-          const pfSection = document.getElementById("pfSection");
-
-          if (type === "job" && jobRadio) {
-            jobRadio.checked = true;
-            jobSection.style.display = "block";
-            pfSection.style.display = "none";
-          }
-
-          if (type === "pf" && pfRadio) {
-            pfRadio.checked = true;
-            pfSection.style.display = "block";
-            jobSection.style.display = "none";
-          }
-
-          // Smooth scroll with offset
-          const contactSection = document.getElementById("contact");
-          if (contactSection) {
-            window.scrollTo({
-              top: contactSection.offsetTop - 90,
-              behavior: "smooth"
-            });
-          }
-        }
-
-        // Run on page load
-        handleContactIntent();
-
-        // Run again if hash changes
-        window.addEventListener("hashchange", handleContactIntent);
-      });
-    </script>
+    // Handle hash change
+    window.addEventListener('hashchange', checkUrlHash);
+  </script>
 </body>
-
 </html>
