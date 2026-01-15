@@ -1483,6 +1483,30 @@
         margin: 0 1rem;
       }
     }
+    /* ==================== TEXT LOGO ==================== */
+.text-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-main {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
   </style>
 </head>
 
@@ -1500,10 +1524,11 @@
   <header id="header">
     <div class="container">
       <nav class="nav">
-        <div class="logo-wrap">
-          <img src="logo.png" alt="Fynder Consulting" class="logo-img" onerror="this.style.display='none'">
-          <!-- <span class="logo-text">Fynder</span> -->
+        <div class="logo-wrap text-logo">
+          <div class="logo-main">FY</div>
+          <div class="logo-sub">Fynder Consulting</div>
         </div>
+
 
         <div class="nav-links">
           <a href="#home" class="active">Home</a>
@@ -1681,12 +1706,12 @@
           <h3>Fynder Consulting</h3>
           <p>Your trusted partner in finding the perfect job. We connect talented professionals with leading companies
             across India, making job hunting simple and successful.</p>
-          <div class="social-links">
+          <!-- <div class="social-links">
             <a href="#" class="social-link" aria-label="Facebook">📘</a>
             <a href="#" class="social-link" aria-label="Instagram">📷</a>
             <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
             <a href="#" class="social-link" aria-label="Twitter">🐦</a>
-          </div>
+          </div> -->
         </div>
 
         <div class="footer-col">
@@ -2297,6 +2322,4 @@ B2B SALES!</h4>
     window.shareJob = shareJob;
   </script>
 </body>
-
 </html>
-
