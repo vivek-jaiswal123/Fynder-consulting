@@ -10,6 +10,12 @@
   </title>
   <meta name="description"
     content="Fynder Consulting provides trusted job recruitment services and PF withdrawal support with transparency and care." />
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  crossorigin="anonymous"
+/>
+
   <style>
     /* ==================== CSS VARIABLES & THEMES ==================== */
     :root {
@@ -20,7 +26,7 @@
       --accent-yellow: #facc15;
       --accent-purple: #8b5cf6;
       --danger-red: #ef4444;
-      
+
       /* Light Theme (Default) */
       --dark-text: #1f2933;
       --light-text: #6b7280;
@@ -35,7 +41,7 @@
       --section-alt-bg: #f9fafb;
       --footer-bg: #020617;
       --footer-text: #e5e7eb;
-      
+
       --max-width: 1100px;
       --radius: 10px;
       --radius-lg: 16px;
@@ -460,7 +466,7 @@
       align-items: flex-start;
     }
 
-    .about-grid > div > p {
+    .about-grid>div>p {
       color: var(--light-text);
     }
 
@@ -904,7 +910,7 @@
       color: var(--dark-text);
     }
 
-    .contact-info > p {
+    .contact-info>p {
       color: var(--light-text);
       margin-bottom: 2rem;
       line-height: 1.7;
@@ -1163,8 +1169,15 @@
     }
 
     @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     .toast-icon {
@@ -1297,6 +1310,7 @@
 
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 900px) {
+
       .hero-grid,
       .about-grid,
       .services-grid,
@@ -1327,6 +1341,7 @@
     }
 
     @media (max-width: 720px) {
+
       .nav-links,
       .nav-cta .btn {
         display: none;
@@ -1403,6 +1418,63 @@
         padding: 1.5rem;
       }
     }
+    /* ==================== TEXT LOGO ==================== */
+.text-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-main {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+/* ==================== FOOTER SOCIAL ICONS ==================== */
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Brand colors on hover */
+.footer-social a.facebook:hover { background: #1877f2; }
+.footer-social a.instagram:hover {
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.footer-social a.linkedin:hover { background: #0a66c2; }
+.footer-social a.twitter:hover { background: #000; }
+
   </style>
 </head>
 
@@ -1414,11 +1486,11 @@
   <header>
     <div class="container">
       <nav class="nav">
-        <div class="logo-wrap">
-          <img src="logo.png" alt="Fynder Consulting - Jobs Hiring" class="logo-img" 
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="logo-mark" style="display: none;">F</div>
+        <div class="logo-wrap text-logo">
+          <div class="logo-main">FY</div>
+          <div class="logo-sub">Fynder Consulting</div>
         </div>
+
         <div class="nav-links" id="navLinks">
           <a href="#home">Home</a>
           <a href="#about">About</a>
@@ -1458,7 +1530,8 @@
             Fynder Consulting &ndash; Trusted Job Recruitment &amp; PF Withdrawal Support
           </h1>
           <p class="sub">
-            Fynder Consulting helps people find the right jobs and provides smooth PF withdrawal support with transparency and care.
+            Fynder Consulting helps people find the right jobs and provides smooth PF withdrawal support with
+            transparency and care.
           </p>
 
           <div class="hero-actions">
@@ -1508,13 +1581,16 @@
           <div class="hero-card-header">
             <div class="hero-avatar-group">
               <div class="hero-avatar">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.Ae0F0BjtyvKmkPkZVXM41wHaJQ?pid=Api&P=0&h=180" alt="Fynder team member" />
+                <img src="https://tse1.mm.bing.net/th/id/OIP.Ae0F0BjtyvKmkPkZVXM41wHaJQ?pid=Api&P=0&h=180"
+                  alt="Fynder team member" />
               </div>
               <div class="hero-avatar">
-                <img src="https://tse2.mm.bing.net/th?id=OIF.t4%2fgjGsFj%2fCk2F2vS6DnRA&pid=Api&P=0&h=180" alt="Customer" />
+                <img src="https://tse2.mm.bing.net/th?id=OIF.t4%2fgjGsFj%2fCk2F2vS6DnRA&pid=Api&P=0&h=180"
+                  alt="Customer" />
               </div>
               <div class="hero-avatar">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.HKWYzoHTYuft-KetV_2NrgHaE7?pid=Api&P=0&h=180" alt="Customer" />
+                <img src="https://tse1.mm.bing.net/th/id/OIP.HKWYzoHTYuft-KetV_2NrgHaE7?pid=Api&P=0&h=180"
+                  alt="Customer" />
               </div>
             </div>
             <div class="hero-card-header-text">
@@ -1526,7 +1602,8 @@
           <div class="hero-testimonial">
             <strong aria-label="5 star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</strong>
             <p>
-              &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo; &ndash; Ramesh, Chennai
+              &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo; &ndash;
+              Ramesh, Chennai
             </p>
           </div>
 
@@ -1546,16 +1623,20 @@
         <div class="section-header">
           <h2>About Fynder Consulting</h2>
           <p>
-            Fynder Consulting is a private consultancy that connects candidates with genuine job opportunities and supports them with PF withdrawal related processes.
+            Fynder Consulting is a private consultancy that connects candidates with genuine job opportunities and
+            supports them with PF withdrawal related processes.
           </p>
         </div>
         <div class="about-grid">
           <div>
             <p>
-              Fynder Consulting was started to solve two common problems: finding trustworthy jobs and getting PF money without confusion or delay. Many candidates struggle with unclear information, multiple visits, and lack of proper guidance.
+              Fynder Consulting was started to solve two common problems: finding trustworthy jobs and getting PF money
+              without confusion or delay. Many candidates struggle with unclear information, multiple visits, and lack
+              of proper guidance.
             </p>
             <p style="margin-top: 0.5rem">
-              The team behind Fynder Consulting has hands-on experience in recruitment and employee support services, especially for blue-collar and entry-level office roles.
+              The team behind Fynder Consulting has hands-on experience in recruitment and employee support services,
+              especially for blue-collar and entry-level office roles.
             </p>
             <div class="pill-list">
               <div class="pill">
@@ -1616,17 +1697,19 @@
               <div class="founder-slide">
                 <div class="founder-grid">
                   <div class="founder-photo-card">
-                    <img src="director.jpeg" alt="Niharika Singh - Founder of Fynder Consulting" 
-                         onerror="this.src='https://via.placeholder.com/400x340/0b63ce/ffffff?text=Niharika+Singh'" />
+                    <img src="director.jpeg" alt="Niharika Singh - Founder of Fynder Consulting"
+                      onerror="this.src='https://via.placeholder.com/400x340/0b63ce/ffffff?text=Niharika+Singh'" />
                     <div class="founder-badge">Founder &amp; Lead Consultant</div>
                   </div>
                   <div class="founder-content">
                     <h3>Niharika Singh</h3>
                     <p>
-                      Niharika Singh, Founder & Director of Fynder Consulting, brings 7+ years of experience in recruitment and PF support services.
+                      Niharika Singh, Founder & Director of Fynder Consulting, brings 7+ years of experience in
+                      recruitment and PF support services.
                     </p>
                     <p>
-                      With experience in recruitment, HR support and PF documentation, she focuses on clear guidance, honest communication and practical solutions.
+                      With experience in recruitment, HR support and PF documentation, she focuses on clear guidance,
+                      honest communication and practical solutions.
                     </p>
                     <div class="founder-highlights">
                       <div class="founder-pill">7+ years in recruitment</div>
@@ -1635,7 +1718,8 @@
                     </div>
                     <div class="founder-meta">
                       <p><strong>Vision:</strong> "Guide people honestly and help them take the right next step."</p>
-                      <p><strong>Message:</strong> &ldquo;Every customer case is important. The goal is honest advice, not false promises.&rdquo;</p>
+                      <p><strong>Message:</strong> &ldquo;Every customer case is important. The goal is honest advice,
+                        not false promises.&rdquo;</p>
                     </div>
                   </div>
                 </div>
@@ -1646,16 +1730,18 @@
                 <div class="founder-grid">
                   <div class="founder-photo-card">
                     <img src="cofounder.jpeg" alt="Aruni Singh - Co-Founder of Fynder Consulting"
-                         onerror="this.src='https://via.placeholder.com/400x340/18a558/ffffff?text=Aruni+Singh'" />
+                      onerror="this.src='https://via.placeholder.com/400x340/18a558/ffffff?text=Aruni+Singh'" />
                     <div class="founder-badge">Co-Founder &amp; Operations Head</div>
                   </div>
                   <div class="founder-content">
                     <h3>Aruni Singh</h3>
                     <p>
-                      Aruni Singh, Co-Founder of Fynder Consulting, specializes in operations management and client relations with 5+ years of HR consulting experience.
+                      Aruni Singh, Co-Founder of Fynder Consulting, specializes in operations management and client
+                      relations with 5+ years of HR consulting experience.
                     </p>
                     <p>
-                      His expertise lies in streamlining recruitment processes and ensuring timely resolution of PF-related queries.
+                      His expertise lies in streamlining recruitment processes and ensuring timely resolution of
+                      PF-related queries.
                     </p>
                     <div class="founder-highlights">
                       <div class="founder-pill">5+ years in HR consulting</div>
@@ -1663,8 +1749,10 @@
                       <div class="founder-pill">Client relations expert</div>
                     </div>
                     <div class="founder-meta">
-                      <p><strong>Vision:</strong> "Building lasting relationships through reliable service delivery."</p>
-                      <p><strong>Message:</strong> &ldquo;We treat every client like family. Your success is our success.&rdquo;</p>
+                      <p><strong>Vision:</strong> "Building lasting relationships through reliable service delivery."
+                      </p>
+                      <p><strong>Message:</strong> &ldquo;We treat every client like family. Your success is our
+                        success.&rdquo;</p>
                     </div>
                   </div>
                 </div>
@@ -1693,7 +1781,8 @@
         <div class="section-header">
           <h2>Services</h2>
           <p>
-            Fynder Consulting provides job recruitment support and PF withdrawal guidance as separate but connected services.
+            Fynder Consulting provides job recruitment support and PF withdrawal guidance as separate but connected
+            services.
           </p>
         </div>
 
@@ -1751,9 +1840,11 @@
               </li>
             </ul>
             <div class="disclaimer">
-              Fynder Consulting provides support and consultancy services only. Not affiliated with EPFO or any government organization.
+              Fynder Consulting provides support and consultancy services only. Not affiliated with EPFO or any
+              government organization.
             </div>
-            <a href="#contact" data-type="pf" class="btn btn-outline" style="margin-top: 1rem;">PF Withdrawal Support</a>
+            <a href="#contact" data-type="pf" class="btn btn-outline" style="margin-top: 1rem;">PF Withdrawal
+              Support</a>
           </div>
         </div>
       </div>
@@ -1774,7 +1865,7 @@
             <h3>Submit enquiry</h3>
             <p>Fill the job application or PF enquiry form with correct details.</p>
           </div>
-                   <div class="step-card">
+          <div class="step-card">
             <div class="step-number">2</div>
             <h3>Team contacts you</h3>
             <p>Our team connects through call or WhatsApp to understand your requirement.</p>
@@ -1817,7 +1908,8 @@
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
-                  <img src="https://tse1.mm.bing.net/th/id/OIP.sJR0R9CiewjCwEpfIU-ULQHaHa?pid=Api&P=0&h=180" alt="Customer photo" />
+                  <img src="https://tse1.mm.bing.net/th/id/OIP.sJR0R9CiewjCwEpfIU-ULQHaHa?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
                   Ramesh, Chennai<br />PF Withdrawal Support
@@ -1832,7 +1924,8 @@
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
-                  <img src="https://tse4.mm.bing.net/th/id/OIP.P_KX334RqLs_rFVI-JsYWwHaGf?pid=Api&P=0&h=180" alt="Customer photo" />
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.P_KX334RqLs_rFVI-JsYWwHaGf?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
                   Sunita, Mumbai<br />Job Recruitment
@@ -1847,7 +1940,8 @@
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
-                  <img src="https://tse2.mm.bing.net/th/id/OIP.-A4_8WnKjSQFWMIVy2im_QHaLK?pid=Api&P=0&h=180" alt="Customer photo" />
+                  <img src="https://tse2.mm.bing.net/th/id/OIP.-A4_8WnKjSQFWMIVy2im_QHaLK?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
                   Ajay, Pune<br />PF Support
@@ -1862,7 +1956,8 @@
               </div>
               <div class="testimonial-footer">
                 <div class="testimonial-avatar">
-                  <img src="https://tse3.mm.bing.net/th/id/OIP.LDDHJ7-W6BaXAm4Sj7IEgAHaJQ?pid=Api&P=0&h=180" alt="Customer photo" />
+                  <img src="https://tse3.mm.bing.net/th/id/OIP.LDDHJ7-W6BaXAm4Sj7IEgAHaJQ?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
                 </div>
                 <div class="testimonial-meta">
                   Neha, Delhi NCR<br />Job Recruitment
@@ -1895,7 +1990,8 @@
       <div class="container">
         <div class="section-header">
           <h2>📞 Contact & Enquiry</h2>
-          <p>Have questions or need assistance? Fill out the simple form below and we'll get back to you within 24 hours.</p>
+          <p>Have questions or need assistance? Fill out the simple form below and we'll get back to you within 24
+            hours.</p>
         </div>
 
         <div class="contact-grid">
@@ -1948,12 +2044,8 @@
           </div>
 
           <!-- Right: SIMPLIFIED Contact Form -->
-<form
-  class="contact-form"
-  id="contactForm"
-  action="https://formsubmit.co/support@fynderconsulting.com"
-  method="POST"
->
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/support@fynderconsulting.com"
+            method="POST">
 
 
             <h3>📝 Quick Enquiry Form</h3>
@@ -1967,7 +2059,8 @@
             <!-- Phone Number -->
             <div class="form-group">
               <label for="phone">Phone Number (WhatsApp) *</label>
-              <input type="tel" id="phone" name="phone" required placeholder="Enter your WhatsApp number" pattern="[0-9]{10}" maxlength="10">
+              <input type="tel" id="phone" name="phone" required placeholder="Enter your WhatsApp number"
+                pattern="[0-9]{10}" maxlength="10">
             </div>
 
             <!-- Email Address -->
@@ -1992,22 +2085,22 @@
             </div>
 
             <!-- Additional Message -->
-<div class="form-group">
-  <label for="message">Additional Message</label>
-  <textarea id="message" name="message"
-    placeholder="Tell us more about your requirement (optional)..."></textarea>
-</div>
+            <div class="form-group">
+              <label for="message">Additional Message</label>
+              <textarea id="message" name="message"
+                placeholder="Tell us more about your requirement (optional)..."></textarea>
+            </div>
 
-<!-- ✅ FormSubmit settings (CORRECT PLACE) -->
-<input type="hidden" name="_subject" value="New Enquiry - Fynder Consulting">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="thankyou.html">
+            <!-- ✅ FormSubmit settings (CORRECT PLACE) -->
+            <input type="hidden" name="_subject" value="New Enquiry - Fynder Consulting">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="thankyou.html">
 
-<!-- Submit Button -->
-<button type="submit" class="form-submit" id="submitBtn">
-  <span>📤</span> Submit Enquiry
-</button>
+            <!-- Submit Button -->
+            <button type="submit" class="form-submit" id="submitBtn">
+              <span>📤</span> Submit Enquiry
+            </button>
 
 
             <p style="font-size: 0.8rem; color: var(--lighter-text); margin-top: 1rem; text-align: center;">
@@ -2024,17 +2117,36 @@
     <div class="container">
       <div class="footer-top">
         <div>
-          <div class="logo-wrap" style="margin-bottom: 0.3rem">
-            <div class="logo-mark">F</div>
-            <div class="logo-text">
-              <span style="color: #f9fafb;">Fynder Consulting</span>
-              <span>Private Consultancy Services</span>
-            </div>
-          </div>
-          <p style="max-width: 300px; color: #94a3b8;">
-            Fynder Consulting is a private consultancy offering job recruitment assistance and PF withdrawal guidance.
-          </p>
-        </div>
+  <div class="logo-wrap" style="margin-bottom: 0.3rem">
+    <div class="logo-mark">F</div>
+    <div class="logo-text">
+      <span style="color: #f9fafb;">Fynder Consulting</span>
+      <span>Private Consultancy Services</span>
+    </div>
+  </div>
+
+  <p style="max-width: 300px; color: #94a3b8;">
+    Fynder Consulting is a private consultancy offering job recruitment assistance
+    and PF withdrawal guidance.
+  </p>
+
+  <!-- ✅ Social Media Icons -->
+  <div class="footer-social">
+    <a href="https://www.facebook.com/share/1CbZHzyUNm/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com/company/fynderconsulting/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="#E" target="_blank" aria-label="Twitter">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+</div>
+
         <div class="footer-links">
           <a href="#terms">Terms &amp; Conditions</a>
           <a href="#privacy">Privacy Policy</a>
@@ -2044,20 +2156,24 @@
 
       <div class="legal-section" id="terms">
         <h3>Terms &amp; Conditions</h3>
-        <p>Services are provided based on information shared by the customer. Customers are responsible for giving correct and complete details.</p>
-        <p>Fynder Consulting does not guarantee job placement or PF approval. Final decisions are taken by employers and concerned authorities.</p>
+        <p>Services are provided based on information shared by the customer. Customers are responsible for giving
+          correct and complete details.</p>
+        <p>Fynder Consulting does not guarantee job placement or PF approval. Final decisions are taken by employers and
+          concerned authorities.</p>
       </div>
 
       <div class="legal-section" id="privacy">
         <h3>Privacy Policy</h3>
-        <p>Customer data is collected only to provide services and communication. Personal information is not sold or shared with unrelated third parties.</p>
+        <p>Customer data is collected only to provide services and communication. Personal information is not sold or
+          shared with unrelated third parties.</p>
         <p>WhatsApp chats, documents, and IDs are handled carefully for service-related purposes only.</p>
       </div>
 
       <div class="legal-section" id="disclaimer">
         <h3>Disclaimer</h3>
         <p>Fynder Consulting is a private consultancy service and does not represent any government authority.</p>
-        <p>Fynder Consulting is not affiliated with EPFO or any government body. All PF and job-related decisions are taken by official platforms and employers.</p>
+        <p>Fynder Consulting is not affiliated with EPFO or any government body. All PF and job-related decisions are
+          taken by official platforms and employers.</p>
       </div>
 
       <div class="footer-bottom">
@@ -2119,17 +2235,17 @@
 
     // ==================== SMOOTH SCROLL WITH OFFSET ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           e.preventDefault();
           const headerOffset = 80;
           const elementPosition = targetElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
+
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
@@ -2140,9 +2256,9 @@
 
     // ==================== RADIO OPTION STYLING ====================
     const applicationRadios = document.querySelectorAll('input[name="applicationType"]');
-    
+
     applicationRadios.forEach(radio => {
-      radio.addEventListener('change', function() {
+      radio.addEventListener('change', function () {
         // Remove active class from all options
         document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('active'));
         // Add active class to selected option
@@ -2152,9 +2268,9 @@
 
     // ==================== AUTO-SELECT SERVICE FROM BUTTONS ====================
     document.querySelectorAll('a[href="#contact"]').forEach(btn => {
-      btn.addEventListener("click", function(e) {
+      btn.addEventListener("click", function (e) {
         const type = this.dataset.type;
-        
+
         setTimeout(() => {
           if (type === "job") {
             const jobRadio = document.querySelector('input[name="applicationType"][value="job"]');
@@ -2176,36 +2292,36 @@
     // ==================== FORM SUBMISSION ====================
     contactForm.addEventListener('submit', function (e) {
 
-  // Validate phone number BEFORE submission
-  const phone = document.getElementById('phone').value;
-  if (phone.length !== 10 || !/^\d+$/.test(phone)) {
-    e.preventDefault(); // block only if invalid
-    showToast('Please enter a valid 10-digit phone number', 'error');
-    return;
-  }
+      // Validate phone number BEFORE submission
+      const phone = document.getElementById('phone').value;
+      if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+        e.preventDefault(); // block only if invalid
+        showToast('Please enter a valid 10-digit phone number', 'error');
+        return;
+      }
 
-  const submitBtn = document.getElementById('submitBtn');
-  const originalText = submitBtn.innerHTML;
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
 
-  // Show loading state
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<span>⏳</span> Sending...';
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳</span> Sending...';
 
-  // Allow form to submit normally to FormSubmit ✅
+      // Allow form to submit normally to FormSubmit ✅
 
-  // Optional: Reset UI after submit (FormSubmit will redirect)
-  setTimeout(() => {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalText;
-  }, 3000);
-});
+      // Optional: Reset UI after submit (FormSubmit will redirect)
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 3000);
+    });
 
 
     // ==================== TOAST NOTIFICATIONS ====================
     function showToast(message, type = 'success') {
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
-      
+
       const icons = {
         success: '✅',
         error: '❌',
@@ -2249,7 +2365,7 @@
       if (track) {
         track.style.transform = `translateX(-${currentFounder * 100}%)`;
       }
-      
+
       const dots = document.querySelectorAll('.founder-dot');
       dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentFounder);
@@ -2268,10 +2384,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
-      
+
       // Start founder auto-slide
       startFounderAutoSlide();
-      
+
       // Pause slider on hover
       const sliderWrapper = document.querySelector('.founder-slider-wrapper');
       if (sliderWrapper) {
@@ -2281,4 +2397,5 @@
     });
   </script>
 </body>
+
 </html>
