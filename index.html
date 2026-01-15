@@ -1948,7 +1948,14 @@
           </div>
 
           <!-- Right: SIMPLIFIED Contact Form -->
-          <form class="contact-form" id="contactForm">
+<form
+  class="contact-form"
+  id="contactForm"
+  action="https://formsubmit.co/support@fynderconsulting.com"
+  method="POST"
+>
+
+
             <h3>📝 Quick Enquiry Form</h3>
 
             <!-- Full Name -->
@@ -1985,15 +1992,23 @@
             </div>
 
             <!-- Additional Message -->
-            <div class="form-group">
-              <label for="message">Additional Message</label>
-              <textarea id="message" name="message" placeholder="Tell us more about your requirement (optional)..."></textarea>
-            </div>
+<div class="form-group">
+  <label for="message">Additional Message</label>
+  <textarea id="message" name="message"
+    placeholder="Tell us more about your requirement (optional)..."></textarea>
+</div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="form-submit" id="submitBtn">
-              <span>📤</span> Submit Enquiry
-            </button>
+<!-- ✅ FormSubmit settings (CORRECT PLACE) -->
+<input type="hidden" name="_subject" value="New Enquiry - Fynder Consulting">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="thankyou.html">
+
+<!-- Submit Button -->
+<button type="submit" class="form-submit" id="submitBtn">
+  <span>📤</span> Submit Enquiry
+</button>
+
 
             <p style="font-size: 0.8rem; color: var(--lighter-text); margin-top: 1rem; text-align: center;">
               By submitting, you agree to our terms. We'll contact you within 24 hours.
@@ -2159,46 +2174,32 @@
     });
 
     // ==================== FORM SUBMISSION ====================
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const originalText = submitBtn.innerHTML;
-      
-      // Validate phone number
-      const phone = document.getElementById('phone').value;
-      if (phone.length !== 10 || !/^\d+$/.test(phone)) {
-        showToast('Please enter a valid 10-digit phone number', 'error');
-        return;
-      }
-      
-      // Disable button and show loading
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>⏳</span> Sending...';
+    contactForm.addEventListener('submit', function (e) {
 
-      // Simulate form submission (replace with actual API call)
-      setTimeout(() => {
-        // Get form data
-        const formData = new FormData(contactForm);
-        const applicationType = formData.get('applicationType');
-        const fullName = formData.get('fullName');
-        
-        // Reset form
-        contactForm.reset();
-        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('active'));
-        
-        // Show success message
-        const message = applicationType === 'job' 
-          ? `Thank you ${fullName}! We'll contact you about job opportunities within 24 hours. 💼`
-          : `Thank you ${fullName}! We'll contact you about your PF query within 24 hours. 📋`;
-        
-        showToast(message, 'success');
-        
-        // Reset button
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }, 1500);
-    });
+  // Validate phone number BEFORE submission
+  const phone = document.getElementById('phone').value;
+  if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+    e.preventDefault(); // block only if invalid
+    showToast('Please enter a valid 10-digit phone number', 'error');
+    return;
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  const originalText = submitBtn.innerHTML;
+
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span>⏳</span> Sending...';
+
+  // Allow form to submit normally to FormSubmit ✅
+
+  // Optional: Reset UI after submit (FormSubmit will redirect)
+  setTimeout(() => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  }, 3000);
+});
+
 
     // ==================== TOAST NOTIFICATIONS ====================
     function showToast(message, type = 'success') {
