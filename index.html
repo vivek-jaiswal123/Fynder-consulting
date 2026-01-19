@@ -2044,8 +2044,13 @@
           </div>
 
           <!-- Right: SIMPLIFIED Contact Form -->
-          <form class="contact-form" id="contactForm" action="https://formsubmit.co/support@fynderconsulting.com"
-            method="POST">
+ <form
+  id="contactForm"
+  action="https://formsubmit.co/vj887128@gmail.com"
+  method="POST"
+>
+
+
 
 
             <h3>📝 Quick Enquiry Form</h3>
@@ -2196,7 +2201,7 @@
     const navLinks = document.getElementById("navLinks");
     const themeToggle = document.getElementById("themeToggle");
     const themeIcon = document.getElementById("themeIcon");
-    const contactForm = document.getElementById("contactForm");
+    // const contactForm = document.getElementById("contactForm");
     const toastContainer = document.getElementById("toastContainer");
 
     // ==================== THEME MANAGEMENT ====================
@@ -2290,31 +2295,14 @@
     });
 
     // ==================== FORM SUBMISSION ====================
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      // Validate phone number BEFORE submission
-      const phone = document.getElementById('phone').value;
-      if (phone.length !== 10 || !/^\d+$/.test(phone)) {
-        e.preventDefault(); // block only if invalid
-        showToast('Please enter a valid 10-digit phone number', 'error');
-        return;
-      }
+  // your validations here
 
-      const submitBtn = document.getElementById('submitBtn');
-      const originalText = submitBtn.innerHTML;
+  contactForm.submit(); // 🔥 REQUIRED
+});
 
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>⏳</span> Sending...';
-
-      // Allow form to submit normally to FormSubmit ✅
-
-      // Optional: Reset UI after submit (FormSubmit will redirect)
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }, 3000);
-    });
 
 
     // ==================== TOAST NOTIFICATIONS ====================
@@ -2395,6 +2383,7 @@
         sliderWrapper.addEventListener('mouseleave', startFounderAutoSlide);
       }
     });
+
   </script>
 </body>
 
