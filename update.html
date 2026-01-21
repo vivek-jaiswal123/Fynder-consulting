@@ -1483,35 +1483,226 @@
         margin: 0 1rem;
       }
     }
+
     /* ==================== TEXT LOGO ==================== */
-.text-logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
+    .text-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
 
-.logo-main {
-  font-size: 1.8rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-  background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    .logo-main {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.rupee {
-  color: orange;
-  -webkit-text-fill-color: orange;
-  font-weight: 900;   /* bold ₹ */
-}
-.logo-sub {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--light-text);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
+    .rupee {
+      color: orange;
+      -webkit-text-fill-color: orange;
+      font-weight: 900;
+      /* bold ₹ */
+    }
 
+    .logo-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--light-text);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ================= LIVE HIRING SECTION ================= */
+    /* .live-hiring-section {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+} */
+
+    .live-heading {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #dc2626;
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: blinkText 1s infinite;
+    }
+
+    @keyframes blinkText {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Live Jobs Grid */
+    .live-jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Live Job Card */
+    .live-job-card {
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease;
+    }
+
+    .live-job-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* LIVE Badge */
+    .live-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #dc2626;
+      color: #fff;
+      font-weight: 900;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      animation: blinkBadge 1s infinite;
+      z-index: 10;
+    }
+
+    @keyframes blinkBadge {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Job Image */
+    .live-job-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    /* Content */
+    .live-job-content {
+      padding: 1rem;
+    }
+
+    .live-job-content h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #0f172a;
+    }
+
+    .live-job-content .company {
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .live-job-content p {
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Apply Button */
+    .live-btn {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+      font-weight: 700;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .live-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ================= LIVE IMAGE MODAL ================= */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .image-modal img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .close-modal {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      font-size: 2rem;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 100001;
+      pointer-events: auto;
+    }
+
+    .view-image-btn {
+      width: calc(100% - 2rem);
+      margin: 0.7rem auto 0;
+      display: block;
+      padding: 0.6rem;
+      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .view-image-btn:hover {
+      transform: scale(1.03);
+    }
   </style>
 </head>
 
@@ -1529,9 +1720,9 @@
   <header id="header">
     <div class="container">
       <nav class="nav">
-            <div class="logo-main">
-  FYNDE<span class="rupee">₹</span>
-</div>
+        <div class="logo-main">
+          FYNDE<span class="rupee">₹</span>
+        </div>
 
 
         <div class="nav-links">
@@ -1627,6 +1818,113 @@
         <span class="filter-tag" data-filter="it">💻 IT</span>
         <span class="filter-tag" data-filter="support">📞 Support</span>
       </div>
+    </div>
+  </section>
+
+  <!-- LIVE HIRING SECTION -->
+  <section class="live-hiring-section">
+    <div class="container">
+      <div class="live-heading">
+        🔴 LIVE HIRING
+      </div>
+      <div class="live-jobs-grid">
+
+        <!-- LIVE JOB 1 -->
+        <div class="live-job-card">
+          <span class="live-badge">LIVE</span>
+
+          <img src="livejob.jpeg" class="live-job-image">
+          <button class="view-image-btn" onclick="openLiveImage('livejob.jpeg')">
+            👁️ View Image
+          </button>
+
+          <div class="live-job-content">
+            <h3>Cross Sell Executive</h3>
+            <p class="company">IDFC Bank</p>
+            <p>📍 Mumbai</p>
+            <p>💰 Freshers(0 to 1yr):-₹17,000</p>
+            <p>💰 Experienced:-₹34,000</p>
+            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <!-- LIVE JOB 2 -->
+        <div class="live-job-card">
+          <span class="live-badge">LIVE</span>
+
+          <img src="livejob2.jpeg" class="live-job-image">
+          <button class="view-image-btn" onclick="openLiveImage('livejob2.jpeg')">
+            👁️ View Image
+          </button>
+
+          <div class="live-job-content">
+            <h3>Customer Service + Cross Sell</h3>
+            <p class="company">Axis Bank</p>
+            <p>📍 Dombivali</p>
+            <p>💰₹16,000</p>
+            <!-- <p>💰 Experienced:-₹34,000</p> -->
+            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <!-- LIVE JOB 3 -->
+        <div class="live-job-card">
+          <span class="live-badge">LIVE</span>
+
+          <img src="livejob3.jpeg" class="live-job-image">
+          <button class="view-image-btn" onclick="openLiveImage('livejob3.jpeg')">
+            👁️ View Image
+          </button>
+
+          <div class="live-job-content">
+            <h3>Lead Genration Process  </h3>
+            <p class="company">Yes Bank</p>
+            <p>📍 Navi Mumbai</p>
+            <p>💰 Freshers(0 to 1yr):-₹15,900</p>
+            <p>💰 Experienced:-₹20,000</p> 
+            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply
+              Now</a>
+          </div>
+        </div>
+
+        <!-- LIVE JOB 4 -->
+        <!-- <div class="live-job-card">
+          <span class="live-badge">LIVE</span>
+
+          <img src="livejob4.jpeg" class="live-job-image">
+          <button class="view-image-btn" onclick="openLiveImage('livejob4.jpeg')">
+            👁️ View Image
+          </button>
+
+          <div class="live-job-content">
+            <h3>Business Development Executive</h3>
+            <p class="company">Kotak Mahindra Bank</p>
+            <p>📍 Andheri</p>
+            <p>💰 ₹25,000 – ₹40,000</p>
+            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
+          </div>
+        </div> -->
+
+        <!-- LIVE JOB 5 -->
+        <!-- <div class="live-job-card">
+    <span class="live-badge">LIVE</span>
+
+    <img src="livejob5.jpeg" class="live-job-image">
+    <button class="view-image-btn" onclick="openLiveImage('livejob5.jpeg')">
+      👁️ View Image
+    </button>
+
+    <div class="live-job-content">
+      <h3>Field Sales Officer</h3>
+      <p class="company">ICICI Bank</p>
+      <p>📍 Mumbai Suburbs</p>
+      <p>💰 ₹22,000 – ₹38,000</p>
+      <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
+    </div>
+  </div> -->
+
+      </div>
+
     </div>
   </section>
 
@@ -1763,6 +2061,15 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">
     ⬆️
   </button>
+  <!-- LIVE IMAGE MODAL -->
+  <div class="image-modal" id="imageModal">
+    <button class="close-modal" onclick="closeLiveImage()" aria-label="Close image">
+      ✕
+    </button>
+
+    <img id="modalImage" src="" alt="Live Hiring Full Image">
+  </div>
+
 
   <!-- JavaScript -->
   <script>
@@ -2324,6 +2631,97 @@ B2B SALES!</h4>
     window.toggleJobDetails = toggleJobDetails;
     window.toggleBookmark = toggleBookmark;
     window.shareJob = shareJob;
+
+    // Close modal
+    closeModal.addEventListener('click', closeLiveModal);
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) closeLiveModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLiveModal();
+    });
+
+    function closeLiveModal() {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    /* ================= LIVE IMAGE MODAL FUNCTION ================= */
+
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    function openLiveImage(src) {
+      modalImage.src = src;
+      imageModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close button
+    closeModal.addEventListener('click', closeLiveModal);
+
+    // Click outside image
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) closeLiveModal();
+    });
+
+    // ESC key close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLiveModal();
+    });
+
+    function closeLiveModal() {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    // ===== LIVE IMAGE MODAL (FINAL FIX) =====
+    function openLiveImage(src) {
+      const modal = document.getElementById('imageModal');
+      const img = document.getElementById('modalImage');
+
+      img.src = src;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('imageModal');
+      const closeBtn = document.getElementById('closeModal');
+
+      // ❌ Close button (STOP bubbling)
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Background close
+      modal.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Prevent image click from closing
+      document.getElementById('modalImage').addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+
+      // ESC key close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    function closeLiveImage() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
   </script>
 </body>
+
 </html>
