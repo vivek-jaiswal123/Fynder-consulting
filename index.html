@@ -2,26 +2,19 @@
 <html lang="en" data-theme="light">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Fynder Consulting &ndash; Job Recruitment &amp; PF Withdrawal Support
+  </title>
   <meta name="description"
-    content="Find latest job vacancies at Fynder Consulting. Direct hiring, no fees, immediate openings in Mumbai.">
-  <meta name="keywords" content="jobs, vacancies, Mumbai jobs, bank jobs, Axis Bank, hiring">
-  <meta name="author" content="Fynder Consulting">
-  <meta name="theme-color" content="#0b63ce">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Latest Job Vacancies - Fynder Consulting">
-  <meta property="og:description" content="Find your dream job. No fees, direct hiring!">
-  <meta property="og:type" content="website">
-
-  <title>Latest Job Vacancies - Fynder Consulting</title>
-
-  <!-- Preload fonts for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    content="Fynder Consulting provides trusted job recruitment services and PF withdrawal support with transparency and care." />
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  crossorigin="anonymous"
+/>
 
   <style>
     /* ==================== CSS VARIABLES & THEMES ==================== */
@@ -30,9 +23,11 @@
       --primary-blue-dark: #0952a8;
       --primary-green: #18a558;
       --primary-green-dark: #148f4b;
-      --accent-orange: #f59e0b;
+      --accent-yellow: #facc15;
       --accent-purple: #8b5cf6;
       --danger-red: #ef4444;
+
+      /* Light Theme (Default) */
       --dark-text: #1f2933;
       --light-text: #6b7280;
       --lighter-text: #9ca3af;
@@ -40,15 +35,20 @@
       --white: #ffffff;
       --border: #e1e4ea;
       --border-light: #f1f5f9;
-      --max-width: 1200px;
-      --radius: 12px;
+      --card-bg: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.98);
+      --hero-gradient: radial-gradient(circle at top left, #e0efff 0, #ffffff 45%);
+      --section-alt-bg: #f9fafb;
+      --footer-bg: #020617;
+      --footer-text: #e5e7eb;
+
+      --max-width: 1100px;
+      --radius: 10px;
       --radius-lg: 16px;
-      --shadow-soft: 0 4px 20px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.1);
       --shadow-medium: 0 10px 40px rgba(15, 23, 42, 0.12);
-      --shadow-glow: 0 0 30px rgba(11, 99, 206, 0.15);
       --transition-fast: 0.2s ease;
       --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     /* Dark Theme */
@@ -60,199 +60,195 @@
       --white: #1e293b;
       --border: #334155;
       --border-light: #1e293b;
-      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --card-bg: #1e293b;
+      --header-bg: rgba(30, 41, 59, 0.98);
+      --hero-gradient: radial-gradient(circle at top left, #1e3a5f 0, #0f172a 45%);
+      --section-alt-bg: #0f172a;
+      --footer-bg: #020617;
+      --footer-text: #cbd5e1;
+      --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.3);
       --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
-    /* ==================== RESET & BASE ==================== */
-    *,
-    *::before,
-    *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--dark-text);
-      background: var(--light-bg);
+      background: var(--white);
       line-height: 1.6;
-      overflow-x: hidden;
       transition: background var(--transition-medium), color var(--transition-medium);
     }
 
-    /* ==================== LOADING SCREEN ==================== */
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .page-loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid var(--border);
-      border-top-color: var(--primary-blue);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    .loader-text {
-      margin-top: 1rem;
-      font-weight: 600;
-      color: var(--light-text);
-      animation: pulse-text 1.5s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes pulse-text {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.5;
-      }
-    }
-
-    /* ==================== UTILITIES ==================== */
+    /* Layout helpers */
     .container {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 1rem;
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      text-align: center;
+      white-space: nowrap;
     }
 
-    /* ==================== HEADER & NAVIGATION ==================== */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-blue), #1247a3);
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.28);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      border: 1px solid var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .btn-outline:hover {
+      background: rgba(11, 99, 206, 0.1);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(24, 165, 88, 0.08);
+      color: var(--primary-green);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      z-index: 100;
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       transition: all var(--transition-medium);
     }
 
-    [data-theme="dark"] header {
-      background: rgba(30, 41, 59, 0.95);
+    main {
+      padding-top: 0;
+      margin-top: 0;
     }
 
-    header.scrolled {
-      box-shadow: var(--shadow-soft);
+    .hero {
+      padding-top: 3rem;
+      margin-top: 0;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 0;
-      gap: 1rem;
+      padding: 0.6rem 1rem;
     }
 
     .logo-wrap {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
-    .logo-wrap img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 10% 0,
+          var(--primary-blue),
+          var(--primary-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
     }
 
     .logo-text {
-      font-size: 1.25rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--dark-text);
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--light-text);
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      gap: 1.2rem;
+      font-size: 0.9rem;
     }
 
     .nav-links a {
       color: var(--light-text);
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
       transition: all var(--transition-fast);
-      position: relative;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--primary-blue);
-      background: rgba(11, 99, 206, 0.08);
+      border-bottom-color: var(--primary-blue);
     }
 
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 3px;
-      background: var(--primary-blue);
-      border-radius: 3px;
-    }
-
-    .nav-actions {
+    .nav-cta {
       display: flex;
+      gap: 0.6rem;
       align-items: center;
-      gap: 0.5rem;
     }
 
+    /* Theme Toggle Button */
     .theme-toggle {
       width: 44px;
       height: 44px;
@@ -265,6 +261,7 @@
       justify-content: center;
       font-size: 1.2rem;
       transition: all var(--transition-fast);
+      margin-right: 0.5rem;
     }
 
     .theme-toggle:hover {
@@ -272,1041 +269,874 @@
       transform: rotate(15deg);
     }
 
-    .nav-cta {
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      color: white !important;
-      padding: 0.7rem 1.4rem !important;
-      border-radius: 999px !important;
-      font-weight: 600 !important;
-      box-shadow: 0 4px 15px rgba(11, 99, 206, 0.3);
-      transition: all var(--transition-fast) !important;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.4) !important;
-      background: linear-gradient(135deg, #1d4ed8, var(--primary-blue)) !important;
-    }
-
-    /* Mobile Menu */
     .nav-toggle {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
       cursor: pointer;
-      padding: 10px;
-      border: none;
-      background: transparent;
-      z-index: 1001;
     }
 
     .nav-toggle span {
-      width: 24px;
-      height: 2.5px;
+      width: 20px;
+      height: 2px;
       background: var(--dark-text);
-      border-radius: 2px;
       transition: all var(--transition-fast);
     }
 
-    .nav-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    /* Hero */
+    .hero {
+      background: var(--hero-gradient);
+      padding: 2.5rem 0 2rem;
+      transition: background var(--transition-medium);
     }
 
-    .nav-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .nav-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Mobile Menu Overlay */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--white);
-      z-index: 999;
-      padding: 5rem 2rem 2rem;
-      flex-direction: column;
-      gap: 1rem;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all var(--transition-medium);
-    }
-
-    .mobile-menu.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .mobile-menu a {
-      padding: 1rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--dark-text);
-      text-decoration: none;
-      border-radius: var(--radius);
-      transition: all var(--transition-fast);
-      display: flex;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
       align-items: center;
-      gap: 0.75rem;
     }
 
-    .mobile-menu a:hover {
-      background: var(--border-light);
-      color: var(--primary-blue);
-    }
-
-    .mobile-menu a span {
-      font-size: 1.3rem;
-    }
-
-    /* ==================== HERO SECTION ==================== */
-    .jobs-hero {
-      text-align: center;
-      padding: 4rem 0 2rem;
-      background: linear-gradient(135deg, rgba(11, 99, 206, 0.05) 0%, rgba(24, 165, 88, 0.05) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .jobs-hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(11, 99, 206, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(24, 165, 88, 0.08) 0%, transparent 50%);
-      animation: float 20s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-
-      50% {
-        transform: translate(-2%, -2%) rotate(1deg);
-      }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      animation: bounce-in 0.6s ease;
-    }
-
-    @keyframes bounce-in {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-
-      50% {
-        transform: scale(1.1);
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .jobs-hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: var(--dark-text);
-      line-height: 1.2;
-    }
-
-    .jobs-hero h1 .highlight {
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .jobs-hero p {
-      font-size: 1.1rem;
-      color: var(--light-text);
-      max-width: 36rem;
-      margin: 0 auto 2rem;
-    }
-
-    /* Stats Row */
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--primary-blue);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--light-text);
-      font-weight: 500;
-    }
-
-    /* ==================== SEARCH & FILTERS ==================== */
-    .search-section {
-      background: var(--white);
-      padding: 1.5rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-medium);
-      margin: -1.5rem auto 2rem;
-      position: relative;
-      z-index: 10;
-      max-width: 900px;
-    }
-
-    .search-bar {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .search-input-wrap {
-      flex: 1;
-      min-width: 250px;
-      position: relative;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.1rem;
-      color: var(--light-text);
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      background: var(--light-bg);
-      color: var(--dark-text);
-      transition: all var(--transition-fast);
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 4px rgba(11, 99, 206, 0.1);
-      background: var(--white);
-    }
-
-    .search-input::placeholder {
-      color: var(--lighter-text);
-    }
-
-    .filter-select {
-      padding: 1rem 2.5rem 1rem 1rem;
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      background: var(--light-bg);
-      color: var(--dark-text);
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      transition: all var(--transition-fast);
-    }
-
-    .filter-select:focus {
-      outline: none;
-      border-color: var(--primary-blue);
-    }
-
-    .search-btn {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all var(--transition-fast);
-    }
-
-    .search-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(11, 99, 206, 0.4);
-    }
-
-    /* Filter Tags */
-    .filter-tags {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .filter-tag {
-      padding: 0.4rem 1rem;
-      background: var(--border-light);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--light-text);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .filter-tag:hover,
-    .filter-tag.active {
-      background: var(--primary-blue);
-      border-color: var(--primary-blue);
-      color: white;
-    }
-
-    /* ==================== SECTION HEADER ==================== */
-    .section-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 2rem;
-    }
-
-    .section-header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
+    .hero h1 {
+      font-size: 2.1rem;
       margin-bottom: 0.5rem;
       color: var(--dark-text);
     }
 
-    .section-header p {
+    .hero p.sub {
       font-size: 1rem;
+      color: var(--light-text);
+      margin-bottom: 1.2rem;
+      max-width: 32rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-highlight {
+      display: flex;
+      gap: 0.4rem;
+      align-items: flex-start;
       color: var(--light-text);
     }
 
-    .results-count {
-      font-weight: 600;
-      color: var(--primary-blue);
+    .hero-highlight span.icon {
+      color: var(--primary-green);
+      font-size: 1rem;
+      margin-top: 0.05rem;
     }
 
-    /* ==================== JOBS GRID ==================== */
-    .jobs-section {
-      padding: 2rem 0 4rem;
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--light-text);
     }
 
-    .jobs-grid {
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .trust-number {
+      font-weight: 700;
+      color: var(--dark-text);
+    }
+
+    /* Hero image card */
+    .hero-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .hero-avatar-group {
+      display: flex;
+    }
+
+    .hero-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid var(--white);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+      margin-left: -10px;
+    }
+
+    .hero-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .hero-card-header-text {
+      font-size: 0.85rem;
+    }
+
+    .hero-card-header-text span {
+      display: block;
+      color: var(--dark-text);
+    }
+
+    .hero-card-header-text span.label {
+      color: var(--light-text);
+    }
+
+    .hero-testimonial {
+      background: var(--light-bg);
+      border-radius: 12px;
+      padding: 0.7rem;
+      font-size: 0.85rem;
+      color: var(--light-text);
+      transition: background var(--transition-medium);
+    }
+
+    .hero-testimonial strong {
+      color: #f59e0b;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+    }
+
+    .hero-badge {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--light-text);
+      background: var(--light-bg);
+      transition: all var(--transition-medium);
+    }
+
+    /* Section base */
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.35rem;
+      color: var(--dark-text);
+    }
+
+    .section-header p {
+      font-size: 0.95rem;
+      color: var(--light-text);
+    }
+
+    /* About */
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .about-grid>div>p {
+      color: var(--light-text);
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    [data-theme="dark"] .pill {
+      background: rgba(11, 99, 206, 0.2);
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-text);
+    }
+
+    .about-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .about-card li {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+      color: var(--light-text);
+    }
+
+    .about-card li span {
+      color: var(--primary-green);
+      margin-top: 0.1rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
     }
 
-    /* Job Card */
-    .job-poster-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
+    .service-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+      transition: all var(--transition-medium);
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--dark-text);
+    }
+
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(24, 165, 88, 0.1);
+      color: var(--primary-green);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-bottom: 0.7rem;
+    }
+
+    .service-card li {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      color: var(--light-text);
+    }
+
+    .service-card li span {
+      color: var(--primary-blue);
+      margin-top: 0.12rem;
+    }
+
+    .service-note {
+      font-size: 0.8rem;
+      color: var(--lighter-text);
+      margin-top: 0.4rem;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      margin-top: 0.6rem;
+      padding: 0.6rem 0.7rem;
+      border-radius: 10px;
+      background: rgba(250, 204, 21, 0.15);
+      color: #b45309;
+      border: 1px solid rgba(250, 204, 21, 0.5);
+    }
+
+    [data-theme="dark"] .disclaimer {
+      background: rgba(250, 204, 21, 0.1);
+      color: #fbbf24;
+      border-color: rgba(250, 204, 21, 0.3);
+    }
+
+    /* How it works */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 0.9rem;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-align: left;
+      transition: all var(--transition-medium);
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    [data-theme="dark"] .step-number {
+      background: rgba(11, 99, 206, 0.2);
+    }
+
+    .step-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+      color: var(--dark-text);
+    }
+
+    .step-card p {
+      color: var(--light-text);
+      font-size: 0.85rem;
+    }
+
+    /* Testimonials */
+    .testimonial-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 0.9rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      font-size: 0.9rem;
+      transition: all var(--transition-medium);
+    }
+
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .testimonial-body {
+      margin-bottom: 0.4rem;
+      color: var(--light-text);
+    }
+
+    .testimonial-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
       overflow: hidden;
+    }
+
+    .testimonial-meta {
+      font-size: 0.8rem;
+      color: var(--lighter-text);
+    }
+
+    .testimonial-note {
+      font-size: 0.8rem;
+      color: var(--lighter-text);
+      margin-top: 0.6rem;
+    }
+
+    .screenshot-style {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--dark-text);
+      border: 1px dashed var(--border);
+      transition: all var(--transition-medium);
+    }
+
+    .screenshot-style p {
+      color: var(--dark-text);
+    }
+
+    /* Card base */
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      position: relative;
+      padding: 1.2rem;
       box-shadow: var(--shadow-soft);
       border: 1px solid var(--border);
-      transition: all var(--transition-slow);
-      display: flex;
-      flex-direction: column;
+      transition: all var(--transition-medium);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-text);
+    }
+
+    /* Founder section */
+    .founder-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .founder-photo-card {
       position: relative;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fade-in-up 0.5s ease forwards;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+      background: linear-gradient(135deg, #0b63ce, #18a558);
     }
 
-    .job-poster-card:nth-child(1) {
-      animation-delay: 0.1s;
+    .founder-photo-card img {
+      width: 100%;
+      height: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.95;
+      transition: transform 0.8s ease, opacity 0.3s ease;
     }
 
-    .job-poster-card:nth-child(2) {
-      animation-delay: 0.2s;
+    .founder-photo-card:hover img {
+      transform: scale(1.03);
+      opacity: 1;
     }
 
-    .job-poster-card:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    .job-poster-card:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes fade-in-up {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .job-poster-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-medium), var(--shadow-glow);
-    }
-
-    .job-poster-card.show-more:hover {
-      transform: none;
-    }
-
-    /* Card Badges */
-    .card-badges {
+    .founder-badge {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      right: 12px;
+      left: 16px;
+      bottom: 16px;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #f9fafb;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .founder-content h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.45rem;
+      color: var(--dark-text);
+    }
+
+    .founder-content p {
+      font-size: 0.95rem;
+      color: var(--light-text);
+      margin-bottom: 0.45rem;
+    }
+
+    .founder-highlights {
       display: flex;
-      justify-content: space-between;
-      z-index: 10;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.6rem 0 0.3rem;
     }
 
-    .urgent-badge {
-      background: linear-gradient(135deg, var(--danger-red), #dc2626);
-      color: white;
-      padding: 0.4rem 0.9rem;
+    .founder-pill {
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      animation: pulse 2s infinite;
-      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      background: rgba(11, 99, 206, 0.1);
+      color: var(--primary-blue);
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
-    .new-badge {
-      background: linear-gradient(135deg, var(--accent-orange), #d97706);
-      color: white;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
+    [data-theme="dark"] .founder-pill {
+      background: rgba(11, 99, 206, 0.2);
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-      }
-
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
-      }
+    .founder-meta p {
+      font-size: 0.9rem;
+      color: var(--light-text);
+      margin-bottom: 0.25rem;
     }
 
-    .bookmark-btn {
-      width: 36px;
-      height: 36px;
+    .founder-meta strong {
+      color: var(--dark-text);
+    }
+
+    /* Founder Slider Styles */
+    .founder-slider-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    .founder-slider {
+      overflow: hidden;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .founder-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .founder-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .founder-nav-arrow {
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+      color: #fff;
       border: none;
-      background: rgba(255, 255, 255, 0.95);
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      transition: all var(--transition-fast);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(11, 99, 206, 0.4);
+      flex-shrink: 0;
+      z-index: 10;
     }
 
-    .bookmark-btn:hover {
+    .founder-nav-arrow:hover {
       transform: scale(1.1);
-      background: white;
+      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.6);
     }
 
-    .bookmark-btn.active {
-      color: var(--danger-red);
-      animation: heart-beat 0.3s ease;
-    }
-
-    @keyframes heart-beat {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.3);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* Image Container */
-    .poster-image-wrap {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    }
-
-    .poster-image {
-      width: 100%;
-      height: 400px;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      transition: all var(--transition-slow);
-    }
-
-    .job-poster-card.show-more .poster-image {
-      height: 180px;
-    }
-
-    .image-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(to top, var(--white), transparent);
-      pointer-events: none;
-    }
-
-    /* Card Content */
-    .job-poster-content {
-      padding: 1.5rem;
-      flex: 1;
+    .founder-dots {
       display: flex;
-      flex-direction: column;
-    }
-
-    .company-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .company-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
+      gap: 12px;
+      margin-top: 30px;
     }
 
-    .company-info {
-      flex: 1;
-    }
-
-    .company-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--primary-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .job-location {
-      font-size: 0.85rem;
-      color: var(--light-text);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .job-position {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--dark-text);
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-    }
-
-    .job-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .meta-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.35rem 0.75rem;
-      background: var(--border-light);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      color: var(--light-text);
-      font-weight: 500;
-    }
-
-    .salary-badge {
-      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      font-size: 1rem;
-      font-weight: 700;
-      width: fit-content;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 15px rgba(24, 165, 88, 0.3);
-    }
-
-    /* Job Details (Hidden by default) */
-    .job-details {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows var(--transition-slow);
-    }
-
-    .job-poster-card.show-more .job-details {
-      grid-template-rows: 1fr;
-    }
-
-    .job-details-inner {
-      overflow: hidden;
-    }
-
-    .job-details-content {
-      padding-top: 0.5rem;
-    }
-
-    .full-description {
-      background: var(--border-light);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      font-size: 0.9rem;
-      line-height: 1.7;
-      border-left: 4px solid var(--primary-green);
-      margin-bottom: 1rem;
-    }
-
-    .full-description h4 {
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary-blue);
-    }
-
-    .full-description h5 {
-      font-size: 0.95rem;
-      margin: 0.75rem 0 0.4rem;
-      color: var(--dark-text);
-    }
-
-    .full-description ul {
-      padding-left: 1.2rem;
-      margin: 0.5rem 0 0.8rem;
-    }
-
-    .full-description li {
-      margin-bottom: 0.3rem;
-    }
-
-    .full-description p {
-      margin-bottom: 0.5rem;
-    }
-
-    .job-highlights {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .job-highlights li {
-      padding: 0.5rem 0;
-      font-size: 0.88rem;
-      color: var(--dark-text);
-      position: relative;
-      padding-left: 1.6rem;
-      font-weight: 500;
-    }
-
-    .job-highlights li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      top: 0.5rem;
-      color: var(--primary-green);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    /* Action Buttons */
-    .poster-actions {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: auto;
-    }
-
-    .action-btn {
-      flex: 1;
-      padding: 0.9rem;
-      border-radius: var(--radius);
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all var(--transition-fast);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-whatsapp {
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-    }
-
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    .btn-call {
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      color: white;
-      box-shadow: 0 4px 15px rgba(11, 99, 206, 0.3);
-    }
-
-    .btn-call:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.4);
-    }
-
-    .btn-share {
-      flex: 0 0 50px;
-      background: var(--border-light);
-      color: var(--light-text);
-    }
-
-    .btn-share:hover {
+    .founder-dot {
+      width: 12px;
+      height: 12px;
       background: var(--border);
-      color: var(--dark-text);
-    }
-
-    /* Toggle Button */
-    .toggle-button {
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 0.95rem;
+      border-radius: 50%;
       cursor: pointer;
-      transition: all var(--transition-fast);
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      transition: all 0.3s ease;
     }
 
-    .toggle-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.4);
+    .founder-dot.active {
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+      transform: scale(1.3);
     }
 
-    .toggle-button .icon {
-      transition: transform var(--transition-fast);
+    /* ==================== SIMPLIFIED CONTACT FORM STYLES ==================== */
+    .contact-section {
+      padding: 3rem 0;
+      background: linear-gradient(135deg, rgba(11, 99, 206, 0.03), rgba(24, 165, 88, 0.03));
     }
 
-    .job-poster-card.show-more .toggle-button .icon {
-      transform: rotate(180deg);
+    [data-theme="dark"] .contact-section {
+      background: linear-gradient(135deg, rgba(11, 99, 206, 0.05), rgba(24, 165, 88, 0.05));
     }
 
-    /* No Results */
-    .no-results {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--light-text);
-    }
-
-    .no-results-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-
-    .no-results h3 {
-      font-size: 1.4rem;
-      color: var(--dark-text);
-      margin-bottom: 0.5rem;
-    }
-
-    /* ==================== ABOUT SECTION ==================== */
-    .about-section {
-      padding: 4rem 0;
-      background: var(--white);
-    }
-
-    .about-grid {
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      gap: 2rem;
+      align-items: flex-start;
     }
 
-    .about-content h2 {
+    .contact-info h2 {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--dark-text);
     }
 
-    .about-content p {
+    .contact-info>p {
       color: var(--light-text);
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
+      margin-bottom: 2rem;
+      line-height: 1.7;
     }
 
-    .about-features {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
 
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(11, 99, 206, 0.1), rgba(24, 165, 88, 0.1));
+    .contact-method {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      transition: all var(--transition-fast);
     }
 
-    .feature-text h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--dark-text);
-      margin-bottom: 0.2rem;
-    }
-
-    .feature-text p {
-      font-size: 0.85rem;
-      color: var(--light-text);
-      margin: 0;
-    }
-
-    .about-image {
-      position: relative;
-    }
-
-    .about-image img {
-      width: 100%;
-      border-radius: var(--radius-lg);
+    .contact-method:hover {
+      transform: translateX(5px);
       box-shadow: var(--shadow-medium);
     }
 
-    .about-image-decoration {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-      border-radius: var(--radius-lg);
-      z-index: -1;
-      opacity: 0.3;
-    }
-
-    /* ==================== FOOTER ==================== */
-    footer {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #e5e7eb;
-      padding: 3rem 0 1.5rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-brand h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-brand p {
-      color: #94a3b8;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
+    .contact-method-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      transition: all var(--transition-fast);
-      text-decoration: none;
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
 
-    .social-link:hover {
-      background: var(--primary-blue);
-      transform: translateY(-3px);
+    .contact-method-icon.phone {
+      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
+      color: white;
     }
 
-    .footer-col h4 {
+    .contact-method-icon.whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+    }
+
+    .contact-method-icon.email {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+    }
+
+    .contact-method-icon.location {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+    }
+
+    .contact-method-icon.time {
+      background: linear-gradient(135deg, var(--primary-green), #059669);
+      color: white;
+    }
+
+    .contact-method-text h4 {
+      font-size: 0.85rem;
+      color: var(--lighter-text);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-method-text p {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 1rem;
-      color: white;
+      color: var(--dark-text);
+      margin: 0;
     }
 
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-col a {
-      color: #94a3b8;
-      text-decoration: none;
-      transition: all var(--transition-fast);
-      font-size: 0.9rem;
-    }
-
-    .footer-col a:hover {
-      color: white;
-      padding-left: 5px;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p {
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      color: #64748b;
-      text-decoration: none;
-      font-size: 0.85rem;
+    .contact-method-text a {
+      color: var(--dark-text);
       transition: color var(--transition-fast);
     }
 
-    .footer-links a:hover {
-      color: white;
+    .contact-method-text a:hover {
+      color: var(--primary-blue);
     }
 
-    /* ==================== BACK TO TOP ==================== */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      border: none;
+    /* Contact Form Card */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-medium);
+      border: 1px solid var(--border);
+      transition: all var(--transition-medium);
+    }
+
+    .contact-form h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 4px rgba(11, 99, 206, 0.1);
+      background: var(--card-bg);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--lighter-text);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Radio Group - Simplified */
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.9rem 1.5rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--light-bg);
+      transition: all var(--transition-fast);
+      flex: 1;
+      justify-content: center;
+    }
+
+    .radio-option:hover {
+      border-color: var(--primary-blue);
+      background: rgba(11, 99, 206, 0.05);
+    }
+
+    .radio-option.active {
+      border-color: var(--primary-blue);
+      background: rgba(11, 99, 206, 0.1);
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin: 0;
+      accent-color: var(--primary-blue);
+      cursor: pointer;
+    }
+
+    .radio-option span {
+      font-weight: 600;
+      color: var(--dark-text);
+      font-size: 0.95rem;
+    }
+
+    /* Submit Button */
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
       background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
       color: white;
-      border-radius: 50%;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 20px rgba(11, 99, 206, 0.4);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all var(--transition-medium);
-      z-index: 100;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
     }
 
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(11, 99, 206, 0.4);
     }
 
-    .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(11, 99, 206, 0.5);
+    .form-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    /* ==================== TOAST NOTIFICATIONS ==================== */
+    /* Toast Notifications */
     .toast-container {
       position: fixed;
       top: 100px;
@@ -1318,7 +1148,7 @@
     }
 
     .toast {
-      background: var(--white);
+      background: var(--card-bg);
       padding: 1rem 1.5rem;
       border-radius: var(--radius);
       box-shadow: var(--shadow-medium);
@@ -1326,7 +1156,7 @@
       align-items: center;
       gap: 0.75rem;
       min-width: 300px;
-      animation: slide-in 0.3s ease;
+      animation: slideIn 0.3s ease;
       border-left: 4px solid var(--primary-green);
     }
 
@@ -1338,7 +1168,7 @@
       border-left-color: var(--primary-blue);
     }
 
-    @keyframes slide-in {
+    @keyframes slideIn {
       from {
         transform: translateX(100%);
         opacity: 0;
@@ -1357,6 +1187,7 @@
     .toast-message {
       flex: 1;
       font-weight: 500;
+      color: var(--dark-text);
     }
 
     .toast-close {
@@ -1368,22 +1199,151 @@
       padding: 0.25rem;
     }
 
-    /* ==================== RESPONSIVE DESIGN ==================== */
-    @media (max-width: 1024px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
+    /* Footer */
+    footer {
+      margin-top: 2.5rem;
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 1.5rem 0 1rem;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .legal-section {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .legal-section h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: #f9fafb;
+    }
+
+    .legal-section p {
+      margin-bottom: 0.3rem;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 60;
+    }
+
+    .whatsapp-button {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .whatsapp-button:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.4);
+      background: #22c35e;
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 64px;
+      bottom: 14px;
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.6);
+      white-space: nowrap;
+    }
+
+    .logo-img {
+      height: 100px;
+      width: 200px;
+      object-fit: contain;
+      display: block;
+      margin-right: 10px;
+    }
+
+    /* Section alternate backgrounds */
+    .section-alt {
+      background: var(--section-alt-bg);
+      transition: background var(--transition-medium);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 900px) {
+
+      .hero-grid,
+      .about-grid,
+      .services-grid,
+      .testimonial-wrap,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+      .steps-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .testimonial-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .founder-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 720px) {
 
       .nav-links,
-      .nav-actions .nav-cta {
+      .nav-cta .btn {
         display: none;
       }
 
@@ -1391,888 +1351,1033 @@
         display: flex;
       }
 
-      .mobile-menu {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.6rem 1rem 0.9rem;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
         display: flex;
       }
 
-      .jobs-hero h1 {
-        font-size: 2rem;
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .hero-stats {
-        gap: 2rem;
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
-      .stat-number {
-        font-size: 1.8rem;
+      section {
+        padding: 2rem 0;
       }
 
-      .jobs-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .search-bar {
+      .radio-group {
         flex-direction: column;
       }
 
-      .filter-tags {
-        justify-content: center;
-      }
-
-      .job-highlights {
-        grid-template-columns: 1fr;
-      }
-
-      .about-features {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .social-links {
-        justify-content: center;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .back-to-top {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 45px;
-        height: 45px;
+      .radio-option {
+        justify-content: flex-start;
       }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 0 1rem;
+      .steps-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .jobs-hero {
-        padding: 3rem 0 1.5rem;
-      }
-
-      .jobs-hero h1 {
-        font-size: 1.7rem;
-      }
-
-      .poster-image {
-        height: 320px;
-      }
-
-      .job-poster-card.show-more .poster-image {
-        height: 150px;
-      }
-
-      .poster-actions {
+      .trust-strip {
         flex-direction: column;
+        align-items: flex-start;
       }
 
-      .btn-share {
-        flex: 1;
+      .founder-nav-arrow {
+        width: 35px;
+        height: 35px;
+      }
+
+      .founder-slide {
+        padding: 0 45px;
       }
 
       .toast {
         min-width: auto;
         margin: 0 1rem;
       }
-    }
 
+      .contact-form {
+        padding: 1.5rem;
+      }
+    }
     /* ==================== TEXT LOGO ==================== */
-    .text-logo {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
+.text-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
 
-    .logo-main {
-      font-size: 1.8rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.logo-main {
+  font-size: 1.8rem;
+  font-weight: 900; /* makes FYNDE bold */
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .rupee {
-      color: orange;
-      -webkit-text-fill-color: orange;
-      font-weight: 900;
-      /* bold ₹ */
-    }
+.rupee {
+  color: orange;
+  -webkit-text-fill-color: orange;
+  font-weight: 900;   /* bold ₹ */
+}
 
-    .logo-sub {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--light-text);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
 
-    /* ================= LIVE HIRING SECTION ================= */
-    /* .live-hiring-section {
+.logo-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+/* ==================== FOOTER SOCIAL ICONS ==================== */
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Brand colors on hover */
+.footer-social a.facebook:hover { background: #1877f2; }
+.footer-social a.instagram:hover {
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.footer-social a.linkedin:hover { background: #0a66c2; }
+.footer-social a.twitter:hover { background: #000; }
+
+.hero-line {
+  margin-bottom: 6px;
+}
+
+/* Blinking text alignment */
+.pf-rotate {
+  margin-top: 2px;              /* tight spacing */
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2d09c8;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+/* Animation */
+#pfText {
+  animation: fadeSlow 3s ease-in-out infinite;
+}
+
+/* Responsive fix */
+@media (max-width: 768px) {
+  .pf-rotate {
+    font-size: 1.8rem;
+    height: 2.4rem;
+  }
+}
+
+
+
+@keyframes fadeSlow {
+  0% { opacity: 0; transform: translateY(10px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.hero-points {
+  margin-bottom: 10px;
+}
+
+.hero-point {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-text);
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 6px;
+}
+
+/* Custom bullet */
+.hero-point::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary-blue);
+  font-size: 2.5rem;
+  line-height: 1;
+}
+/* Company marquee section */
+.company-marquee {
   padding: 3rem 0;
-  background: linear-gradient(135deg, #fff1f2, #ffe4e6);
-} */
+  background: var(--section-alt-bg);
+}
 
-    .live-heading {
-      font-size: 2rem;
-      font-weight: 900;
-      color: #dc2626;
-      margin-bottom: 2rem;
-      text-align: center;
-      animation: blinkText 1s infinite;
-    }
+.marquee-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark-text);
+}
 
-    @keyframes blinkText {
-      0% {
-        opacity: 1;
-      }
+/* Marquee container */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
 
-      50% {
-        opacity: 0.3;
-      }
+/* Moving track */
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  animation: marqueeScroll 5s linear infinite;
+}
 
-      100% {
-        opacity: 1;
-      }
-    }
 
-    /* Live Jobs Grid */
-    .live-jobs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
+/* Pause on hover */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
 
-    /* Live Job Card */
-    .live-job-card {
-      background: #ffffff;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-      transition: transform 0.3s ease;
-    }
+/* Logos */
+.marquee-track img {
+  height: 75px;          /* ⬅ increased from 60px */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
 
-    .live-job-card:hover {
-      transform: translateY(-8px);
-    }
 
-    /* LIVE Badge */
-    .live-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #dc2626;
-      color: #fff;
-      font-weight: 900;
-      padding: 6px 12px;
-      font-size: 0.75rem;
-      border-radius: 6px;
-      animation: blinkBadge 1s infinite;
-      z-index: 10;
-    }
 
-    @keyframes blinkBadge {
-      0% {
-        opacity: 1;
-      }
+.marquee-track img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
 
-      50% {
-        opacity: 0.2;
-      }
+/* Animation */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
-      100% {
-        opacity: 1;
-      }
-    }
+/* Mobile */
+@media (max-width: 768px) {
+  .marquee-track img {
+    height: 55px;
+  }
+}
 
-    /* Job Image */
-    .live-job-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
 
-    /* Content */
-    .live-job-content {
-      padding: 1rem;
-    }
-
-    .live-job-content h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: #0f172a;
-    }
-
-    .live-job-content .company {
-      font-weight: 600;
-      color: #2563eb;
-      margin-bottom: 0.5rem;
-    }
-
-    .live-job-content p {
-      font-size: 0.9rem;
-      color: #374151;
-      margin-bottom: 0.3rem;
-    }
-
-    /* Apply Button */
-    .live-btn {
-      display: block;
-      margin-top: 1rem;
-      text-align: center;
-      background: linear-gradient(135deg, #dc2626, #b91c1c);
-      color: white;
-      font-weight: 700;
-      padding: 0.7rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-
-    .live-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* ================= LIVE IMAGE MODAL ================= */
-    .image-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease;
-    }
-
-    .image-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .image-modal img {
-      max-width: 95%;
-      max-height: 95%;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .close-modal {
-      position: fixed;
-      top: 20px;
-      right: 25px;
-      font-size: 2rem;
-      color: white;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      z-index: 100001;
-      pointer-events: auto;
-    }
-
-    .view-image-btn {
-      width: calc(100% - 2rem);
-      margin: 0.7rem auto 0;
-      display: block;
-      padding: 0.6rem;
-      background: linear-gradient(135deg, var(--primary-blue), #1d4ed8);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .view-image-btn:hover {
-      transform: scale(1.03);
-    }
   </style>
 </head>
 
 <body>
-  <!-- Page Loader -->
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-spinner"></div>
-    <p class="loader-text">Loading amazing opportunities...</p>
-  </div>
-
   <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- Header -->
-  <header id="header">
+  <!-- HEADER -->
+  <header>
     <div class="container">
       <nav class="nav">
-        <a href="index.html" class="logo-main" style="text-decoration: none;">
-          FYNDE<span class="rupee">₹</span>
-        </a>
+        <div class="logo-wrap text-logo">
+          <div class="logo-main">
+  FYNDE<span class="rupee">₹</span>
+</div>
 
-
-
-        <div class="nav-links">
-          <a href="#home" class="active">Home</a>
-          <a href="#jobs">Jobs</a>
-          <a href="#about">About</a>
+          <!-- <div class="logo-sub">Fynder Consulting</div> -->
         </div>
 
-        <div class="nav-actions">
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+          <a href="update.html">Job post</a>
+        </div>
+        <div class="nav-cta">
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
             <span id="themeIcon">🌙</span>
           </button>
-          <a href="#jobs" class="nav-cta">View Jobs</a>
-          <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          <a href="#contact" data-type="job" class="btn btn-primary">
+            Apply for Job
+          </a>
+          <a href="#contact" data-type="pf" class="btn btn-outline">
+            PF Support
+          </a>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <span></span><span></span><span></span>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home"><span>🏠</span> Home</a>
-    <a href="#jobs"><span>💼</span> Jobs</a>
-    <a href="#about"><span>ℹ️</span> About Us</a>
+  <!-- HOME / HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">
+            <span aria-hidden="true">&#9679;</span> Private consultancy, not a government office
+          </div><div class="hero-points">
+  <h1 class="hero-line">Your Trusted Recruitment Partner</h1>
+<h1 class="hero-line">Facing Issues With Your PF</h1>
+
+<div class="pf-rotate">
+  <span id="pfText">KYC</span>
+</div>
+
+
+          <!-- <p class="sub">
+            Fynder Consulting helps people find the right jobs and provides smooth PF withdrawal support with
+            transparency and care.
+          </p> -->
+
+          <div class="hero-actions">
+            <a href="#contact" data-type="job" class="btn btn-primary">
+              Apply for Job
+            </a>
+            <a href="#contact" data-type="pf" class="btn btn-outline">
+              PF Withdrawal Support
+            </a>
+            <a href="https://wa.me/918263896073" target="_blank" rel="noopener" class="btn btn-outline">
+              Chat on WhatsApp
+            </a>
+          </div>
+
+          <div class="hero-highlights">
+            <div class="hero-highlight">
+              <span class="icon" aria-hidden="true">&#10004;</span>
+              <div>Fast &amp; reliable process for job and PF support.</div>
+            </div>
+            <div class="hero-highlight">
+              <span class="icon" aria-hidden="true">&#10004;</span>
+              <div>Genuine support team focused on clear communication.</div>
+            </div>
+            <div class="hero-highlight">
+              <span class="icon" aria-hidden="true">&#10004;</span>
+              <div>Customer-first approach with honest guidance.</div>
+            </div>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-item">
+              <span class="trust-number">1000+</span>
+              <span>customers assisted for jobs and PF queries.</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-number">5 &#9733;</span>
+              <span>feedback from real customers.</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-number">Dedicated</span>
+              <span>support team for follow-up and updates.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Customer trust preview">
+          <div class="hero-card-header">
+            <div class="hero-avatar-group">
+              <div class="hero-avatar">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.Ae0F0BjtyvKmkPkZVXM41wHaJQ?pid=Api&P=0&h=180"
+                  alt="Fynder team member" />
+              </div>
+              <div class="hero-avatar">
+                <img src="https://tse2.mm.bing.net/th?id=OIF.t4%2fgjGsFj%2fCk2F2vS6DnRA&pid=Api&P=0&h=180"
+                  alt="Customer" />
+              </div>
+              <div class="hero-avatar">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.HKWYzoHTYuft-KetV_2NrgHaE7?pid=Api&P=0&h=180"
+                  alt="Customer" />
+              </div>
+            </div>
+            <div class="hero-card-header-text">
+              <span>Real people, real support</span>
+              <span class="label">Photos are used with customer consent</span>
+            </div>
+          </div>
+
+          <div class="hero-testimonial">
+            <strong aria-label="5 star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</strong>
+            <p>
+              &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo; &ndash;
+              Ramesh, Chennai
+            </p>
+          </div>
+
+          <div class="hero-badges">
+            <div class="hero-badge">
+              Recruitment across factory, office, IT and field roles
+            </div>
+            <div class="hero-badge">PF documentation and claim guidance</div>
+          </div>
+        </aside>
+      </div>
+      <div class="hero-image">
+  <img src="heroimg.png" alt="Mobile preview">
+</div>
+
+    </section>
+
+    <!-- ABOUT US -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About Fynder Consulting</h2>
+          <p>
+            Fynder Consulting is a private consultancy that connects candidates with genuine job opportunities and
+            supports them with PF withdrawal related processes.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div>
+            <p>
+              Fynder Consulting was started to solve two common problems: finding trustworthy jobs and getting PF money
+              without confusion or delay. Many candidates struggle with unclear information, multiple visits, and lack
+              of proper guidance.
+            </p>
+            <p style="margin-top: 0.5rem">
+              The team behind Fynder Consulting has hands-on experience in recruitment and employee support services,
+              especially for blue-collar and entry-level office roles.
+            </p>
+            <div class="pill-list">
+              <div class="pill">
+                Mission: Easy access to job opportunities and PF benefits
+              </div>
+              <div class="pill">
+                Values: Transparency, honesty, customer satisfaction
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h3>How Fynder Consulting works for you</h3>
+            <ul>
+              <li>
+                <span aria-hidden="true">&#9679;</span>
+                <div>Explains job and PF processes in simple language.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#9679;</span>
+                <div>Helps candidates apply for suitable roles based on skills and location.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#9679;</span>
+                <div>Guides customers on PF withdrawal documentation and timelines.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#9679;</span>
+                <div>Transparent approach: no false promises, clear scope of services.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER SECTION -->
+    <section id="founder" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Meet the Founders</h2>
+          <p>
+            The people leading Fynder Consulting with a clear vision for honest, simple and supportive services.
+          </p>
+        </div>
+
+        <div class="founder-slider-wrapper">
+          <button class="founder-nav-arrow founder-nav-left" onclick="slideFounder(-1)" aria-label="Previous founder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="founder-slider">
+            <div class="founder-track">
+              <!-- Founder 1 -->
+              <div class="founder-slide">
+                <div class="founder-grid">
+                  <div class="founder-photo-card">
+                    <img src="director.jpeg" alt="Niharika Singh - Founder of Fynder Consulting"
+                      onerror="this.src='https://via.placeholder.com/400x340/0b63ce/ffffff?text=Niharika+Singh'" />
+                    <div class="founder-badge">Founder &amp; Lead Consultant</div>
+                  </div>
+                  <div class="founder-content">
+                    <h3>Niharika Singh</h3>
+                    <p>
+                      Niharika Singh, Founder & Director of Fynder Consulting, brings 7+ years of experience in
+                      recruitment and PF support services.
+                    </p>
+                    <p>
+                      With experience in recruitment, HR support and PF documentation, she focuses on clear guidance,
+                      honest communication and practical solutions.
+                    </p>
+                    <div class="founder-highlights">
+                      <div class="founder-pill">7+ years in recruitment</div>
+                      <div class="founder-pill">Blue-collar &amp; office hiring</div>
+                      <div class="founder-pill">PF process guidance</div>
+                    </div>
+                    <div class="founder-meta">
+                      <p><strong>Vision:</strong> "Guide people honestly and help them take the right next step."</p>
+                      <p><strong>Message:</strong> &ldquo;Every customer case is important. The goal is honest advice,
+                        not false promises.&rdquo;</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Founder 2 -->
+              <div class="founder-slide">
+                <div class="founder-grid">
+                  <div class="founder-photo-card">
+                    <img src="cofounder.jpeg" alt="Aruni Singh - Co-Founder of Fynder Consulting"
+                      onerror="this.src='https://via.placeholder.com/400x340/18a558/ffffff?text=Aruni+Singh'" />
+                    <div class="founder-badge">Co-Founder &amp; Operations Head</div>
+                  </div>
+                  <div class="founder-content">
+                    <h3>Aruni Singh</h3>
+                    <p>
+                      Aruni Singh, Co-Founder of Fynder Consulting, specializes in operations management and client
+                      relations with 5+ years of HR consulting experience.
+                    </p>
+                    <p>
+                      His expertise lies in streamlining recruitment processes and ensuring timely resolution of
+                      PF-related queries.
+                    </p>
+                    <div class="founder-highlights">
+                      <div class="founder-pill">5+ years in HR consulting</div>
+                      <div class="founder-pill">Operations management</div>
+                      <div class="founder-pill">Client relations expert</div>
+                    </div>
+                    <div class="founder-meta">
+                      <p><strong>Vision:</strong> "Building lasting relationships through reliable service delivery."
+                      </p>
+                      <p><strong>Message:</strong> &ldquo;We treat every client like family. Your success is our
+                        success.&rdquo;</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="founder-nav-arrow founder-nav-right" onclick="slideFounder(1)" aria-label="Next founder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="founder-dots">
+          <span class="founder-dot active" onclick="goToFounder(0)"></span>
+          <span class="founder-dot" onclick="goToFounder(1)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Services</h2>
+          <p>
+            Fynder Consulting provides job recruitment support and PF withdrawal guidance as separate but connected
+            services.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-tag">
+              <span aria-hidden="true">&#9679;</span> Job Recruitment Services
+            </div>
+            <h3>Job opportunities for different profiles</h3>
+            <ul>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Job options across factory work, office staff, IT support, field work, helpers, and more.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Support for both freshers and experienced candidates with basic counselling.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Location-based job matching to reduce travel and relocation issues.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Step-by-step guidance from application to interview and selection process.</div>
+              </li>
+            </ul>
+            <p class="service-note">
+              Note: Final hiring decisions are taken by the employer.
+            </p>
+            <a href="#contact" data-type="job" class="btn btn-primary" style="margin-top: 1rem;">Apply for Job</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-tag" style="background: rgba(11, 99, 206, 0.1); color: var(--primary-blue);">
+              <span aria-hidden="true">&#9679;</span> PF Withdrawal Support
+            </div>
+            <h3>Guidance for PF withdrawal</h3>
+            <ul>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Explains PF withdrawal options and steps in simple terms.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Helps prepare and check required documents before submission.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Supports with checking claim status and understanding updates.</div>
+              </li>
+              <li>
+                <span aria-hidden="true">&#10004;</span>
+                <div>Sets clear expectations on usual timelines based on process and details provided.</div>
+              </li>
+            </ul>
+            <div class="disclaimer">
+              Fynder Consulting provides support and consultancy services only. Not affiliated with EPFO or any
+              government organization.
+            </div>
+            <a href="#contact" data-type="pf" class="btn btn-outline" style="margin-top: 1rem;">PF Withdrawal
+              Support</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="company-marquee">
+  <div class="container">
+    <h2 class="marquee-title">Trusted PF Support For Top Corporates</h2>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <!-- Repeat logos for smooth loop -->
+        <img src="https://eu-images.contentstack.com/v3/assets/blt7dacf616844cf077/bltcf83c52c081aeb1a/67993b8f3b81de7c5fa812ea/hdfc.jpg?width=300&auto=webp&quality=80&disable=upscale" alt="Company 1">
+        <img src="https://www.capgemini.com/au-en/wp-content/uploads/sites/10/2023/05/Capgemini.png" alt="Company 2">
+        <img src="https://yt3.googleusercontent.com/dhVlUr4qzdw97K77mitoVSZk8u3KLl4hWCeiAVNuoqG1W7WmcN86GSIl96Ge1PeauemTwCl5TA=s900-c-k-c0x00ffffff-no-rj" alt="Company 3">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVEAAACWCAMAAABQMkvIAAAAw1BMVEX///8AAAChAP/Y2NhMTExycnKenp45OTlYWFjCwsLT09NRUVFvb2/g4OD39/d7e3uZAP/e3t6zs7O1W/yoqKgiIiLx8fEMCQ5eXl67u7usrKzLy8tCQkIZGRno6OiUlJSKioqCgoKZmZmwTfv37/706f5paWkzMzQcHB2Hh4e3YPvIjv2uRP7atf6+c/7o0/2jGf7Nl/3Bev6lJ/3Rov3fwv7Fhf7u3v6qNv769f3YsP7Pnv7lyv7s2/3fvv6vS/4qKSo6lGA8AAAItUlEQVR4nO2aZ3viOhCFcSgBEwwEUwyEkt0lZHvv9y7//1dd9zkqFl4wjwN33k+JGI9Hx2ojqVJhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhTsbLVy/KDuHCGPR6r9+UHcRFMbi6uur13r4rO47LIVA0EPX9h+dlh3IhxIoGDfXZv2UHcxGkioaifuTefzSoaCDqp8/c+49DUjRoqIMvZQd11jzryZIGon79VnZc58vzz981ml71vn/+UXZo58u3V1fahvryd9mRnTHvPmpFvXrFvf9wvrzs6UQtO6yz5sfPP4qorOiRPP/1qceKFsyLAStaJP5iittocfz4+VoeSFnRI3gz0Ez2rOihZKydel/LDuw8+f1WLydvmRzEu6+6dCnY1uPE/iAGWjl7X/8pO7CzRdkf5eORI5EV7b3/xZv4RyFmSHzQdDwDkPMPX4UogEHa2z/wdZ1CGETN8y3v1xeFr2jv9c+yo7gknl3x5bxi4bmdOUeq/bIjuCym11ar7BguCLtu+bCiBTFyd5bFihbHxEpgRQvBsVjRYmFFi4YVLRpWtGieqqIdb1mf+HTvvY7BzL7fXPuh39W6riFBcbxVc+ib7SYrb5Rt1ne7tTvLGl9v7mf7Ixx5y81kslkqspGiObzko9+S32I3NvOw4nW3msNBtD4muvqH+l3RbKlXy6sJVvNbrZVzLzrb2OLvtCa6Dv5tzSE8JzGaWjoaUaWoAF1D+HHJXVpyEzkNX4WxdKSKPy4yhIyxr9Wgauozi4lqtlK9te4Uq7GmN672vZM+cttvn3PRNHF4q3rxccPfqlSADYRKG3EJVb8bxB/9OaQnRhv1FfRRNay1UVlTyUzfHIay8pq3+9Qlq44qO0mhKtpXLL1TKbpMKpY+oH+HJXUpoKl/gF5o1N2yBEmdYYZVTXDWynLW1SnadDSWi9Mo2kj+TBXVdKaIrGnwJusBcZxfZ5tB+3f0TS9gA85m2c6WqREpOqlpDGunUHTdSf9MFF1amehbaWZr8RmTmb7LR7TJTFf1BC+1WhisKMy6ycqnfwJFH2m4jhX1TCFox9Ix/V6bzuzWEgpIhJHgqF2vCxNF2pYbgtmmuxGabPrOByp78IKobJjztnkVXWV/6cahim7px6FS8UnwsR0PopdnhwBoool8MAxMEjMca6M4RmA2j61wuBtGMtswriZTHaiwTl4AbS1Za4mKNhZOxZnhaiNcU436nQ4oN+0E9EeHKooVCH+CeTZtXrCS0iyiKGyaZkGEuARis9J1/aPiGEpqGm/XSpVgbF0pZqhoMzHDUS0py8qZjlM0dA/jEyyqqYOuVEXHgoMIV5EKKgez1S4tdOVYYQSmsd6Kmg50CxyHTC99ILMH2d0JFK0tb1t22HLWaRlMFpg6qIpObmLWVKZGQgUTeJZ6apRqwCDugVlbqi/1XFgqoYBTRVH4jPC5E5kKVtR1dLbCvE7tcE/uFNOR/cz0jqkmd7IE6I40aEhRClk4ja7xeK93B7GcRNE59htqjNDpKjjV6BNsGRg8IgFh8BIMO4uE8F+a2Ndo5aRmI6megjOKPh6DSdE5mMHnPoWiW3QAaxehRiDIKkvEIK7qbOo2AkDASFHqpxOTA3rMM5jBrN69AWAajwyFvD7lxIqKeRC1xVodQq3TslsYuIDRVJ+Nx4rSbLAySAW5t+kigiEHeQKKirGaEpYIfROz25kP2FIMrtZBBIxwpvG6q75FpjxFmxWB/aFKD0TxZO6UWKqi8n4UkrEqkjHsIySUp6iUBO0PVaOoMcf+K0Vh8XS2ikrD4v5QVUVH5gf+b220AEX1CVjKScfRbbumZf4EFd1lxKrM9biXN/FiIZT1KM31jwapcs71lMDXDFaVJ6EoJfCmZaMAzEqUDSmKZq1HnX4noi9VTFyPLmKrTvjFYOfJHNsTUJTWlDtzrDrvkE7lzpkaYnFGzkS7T+H3gG0Gw7lz5UkoCqe1pqkBWGifyJvX0x6InNcLWTBNfkupRqbUqlhFYQcB6rxX0VmG52z0ObYqIBVgt6fYon1OWD7h+5dSKSUimK/jRmr0/yGKCt8ITGFGhXOGvYpCxZv68q30gH6jD9Y3tlICX5vG7Vv5/dBIlX4AiT0KT9+je7iigiKwMqRvh+cM+xVVpZCq0JAegPCocjj/x26qapHwtnjIgD38tAogaPKZwRkts2ClYP+louhQuAsD5ck04cCOdQ5FocnBqA9yKMMr/TROHoAtXZIPz3fCGzyOB2cnSe4mHKu7gcMF7oskzRvP91y1TD0V2afoDhxu3On9Jg4I8+vwXs1IPFrcr2gFtzySrwLz1Vq2Fxb4q9miMxOOQklRKbXaisfy6ddzRTPxNoTu6Mlnsrp/FLYWknfmV1TZfImFkQ5KlcsZORQVk/SNHKsiqPEYHmtnPLaGYd+060K9pmOwslaJVX5FlQsViTDaF1BryKFo1hWdCN0VCK3hVvPIvdYyQNivyc5q8QjEcKeEjkfzK1qRW18ijC7oOi3b8yhq2s/VHolUNYYNGjXhI7gayzBC0WHWXqu4nrMzrPT3nvYqKtci9aJ+4CH0o1yKStc6gIzltNpcGqAKNuvqWDG1NHsn2gC28iXfkX57HIP8C0XlQYmE2Yk/WDsHapdP0YqtrfhD5nbQQqzb0MY1uDhQqM20rkkkR+r1Gt2WVUttP0vBAA559ipa6eOqCPuNGEwwN1PtcirqV1zRdGg8BIULzrWwkXTbzYiavIk06+I9KTcjMXemOEPdZCVw/SWKeiN3omUSRRvruag1k+DEdj/rplPODr9gn2q3Xgi1ayeqXFvjiMyDOPTu+3/Mvjuaxtm6dd1bO892wMj2pr5ty3RZP/A48z1Ob2d7rgj0W6GZbd40yYnTr87sqvrGvh/x1Mt3WcHgvRpW3Kvm3DRhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIZhGIb4D97hgNcT4fhUAAAAAElFTkSuQmCC" alt="Company 4">
+        <img src="data:image/png;base64,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" alt="Company 5">
+        <img src="data:image/png;base64,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" alt="Company 6">
+        <img src="data:image/png;base64,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" alt="Company 7">
+        <img src="data:image/png;base64,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" alt="Company 8">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIsqIbQ4Xsp1OwQuChUgwt4wfwV8iPnjjdSg&s" alt="Company 9">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIPEhAQExMSFhUSGRUVGBYWFRwYGhgZFhcaIBcWGxUYHCgjHiYlHRcbITIiJSkrLi4uGh8zODMsNygtLiwBCgoKDg0OGxAQGy0lICUuLTEvMi8yMC01LS4rLy8tLy4tLS0tNS0tNS0tNy8tLS0tLS0tLS0vLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAAAQQFBgcIAwL/xABIEAACAQMCAwQFBwgJAgcAAAABAgMABBEFEgYhMQcTQVEiYXGBkRQjMkJScrEkNWJzgqGysxYzNFR0kpOi0RVDF1Njg8HS8f/EABoBAQADAQEBAAAAAAAAAAAAAAABAgMEBQb/xAAuEQACAgEEAQMBBwUBAAAAAAAAAQIDEQQSITFREyJBcTNhgZHR4fAUMjShsQX/2gAMAwEAAhEDEQA/AN40pSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBUVNRQClKUApSlAKUpQClKUApSlAKUpQCledxOsal3ZVVeZZiAAPMk9KsSccaazd2LyDJ5fTwP8x5fvqVFvpEpNmQk0BrCeL+zy31BGZHdJSMqxkd0Y+AZGJGPWuD7elaKWa4s5HjWSWGSJmRgkjLhlOCPRPmK66NKrl7Zc+MGsKlNcM6rpWieGe1e6tyEuvyiPxbksoHqPIN7Dj21ujRtXhvYlngcOjeI6g+KkdQR5GsrtPOp+4pOuUOyupSlYFBSlKAUpSgFKUoBSlKAUpSgJpSlAKUpQClKUAqKmooBSlKAUpSgFKUoBSlKAUpSgFfEsgRSzEBVBJJ6AAZJPur7rC+17Ujb6bKAcGdkg9zZLj3orD31euG+Sj5JisvBqHjri+XVJmO4i3Qnuo+gwOjsPFj159M4HjnGaVKKSQB1JAHhzPrr6WEI1x2ro9JRUVhG9OxHUHlsZI3JIglKJnwQqrBfcSceogeFav7Sip1S+24xvXp5iNN3+7Nbv4D4YGl23cbw7uxkkYDALEAYAPgAoHxPjVt4h7MrK9lknJljkkO5ijDBbz2MCOfqxXj1aiuF8p/DOONkYzbOfayfgDittMuVYk9xKQsy+GPCQDzXr6xkeVXfifsrurRWlhYXEa5JCriQD7nPd7jn1VgFeopV3waTyjqzGaOuEYEAggg8wR+NTWIdlOom40223HLRboT7IzhP9m2svr52cdsnF/B57WHgUpSqkClKUApSlAKUpQClKUBNKUoBSlKAUpSgFRU1FAKUpQClKUApSlAKUpQClKUArW/bshNjbkdFuEz74pR+J/fWyKx7j7RTfWNxAoy+0OnreMhlHvxt/arWiajZGT8loPEkzmilKV9KekZBBxvqUaqi3k21QAMkHkOnMgk++rtpXalqMDAvIs6+KyKASPU6AEfv9lYTSspaep9xRR1xfwdQcK8QRalbrcRZAPosp6o46qfiDnxBBrVHbPwyltLHexKFW4YrIB0EuM7gP0gDn1rnxq5dgc5/L488h3Dj2nvAf3KPhWQdtKA6d0JbvotoAySxJGAPPBNeTBehqtq6z/pnKvZZhHj2HRFdPkJ6NPIR7Aka/iprYdWPgrRvkNlbWx+ki5f77ks/P7zEewCr5XLdLdZKS8mU3mTYpSlZFRSlKAUpSgFKUoBSlKAmlKUApSlAKUpQCoqaigFKUoBSlKAUpSgFKUoBSlKAUpSgNK9q3AjxPJf2yExvlpkUc42P0pAB1U9T5HJ6HlrGuuMVgfE/ZbaXjNJETbSNkkoAYyT4mLl/tK++vT02v2rbZ+Z0134WJGg6VsO87H79CdkltIPA7mQ/5SpH76qtF7Hbh3Bupo408RES7n1AsoVfb6XsruespSzuN/Wh5L12EaayQXVyQcTOqL6xEDkj9pyP2TWw9R0tLhoGk5iCQTKvgXVSEY/d3Ej14PhXrp1hHbRRwRKEjjAVVHgB6z18yT1OTVTXh22udjmcM5bpZFKUrIqKUpQClKUApSlAKUpQClKUBNKUoBSlKAUpSgFRU1FAKUpQHnczpEjSOwVEBZmY4CqoyWJPQAVa7XimxmdY47u2d3OFVZVJJ8gAedfPG35u1D/DXH8pq0D2e/nKw/Wj8DXXRp1ZCUm+jWFe6Lfg6YqxnjHTgcfLbXPTHfJ/zV8rkyT+sP3z/ABU0unV2cvoVV78nT+ocR2ds/dTXNvG4AO15FVsHocE1Tf0y03+/Wn+sn/NYN2i8AXmoXrXEPc7CiL6blTlc55bT51rXifhqfTZEin7vc67xsbcMZI5kgeIrWnS1WJe/nwWhVGXzydB/0y03+/Wn+sn/ADVXa6/aSpJLHcQPHEMyOsilUGM5ZgcDkM865+4Z4Gu9SiaeDudiuYzvcqdwCk8gp8GFZ7pHCtxpmlaytx3eZYnZdjbuSxMDnIHnVbdNVDhTy89CdcV0+TP7TiixmdYo7u2d3OFVZVLE4zgAHnyFXO4nWNWkdlVUBZmY4CgdSSegFc3dnDAanYk8gHYkn9W/Or52n8d/LmNrbt+TIfSYf95l8fuA9B4nn5VaehfqqEXx8sOn3YRtz+mem/360/1k/wCavinIBHjWnuyngPcU1C6X0RhoI2HU+ErDy+yPf5VuKuW+EIS2weTOaSeEUmpanBaqHnljiUnaGkYKCxBIAJ8cAn3V5aZrtrdFlguIZSoyRHIrEA+JANaZ7aNe+UXa2qn5u1HPyMrgFj+yuB6iWrGuCdcOnXsM5JCZ7uUf+m5w+fu8mx5oK6oaFyq3558GiozHJ03Vt1PiC0tTtnuIImIzteRVYjz2k5q4g56VoXts/OQ/URfxSVzaalWz2tmdcN0sG2Bx3pnT5ZB/m/8Amrzp+pQXK74ZYpV843Dj4qa594e7PbzULdbqFoNjFlAd2DZU4PIIR1HnVl/KtMuWALQ3EBwdpHqODjkykEHHMEGuz+hrk3GE+UbejF8J8nU1WbWOK7GzOye5iRh9TO5x7UXJHwrHOIOMXGirfxYWWdI1GOiO52uRn7OGxnyFaZ4b0GbU7juImTewaRmkY4wCNxJAJJJb35rGjSKacpvCRSFWcuRv6y480yYhUu4cnkA5MefUO8Aq/wA1wiI0jMqoqlmYnChQMliemAOea0RqnZLqEKlo+4mx9VHKt8HAB+NbUv8ASxZ6NPbLz7mzmTPmRC25vecn31S6qpY9OWckTjFY2sr7biuwldY47y2d3IVVWVSWJ6AAHnV5rmPgT842H66P8a6cFNVQqZJJ5Itr2PBZJeL9PQsrXtqCpIIMyAgg4IIz4Gr0pzzHjXKnEf8Aab39dP8AzGrqe1+gn3V/Cmp06qUWn2TZXtSPWlKVymRNKUoBSlKAUpSgFRU1FAKUpQFl42/N2of4a4/lNWguz385WH60fga6H4iszcWt1AvWWKWMe10IH41zNw/qJs7m3uCpPcyKzL44B9JefjjI9tenoVmqcV3+x00cxkjqmuTJf6w/fP8AFXQd92k6bHCZUnWRtuVjUHeTjkpUj0facYrQej2jXNxBCObTSIvL9JhuPuGT7BVtBCUFNyWCaE1ls6srSXbv/a7X9Sf5jVu2tJdu/wDa7X9Sf5jVzaD7ZfiZ0f3oyjsL/sE3+Ik/lxVlHHf5t1D/AA838BrF+wv+wTf4iT+XFWUcd/m3UP8ADzfwGq3f5D+pE/tPxOZQcfvHxGCPhyrJ+ze1s5b2NbxvR/7aMPm5JM+irt4eodGPInwaj4Hso7i/tIJVDRyMysp8R3bf/uaqePOEJNLm283gkyYpD4jxRv0h+8cx4gezZOMm6s4bR1yaftOkgKoNf1RbO2nuX6RIzY8z9Vfe2B76wbsm42N2osrhiZ41yjsecqDwJ8WX4kc/A1S9ums7YreyU85W71/uR8lB9rnP7FeLHTy9ZVv+I41W9+1mteGdNfU7+GJ8sZ5DJMf0cl5T6s8x7WFX3tg0QWt+ZFGEul7wY6Bx6MgH7m/brHdG4evbpWktoZXVTsLIQMHAJXOR4EH3ivfUuFdRhjaae3mEcfMsxBCgkDP0j6q9h4Vqe5cLGDr43dm6uyjW/lmnxBjmS3+YfzOwDYfehXn5g1rXts/OQ/URfxSV9di+s9xem3Y+hdLtH6yPLJ/t3j3ivnts/OQ/URfxSVyVVenq2vqzKMdtpHCXaU+m2q2q2yybS7bzKV+mxP0Ah6Z86xbU72fUrp5Sm6a4YYSMHmQAqqo9SqOvlk1mvDnAMWoaT8ojBF3ulKtuOH2OQIypOBkcs+ePXWI8Ja/Jpl0lwAcLlJUxzZCfTXB6EYyPWo9ddFfp5nKte5ZNI7ctx7N1PwWZNHj0xmCyKind1AlDbzz+zuJX2GtHX1hd6ZMO8WWCVD6LgkZPmkg5EY8j0ro7U+IYLeza/J3QhFkBXGXD42BckDJLAc/OrPFx1pN3Hh54drdY512+4q4wfdmvP099kM+3Kb5+phXZJZ4yjXXD3a3dwELdKtwniwASQDzBHot7CBnzraGs6nFd6Vd3ELbo5La4IP8A7bggjwIIII8xWkO0FbAXX5AQYyoLhc7A+TyQnwxjpy8qzfs93f8AQdVznbi72Z8vk65x6t2ffmttRTXsjbFY5XBeyCwpLg1RZXbwOk0bbXjIZWwDgjocEEfGsi/8R9U/vrf5Iv8A6VR8DqDqFgCAQZo8g8/HyrpQafD/AOVH/kX/AIrfV3wrklKGeC9s1F8rJyjdzNJ3jscs+5mPmWJJPLzJrrK2+gnsH4VyvxEMXF4B4Sz/AMxq6otvoJ7B+FYf+i8qH88Geo6R60pSvLOYmlKUApSlAKUpQCoqaigFKUoBWtuM+ytLuR7i2kEMjks6MMxsx6sMc1J8eoPlWbcT3jwWd5PGQHihmkUkZAZEYg4PXmKxV9fu5DoUSSqjahbzvI3dhvnFtkdHC+QdicePSt6XZB7oPH8yXhuXKMFTsg1AnBe1A8+8c/u7utgcC9ncOmt37v30+CA+MKgPUIvPmRy3HnjyyaodP1LUSdUZ7uNl0/vV2/J1HeEQMytkN6OGIOOeceuvfs+4ludUbe0iJHbxxrJHtHeSyugJlI+pH9nHXB5+Fb223zi8vj5x95pKc2uzPq1/2i8BzarNDLHLEgjjKEOGJJ3E5GB66jh/jd59Q7tmiNtctPFbhcbw1vt9Jsc8SemRnyFWrR+NLyS6hiEyytJdSQvb9xt2QIxBnE45eiBnFZVwsrluj2ikVKLyjLezvhmTS7aSCR0ctK0mUyBgogxz+6au/EentdWtzbqQrTRvGCegLKQCce2sP0TiG6N5JDdzNDJmfu7ZrbCSKoJQx3GfSIGCfPHSrdpPH9xNDpKnvBNPcRxzObcrE8bO4Ko5G3ONv0fI0ddkpbvnsNSbyefCnZdcWV5b3TzwssTFiqhsnKsOWR662FxLocWoW8ltKOTjkw6ow+i49YPxGR41j3HmsXdtLBsd4bUq5kuI4O/KuD6IdPqrjnmqG942kt762UyI9kbeBpZQoADTlwk2fBSVUY6DdUydtrU2+f0JblJpmO2PZJfQSRzR3cCyRsGVgH5Ee7p5jxBIq58X9nN7qVy1y09uuVRAuHO0KvMA4+0WP7VVmhceym31W6uVCi37uSFMAHZcJugjJHUnK8/0q+LbjC5Gn6kXkia8sgrb0CsjLIFKMAORxllP3a1dmo3bsrK4/PH7FnKecmW8FcP/APTrSK2yGZdzOwHJmZiSefkMD2AVc9TsluIZYHHoyo0bexgQfxqwcW6zNbW9jJGwDTXFrG5Kg5WX6Ywentq78TXbwWd5Mhw8UM0ikjOGRCVOPHmK5Huk9z7bMuW8mq7HsjvYJIpkurffEyyKdr/SQgjw8xV94+7PJ9TuhcxzQovdpHtYMTlSxJ5D9KreeL71dOub0XDtIkVuwV7LukVpZYwdsh5SDBYcvMGrjqfG9xbXepxOF7iIJHHJtHzMz2++MP5q7AjJ6HaPGutz1DluysrK/wCfqa5nnOTJ+BNBfTrRLWRldlaRty5x6bEjr7aw/jLsse8upLm3lijWXDOjA/1n1mG3z5H258699Z4yulstN7l4hdXMHyl2cKF2xxbmGCQAXchR7/bXvr3G8ytpU1qneQ3MU08sQALlY1QsFP2lBbl4lcVnD1oz3xfLyVW9PKPm17Pp3046bPdDakneRPGCcDBPdurYyoYlhgjnjyrELrsdvlPoS2zjzLMh+G0/jWTR8cXEscggeJjcagLS3kK+jHE6KwcqPpEA9D5+rFV3Fl/f6bBb5u+9ea6ii3i1UssbRvuAiU+mdy5GMHoK0hbfB4TXLLRlNP6mKaX2N3DMDcTxIviIsux9QLAAe3n7K2hJw9GlhLYW4CK0MsS554MisNzHqclsk+2qGx1Gcadc3LSO8iJO6NJbdww2IdoMJPmuc+INY7wVxfczXFtHPLlJ7dpiZbfuMOoBIifpKuCTnHQZrOyd1vLfRWUpz58Fu4c7KLm1ura4aeBlhkVyAGyQp6DIrbla+4M40ku7sxytH3V0sklqBjcoikZSjjrlkw/PwBqx6V2i3b2tt3u1Z5pYu7k2DbNCZ+7lAHQMhGD6ippbG615l2hJTk+Sn1TsguppZ5BcQASvI4BD5AdiQDy9dbihXCqPIAfAVre24uu57+fTVkjjb5TKFldV5QxBcxRqeTyHJ69Bz51soVS+djwp/gRNyeNxNKUrnMyaUpQClKUApSlAKipqKAUpSgPC+SNo5Fl292ysH3HC7SDuyT4YzWI6JpGmWkscy3YdoVMcQluldYVbqsYJ5cuXjyrNCM189yv2V+Aqyk0sEpmNRxacovgLqL8uLGX59PrJsO3ny5e2qOPStMQwvHdpG8MBtQ6XEYLxbcAP9ojqD4EDyrMO5X7K/AU7lfsr8BU735GTDE0HR1S2RJbZDbPHIkiSxrIWj6Fn+tnxB619ppGlqIdt1GGhne5RxcJuV5Dl1z9lvFfGsw7lfsr8BTuV+yvwFT6kvLJ3Mw6DStOWZJ3v2lMZcxrLeK6xmQEMVBPkeWc4r0g03TEhsrcXUeyylWaLNwmd6liNx8Rlzyqu4v1+PT4w3do7nc+wkLiOMbpZM4P0RgAAc2ZR45E3vE9pDJNCwO6FGkOE3ZCbMgAc8/OKBy5k8s4NTmb8k5ZTa9DZXp9LUDGNpRlhu1RXU9Qy5IPXGfKvCLSNIG9TLbsjwxW5jadSvdwnKDrnOeec5zXtdcX2ySwxd2d0kksLIUxIHRYyFVADuLd9GeuAGJJ5GqmXXF7sSJEjb7oWiDpnEvdyMcr9XbIcDIOzrzp70kuSOS2XujaVNJLI1zF889vI6C4j2N8mUrGpX7ODzHjgVF5oekSNMwmgiE0XcOsU0aIy7w2do5bsjr5VVji63V5keIjZKY1KJvyBKkIZsDkTMzIFGSdpPnj0/pdZ+iNkmWKrgQ52l53hUNjxMsbKMZzjPTnU5mvJPJbZdD054+6fUZHXdHIu+9VijRbtpQn6P0vDyHlVyhSxW3ntWvu9ScOrNLdK7gSJtIVieXL95NTHxhYlo1yFLgN6SAbchiA3uRumR058xmIeMLJ13oGbmfRWLc20R7zIQOihCD55IGN3Koe9+RyfF9babNZLpz3MXcqkUYxcIG2xbdvpZ/QHhUS2emOb4vcQt8vCCUGdMfNptUrz5EDnnzANeGo8YpbW1hcy24BukMrRrzKKIS557QDglFJO0AEkkAVdLbW4hLDazIi3EoztTDoDsL7Q+AT6Kn0toHh1IFPel8kclqtNG0iNkdpbeXu4Y7dBNLE4WOL6OAfEkkk+up0zStLtntpI7qP8lM5iU3EZVRcfTXHl4jyzX2nFiPdT2iwp8wz7nY4Xu4o4zKw9HmwaTbsHQDJIyAfqz4xtzbC4miaJlWIvGVHomWLvAAzYB9HPkeXTmMy9/wB5PJSnQdH7maATQhJZvlPK4UGOXAAaNgcrjHL2kdKifRdOkjWOTUZH2ypOrteqXV0Vgu1vq43E8vHBq533FlnCZQVJMcL3GAg5oiByMHmDtYdQBzxnIIqo03XoJ5hbd2Um7vvGQqPRxs3qSPFTIo5gZ54zg1G6ffIyymtfkSQTWzXwlWYOGaW6V3AdNpCsTyGP3k1aIOHNKVQpvS+2J4Iy92h7pJF2uIx0XK8s46VnXcr9lfgKdyv2V+Aqqm10yNxiEekaQhtWjlto2tWVkeOWNWbau3EjdWBHXPWvNNE0kW1rafKItlrJ30RNwm8NvLH0vEEscj2eVZn3K/ZX4Cncr9lfgKn1JeWNzMOutH0qQTA3MeZZ/le8XCB45eXpRt9Xp66zKFgVUg7gQCG5HIx1yOXP1VHcr9lfgK9AKq5NkNilKVUgmlKUApSlAKUpQCoqaUBFKmlARSppQEUqaUBFKmlAWu/0C2uGkaWJZDIndHdk4T0uSg/R+kclcE8ufIYtt5wTauCFDJvYMxDucqZklkQAthd7xjJHPrWTUqyk10ycssi8K2g2nuySpyGZ3ZtxlSQsXLZJ3xock59EDoMV7S6BbtCsGwhFcyLtdlZXLMxdZFYMCWZuefrHzq60qNz8jLLLDwvaJjbFjb3WPSY84ZHkjJyeZ7yR3JPNicnNTb8M2sZUrHgoYyDvY84t+zOTzx3rnn4tnrV5pTc/IyyyW/C1rHtCxkKsYi2b32MioUG9C2HO0kZYE18TcI2jxiJlkKgOMmeXdtkQK6F9+4qVUDbnHIVfqU3PyMsoJdIhZkcoCUjeBc5wI5Nu9ducHPdr8Ko9N4XtbZ1kiRgy8hmWRgPm1jzhmIzsRVz19EVe6UyyMllueF7WRO7aM7d80nJ3B3XAcTHcGz6QkYYzjmMdBj4veE7SbfvjPzhJbbI65zCsRGVYcjGoXb05Zxmr7Sm5+ScssM3CVo5lYxse+WRG+ckxtl2d5tG7C5ManK4PKqjT+H7e3kaaNCHbeCS7t/WuHkwGYgbnAY46mrtSm5+RlkUqaVBBFKmlARSppQEUqaUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUB//9k=" alt="Company 10">
+        <img src="data:image/png;base64,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" alt="Company 11">
+        <img src="data:image/jpeg;base64,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" alt="Company 12">
+        <img src="data:image/png;base64,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" alt="Company 13">
+        <img src="data:image/png;base64,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" alt="Company 14">
+      </div>
+    </div>
   </div>
+</section>
 
-  <!-- Hero Section -->
-  <section id="home" class="jobs-hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>🎯</span> Trusted by 10,000+ Job Seekers
+
+    <!-- HOW IT WORKS -->
+    <section id="process" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>How It Works</h2>
+          <p>
+            The process is designed to be simple and transparent for both job applications and PF support.
+          </p>
         </div>
-        <h1>Find Your <span class="highlight">Dream Job</span><br>Today!</h1>
-        <p>Discover immediate hiring opportunities with top companies. No registration fees, direct company hiring,
-          multiple locations available.</p>
-
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number" data-count="500">0</span>
-            <span class="stat-label">Active Jobs</span>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Submit enquiry</h3>
+            <p>Fill the job application or PF enquiry form with correct details.</p>
           </div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="150">0</span>
-            <span class="stat-label">Companies</span>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Team contacts you</h3>
+            <p>Our team connects through call or WhatsApp to understand your requirement.</p>
           </div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="10000">0</span>
-            <span class="stat-label">Placements</span>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Document verification</h3>
+            <p>Share required documents safely. Get guidance on missing details.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Search Section -->
-  <section class="container">
-    <div class="search-section">
-      <div class="search-bar">
-        <div class="search-input-wrap">
-          <span class="search-icon">🔍</span>
-          <input type="text" class="search-input" id="searchInput" placeholder="Search jobs, companies, locations..."
-            autocomplete="off">
-        </div>
-        <select class="filter-select" id="locationFilter">
-          <option value="">All Locations</option>
-          <option value="mumbai">Mumbai</option>
-          <option value="delhi">Delhi</option>
-          <option value="bangalore">Bangalore</option>
-          <option value="pune">Pune</option>
-        </select>
-        <select class="filter-select" id="categoryFilter">
-          <option value="">All Categories</option>
-          <option value="banking">Banking</option>
-          <option value="it">IT & Software</option>
-          <option value="sales">Sales</option>
-          <option value="marketing">Marketing</option>
-          <option value="support">Customer Support</option>
-        </select>
-        <button class="search-btn" id="searchBtn">
-          <span>🔍</span> Search
-        </button>
-      </div>
-      <div class="filter-tags">
-        <span class="filter-tag active" data-filter="all">All Jobs</span>
-        <span class="filter-tag" data-filter="urgent">🔥 Urgent</span>
-        <span class="filter-tag" data-filter="new">✨ New</span>
-        <span class="filter-tag" data-filter="banking">🏦 Banking</span>
-        <span class="filter-tag" data-filter="it">💻 IT</span>
-        <span class="filter-tag" data-filter="support">📞 Support</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIVE HIRING SECTION -->
-  <section class="live-hiring-section">
-    <div class="container">
-      <div class="live-heading">
-        🔴 LIVE HIRING
-      </div>
-      <div class="live-jobs-grid">
-
-        <!-- LIVE JOB 1 -->
-        <div class="live-job-card">
-          <span class="live-badge">LIVE</span>
-
-          <img src="livejob.jpeg" class="live-job-image">
-          <button class="view-image-btn" onclick="openLiveImage('livejob.jpeg')">
-            👁️ View Image
-          </button>
-
-          <div class="live-job-content">
-            <h3>Cross Sell Executive</h3>
-            <p class="company">IDFC Bank</p>
-            <p>📍 Mumbai</p>
-            <p>💰 Freshers(0 to 1yr):-₹17,000</p>
-            <p>💰 Experienced:-₹34,000</p>
-            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Job or PF process</h3>
+            <p>Proceed with job placement steps or PF support as per your case.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <h3>Completion</h3>
+            <p>Once completed, share feedback to help others.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- LIVE JOB 2 -->
-        <div class="live-job-card">
-          <span class="live-badge">LIVE</span>
-
-          <img src="livejob2.jpeg" class="live-job-image">
-          <button class="view-image-btn" onclick="openLiveImage('livejob2.jpeg')">
-            👁️ View Image
-          </button>
-
-          <div class="live-job-content">
-            <h3>Customer Service + Cross Sell</h3>
-            <p class="company">Axis Bank</p>
-            <p>📍 Dombivali</p>
-            <p>💰₹16,000</p>
-            <!-- <p>💰 Experienced:-₹34,000</p> -->
-            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
-          </div>
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>Customer Feedback</h2>
+          <p>
+            Real experiences from customers who used Fynder Consulting for jobs and PF withdrawal support.
+          </p>
         </div>
 
-        <!-- LIVE JOB 3 -->
-        <div class="live-job-card">
-          <span class="live-badge">LIVE</span>
-
-          <img src="livejob3.jpeg" class="live-job-image">
-          <button class="view-image-btn" onclick="openLiveImage('livejob3.jpeg')">
-            👁️ View Image
-          </button>
-
-          <div class="live-job-content">
-            <h3>Lead Genration Process </h3>
-            <p class="company">Yes Bank</p>
-            <p>📍 Navi Mumbai</p>
-            <p>💰 Freshers(0 to 1yr):-₹15,900</p>
-            <p>💰 Experienced:-₹20,000</p>
-            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply
-              Now</a>
-          </div>
-        </div>
-
-        <!-- LIVE JOB 4 -->
-        <!-- <div class="live-job-card">
-          <span class="live-badge">LIVE</span>
-
-          <img src="livejob4.jpeg" class="live-job-image">
-          <button class="view-image-btn" onclick="openLiveImage('livejob4.jpeg')">
-            👁️ View Image
-          </button>
-
-          <div class="live-job-content">
-            <h3>Business Development Executive</h3>
-            <p class="company">Kotak Mahindra Bank</p>
-            <p>📍 Andheri</p>
-            <p>💰 ₹25,000 – ₹40,000</p>
-            <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
-          </div>
-        </div> -->
-
-        <!-- LIVE JOB 5 -->
-        <!-- <div class="live-job-card">
-    <span class="live-badge">LIVE</span>
-
-    <img src="livejob5.jpeg" class="live-job-image">
-    <button class="view-image-btn" onclick="openLiveImage('livejob5.jpeg')">
-      👁️ View Image
-    </button>
-
-    <div class="live-job-content">
-      <h3>Field Sales Officer</h3>
-      <p class="company">ICICI Bank</p>
-      <p>📍 Mumbai Suburbs</p>
-      <p>💰 ₹22,000 – ₹38,000</p>
-      <a href="https://wa.me/918263896073" target="_blank" class="live-btn">Apply Now</a>
-    </div>
-  </div> -->
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Jobs Section -->
-  <section id="jobs" class="jobs-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>🚀 Immediate Hiring Opportunities</h2>
-        <p>Showing <span class="results-count" id="resultsCount">0</span> available positions | No fees | Direct hiring
-        </p>
-      </div>
-
-      <div class="jobs-grid" id="jobsGrid">
-        <!-- Jobs will be rendered here -->
-      </div>
-
-      <!-- No Results -->
-      <div class="no-results" id="noResults" style="display: none;">
-        <div class="no-results-icon">🔍</div>
-        <h3>No jobs found</h3>
-        <p>Try adjusting your search or filters</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-content">
-          <h2>Why Choose Fynder Consulting?</h2>
-          <p>We connect talented professionals with leading companies across India. Our mission is to make job hunting
-            simple, transparent, and successful for everyone.</p>
-
-          <div class="about-features">
-            <div class="feature-item">
-              <div class="feature-icon">✅</div>
-              <div class="feature-text">
-                <h4>100% Verified Jobs</h4>
-                <p>Every listing is verified</p>
+        <div class="testimonial-wrap">
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="testimonial-body">
+                &ldquo;Fynder Consulting helped me withdraw my PF without confusion. Very supportive team.&rdquo;
+              </div>
+              <div class="testimonial-footer">
+                <div class="testimonial-avatar">
+                  <img src="https://tse1.mm.bing.net/th/id/OIP.sJR0R9CiewjCwEpfIU-ULQHaHa?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
+                </div>
+                <div class="testimonial-meta">
+                  Ramesh, Chennai<br />PF Withdrawal Support
+                </div>
               </div>
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">💰</div>
-              <div class="feature-text">
-                <h4>Zero Registration Fee</h4>
-                <p>Completely free service</p>
+
+            <div class="testimonial-card">
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="testimonial-body">
+                &ldquo;They guided me for a factory job near my home. The process was simple and honest.&rdquo;
+              </div>
+              <div class="testimonial-footer">
+                <div class="testimonial-avatar">
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.P_KX334RqLs_rFVI-JsYWwHaGf?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
+                </div>
+                <div class="testimonial-meta">
+                  Sunita, Mumbai<br />Job Recruitment
+                </div>
               </div>
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">🚀</div>
-              <div class="feature-text">
-                <h4>Fast Placement</h4>
-                <p>Get hired in 7 days</p>
+
+            <div class="testimonial-card">
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+              <div class="testimonial-body">
+                &ldquo;PF claim status was clearly explained on WhatsApp. Good communication and follow-up.&rdquo;
+              </div>
+              <div class="testimonial-footer">
+                <div class="testimonial-avatar">
+                  <img src="https://tse2.mm.bing.net/th/id/OIP.-A4_8WnKjSQFWMIVy2im_QHaLK?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
+                </div>
+                <div class="testimonial-meta">
+                  Ajay, Pune<br />PF Support
+                </div>
               </div>
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">🤝</div>
-              <div class="feature-text">
-                <h4>Direct Company Hiring</h4>
-                <p>No middlemen involved</p>
+
+            <div class="testimonial-card">
+              <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="testimonial-body">
+                &ldquo;I got an office job as a fresher. They clearly told me all conditions. No false promises.&rdquo;
+              </div>
+              <div class="testimonial-footer">
+                <div class="testimonial-avatar">
+                  <img src="https://tse3.mm.bing.net/th/id/OIP.LDDHJ7-W6BaXAm4Sj7IEgAHaJQ?pid=Api&P=0&h=180"
+                    alt="Customer photo" />
+                </div>
+                <div class="testimonial-meta">
+                  Neha, Delhi NCR<br />Job Recruitment
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="about-image">
-          <div class="about-image-decoration"></div>
-          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop"
-            alt="Team working together"
-            onerror="this.src='https://via.placeholder.com/600x400/0b63ce/ffffff?text=Fynder+Team'">
+
+          <div>
+            <div class="card">
+              <h3>💬 WhatsApp Feedback</h3>
+              <div class="screenshot-style">
+                <p><strong>Customer:</strong> Thank you, my PF amount is credited. Process was very smooth. 🙏</p>
+                <p><strong>Fynder:</strong> Happy to hear that! Thank you for trusting Fynder Consulting.</p>
+                <p style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--lighter-text);">
+                  (Names and phone numbers are blurred for privacy.)
+                </p>
+              </div>
+              <p class="testimonial-note">
+                Privacy note: Customer photos and feedback used only with clear permission.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
+    <!-- ==================== SIMPLIFIED CONTACT SECTION ==================== -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>📞 Contact & Enquiry</h2>
+          <p>Have questions or need assistance? Fill out the simple form below and we'll get back to you within 24
+            hours.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Contact Info -->
+          <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>Reach out to us through any of the following channels. Our team responds within 24 hours.</p>
+
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon phone">📞</div>
+                <div class="contact-method-text">
+                  <h4>Call Us</h4>
+                  <p><a href="tel:8263896073">+91 8263896073</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon whatsapp">💬</div>
+                <div class="contact-method-text">
+                  <h4>WhatsApp</h4>
+                  <p><a href="https://wa.me/918263896073" target="_blank">+91 8263896073</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon email">✉️</div>
+                <div class="contact-method-text">
+                  <h4>Email Us</h4>
+                  <p><a href="mailto:support@fynderconsulting.com">support@fynderconsulting.com</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon location">📍</div>
+                <div class="contact-method-text">
+                  <h4>Office Address</h4>
+                  <p>Imperial Splendora, Yashwant Smart City, Vasai East – 401208</p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon time">🕐</div>
+                <div class="contact-method-text">
+                  <h4>Working Hours</h4>
+                  <p>Mon – Sat: 10:00 AM – 7:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: SIMPLIFIED Contact Form -->
+       <form
+  class="contact-form"
+  id="contactForm"
+  action="https://formsubmit.co/fynderconsultingsakshi@gmail.com"
+  method="POST">
+
+
+
+            <h3>📝 Quick Enquiry Form</h3>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label for="phone">Phone Number (WhatsApp) *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="Enter your WhatsApp number"
+                pattern="[0-9]{10}" maxlength="10">
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email (optional)">
+            </div>
+
+            <!-- Application Type - Two Options -->
+            <div class="form-group">
+              <label>Application Type *</label>
+              <div class="radio-group">
+                <label class="radio-option" id="jobOption">
+                  <input type="radio" name="applicationType" value="job" required>
+                  <span>💼 Job Application</span>
+                </label>
+                <label class="radio-option" id="pfOption">
+                  <input type="radio" name="applicationType" value="pf">
+                  <span>📋 PF Support</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Additional Message -->
+            <div class="form-group">
+              <label for="message">Additional Message</label>
+              <textarea id="message" name="message"
+                placeholder="Tell us more about your requirement (optional)..."></textarea>
+            </div>
+
+            <!-- ✅ FormSubmit settings (CORRECT PLACE) -->
+             <input type="hidden" name="_subject" value="New Enquiry - Fynder Consulting">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="thankyou.html">
+
+
+            <!-- Submit Button -->
+            <button type="submit" class="form-submit" id="submitBtn">
+              <span>📤</span> Submit Enquiry
+            </button>
+
+
+            <p style="font-size: 0.8rem; color: var(--lighter-text); margin-top: 1rem; text-align: center;">
+              By submitting, you agree to our terms. We'll contact you within 24 hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>Fynder Consulting</h3>
-          <p>Your trusted partner in finding the perfect job. We connect talented professionals with leading companies
-            across India, making job hunting simple and successful.</p>
-          <!-- <div class="social-links">
-            <a href="#" class="social-link" aria-label="Facebook">📘</a>
-            <a href="#" class="social-link" aria-label="Instagram">📷</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
-            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
-          </div> -->
-        </div>
+      <div class="footer-top">
+        <div>
+  <div class="logo-wrap" style="margin-bottom: 0.3rem">
+    <div class="logo-mark">F</div>
+    <div class="logo-text">
+      <span style="color: #f9fafb;">Fynder Consulting</span>
+      <span>Private Consultancy Services</span>
+    </div>
+  </div>
 
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#jobs">Browse Jobs</a></li>
-            <li><a href="#about">About Us</a></li>
-          </ul>
-        </div>
+  <p style="max-width: 300px; color: #94a3b8;">
+    Fynder Consulting is a private consultancy offering job recruitment assistance
+    and PF withdrawal guidance.
+  </p>
 
-        <div class="footer-col">
-          <h4>Job Categories</h4>
-          <ul>
-            <li><a href="#">Banking Jobs</a></li>
-            <li><a href="#">IT & Software</a></li>
-            <li><a href="#">Sales & Marketing</a></li>
-            <li><a href="#">Customer Support</a></li>
-          </ul>
-        </div>
+  <!-- ✅ Social Media Icons -->
+  <div class="footer-social">
+    <a href="https://www.facebook.com/share/1CbZHzyUNm/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com/company/fynderconsulting/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="#E" target="_blank" aria-label="Twitter">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+</div>
 
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Help Center</a></li>
-          </ul>
+        <div class="footer-links">
+          <a href="#terms">Terms &amp; Conditions</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#disclaimer">Disclaimer</a>
         </div>
+      </div>
+
+      <div class="legal-section" id="terms">
+        <h3>Terms &amp; Conditions</h3>
+        <p>Services are provided based on information shared by the customer. Customers are responsible for giving
+          correct and complete details.</p>
+        <p>Fynder Consulting does not guarantee job placement or PF approval. Final decisions are taken by employers and
+          concerned authorities.</p>
+      </div>
+
+      <div class="legal-section" id="privacy">
+        <h3>Privacy Policy</h3>
+        <p>Customer data is collected only to provide services and communication. Personal information is not sold or
+          shared with unrelated third parties.</p>
+        <p>WhatsApp chats, documents, and IDs are handled carefully for service-related purposes only.</p>
+      </div>
+
+      <div class="legal-section" id="disclaimer">
+        <h3>Disclaimer</h3>
+        <p>Fynder Consulting is a private consultancy service and does not represent any government authority.</p>
+        <p>Fynder Consulting is not affiliated with EPFO or any government body. All PF and job-related decisions are
+          taken by official platforms and employers.</p>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Fynder Consulting. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Sitemap</a>
-        </div>
+        &copy; <span id="year"></span> Fynder Consulting. All rights reserved.
       </div>
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    ⬆️
-  </button>
-  <!-- LIVE IMAGE MODAL -->
-  <div class="image-modal" id="imageModal">
-    <button class="close-modal" onclick="closeLiveImage()" aria-label="Close image">
-      ✕
-    </button>
-
-    <img id="modalImage" src="" alt="Live Hiring Full Image">
+  <!-- FLOATING WHATSAPP -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat on WhatsApp</div>
+    <a href="https://wa.me/918263896073" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <div class="whatsapp-button">💬</div>
+    </a>
   </div>
 
-
-  <!-- JavaScript -->
   <script>
-    // ==================== CONFIGURATION ====================
-    const CONFIG = {
-      whatsappNumber: '918263896073',
-      phoneNumber: '8263896073',
-      companyName: 'Fynder Consulting'
-    };
-
-    // ==================== SAMPLE JOB DATA ====================
-    // NOTE: You can customize each job's description using HTML tags
-    const jobsData = [
-      {
-        id: 1,
-        company: 'Axis Bank',
-        companyLogo: 'AB',
-        position: 'Sales Executive',
-        location: 'Mumbai',
-        salary: '₹18,000 - ₹30,000/month',
-        experience: '0-2 Years',
-        type: 'Full Time',
-        category: 'banking',
-        urgent: true,
-        new: false,
-        image: 'job.jpeg',
-        description: `
-          <h4>🏦 We are hiring Sales Executives for Axis Bank!</h4>
-          <p><strong>📍 Location:</strong> Mumbai (Multiple Branches)</p>
-          <p><strong>💼 Experience:</strong> Freshers Welcome</p>
-          <p><strong>📚 Education:</strong> 12th Pass / Graduate</p>
-          
-          <h5>Key Responsibilities:</h5>
-          <ul>
-            <li>Promote bank products and services</li>
-            <li>Meet monthly sales targets</li>
-            <li>Build customer relationships</li>
-            <li>Handle customer queries</li>
-          </ul>
-          
-          <h5>Benefits:</h5>
-          <ul>
-            <li>Fixed salary + incentives</li>
-            <li>PF & ESI benefits</li>
-            <li>Career growth opportunities</li>
-          </ul>
-        `,
-        highlights: ['Immediate Joining', 'Fixed Salary', 'Incentives', 'PF & ESI', 'Training Provided', 'Career Growth']
-      },
-      {
-        id: 2,
-        // company: 'Fynder Consulting',
-        companyLogo: 'CS',
-        position: 'Customer Support',
-        location: 'Mumbai',
-        salary: '₹15,000 - ₹28,000/month',
-        experience: 'Fresher/Experience',
-        type: 'Full Time',
-        category: 'support',
-        urgent: false,
-        new: true,
-        image: 'job4.jpeg',
-        description: `
-          <h4>🚀 WE ARE HIRING!</h4>
-          <p><strong>💼 Role:</strong> Customer Support (Freshers & Experienced)</p>
-          
-          <h5>✨ What We're Looking For:</h5>
-          <ul>
-            <li>Excellent communication skills</li>
-            <li>Freshers & experienced both welcome</li>
-            <li>PAN card & valid documents required</li>
-          </ul>
-          
-          <p><strong>🎓 Qualification:</strong> SSC / HSC / Graduation</p>
-          
-          <p><strong>💰 Salary:</strong></p>
-          <ul>
-            <li>Freshers: ₹16,000 – ₹19,000</li>
-            <li>Experienced: ₹23,000 – ₹25,000</li>
-          </ul>
-          
-          <p><strong>📍 Location:</strong> Mumbai</p>
-        `,
-        highlights: ['']
-      },
-      {
-        id: 3,
-        // company: 'TechCorp Solutions',
-        companyLogo: 'GMF',
-        position: 'General Manager – Finance',
-        location: 'Greater Noida',
-        salary: 'Up to ₹50 LPA',
-        experience: '1-4 Years',
-        type: 'Full Time',
-        category: 'it',
-        urgent: true,
-        new: true,
-        image: 'job2.jpeg',
-        description: `
-          <h4>💻 General Manager – Finance!</h4>
-          <p><strong>📍 Location:</strong> Location: Greater Noida</p>
-          <p><strong>💼Industry: Manufacturing:</strong></p>
-          
-          <h5>Requirements:</h5>
-<ul>
-  <li>CA Qualified</li>
-  <li>Proven track record in finance leadership & management</li>
-  <li>In-depth knowledge of tax laws, customs & foreign exchange</li>
-  <li>Proficiency in Excel & Tally ERP</li>
-</ul>
-
-<h5>KEY RESPONSIBILITIES:</h5>
-<ul>
-  <li>Drive P&L management, balance sheet & reconciliations</li>
-  <li>Deliver accurate financial reporting with strategic insights</li>
-  <li>Ensure tax compliance, audits & statutory requirements</li>
-  <li>Lead cost analysis, budgeting & financial planning</li>
-</ul>
-        `,
-        highlights: ['']
-      },
-      {
-        id: 4,
-        // company: 'MarketPro India',
-        companyLogo: 'BDE',
-        position: 'Business Development Executive',
-        location: 'Mulund',
-        salary: '₹25,000 - ₹35,000/month',
-        experience: '2-5 Years',
-        type: 'Full Time',
-        category: 'marketing',
-        urgent: false,
-        new: true,
-        image: 'job3.jpeg',
-        description: `
-          <h4>📈 BUSINESS DEVELOPMENT EXECUTIVE (BDE) REQUIRED
-B2B SALES!</h4>
-          <p><strong>📍 Location:</strong> Mulund</p>
-          <p><strong>📚 GRADUATE FEMALES CAN APPLY:</strong> Any Graduate</p>
-          
-          <h5>Requirements:</h5>
-          <ul>
-            <li>BDE with very good sales experience mandatory</li>
-            <li>Good communication skills mandatory</li>
-            <li>Shift: 10 AM TO 7 PM</li>
-            <li>Age Limit: 23 to 35 years</li>
-            <li>Week Off: Sat & Sun fixed off</li>
-            <li>ONE OF THE BEST CORPORATE COMPANY</li>
-          </ul>
-          
-          <h5>Requirements:</h5>
-          <ul>
-            <li>Google Ads certification preferred</li>
-            <li>Experience with analytics tools</li>
-            <li>Creative mindset</li>
-          </ul>
-        `,
-        highlights: ['']
-      }
-    ];
-
     // ==================== DOM ELEMENTS ====================
-    const pageLoader = document.getElementById('pageLoader');
-    const header = document.getElementById('header');
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const searchInput = document.getElementById('searchInput');
-    const locationFilter = document.getElementById('locationFilter');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const searchBtn = document.getElementById('searchBtn');
-    const filterTags = document.querySelectorAll('.filter-tag');
-    const jobsGrid = document.getElementById('jobsGrid');
-    const resultsCount = document.getElementById('resultsCount');
-    const noResults = document.getElementById('noResults');
-    const backToTop = document.getElementById('backToTop');
-    const toastContainer = document.getElementById('toastContainer');
-
-    // ==================== STATE ====================
-    let currentFilter = 'all';
-    let bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
-
-    // ==================== INITIALIZATION ====================
-    document.addEventListener('DOMContentLoaded', () => {
-      // Hide loader after content loads
-      setTimeout(() => {
-        pageLoader.classList.add('hidden');
-      }, 1000);
-
-      // Initialize theme
-      initTheme();
-
-      // Render jobs
-      renderJobs(jobsData);
-
-      // Animate stats
-      animateStats();
-
-      // Setup event listeners
-      setupEventListeners();
-    });
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const contactForm = document.getElementById("contactForm");
+    const toastContainer = document.getElementById("toastContainer");
 
     // ==================== THEME MANAGEMENT ====================
     function initTheme() {
@@ -2293,313 +2398,104 @@ B2B SALES!</h4>
       themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
 
-    // ==================== NAVIGATION ====================
-    function setupEventListeners() {
-      // Theme toggle
-      themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('click', toggleTheme);
+    initTheme();
 
-      // Mobile menu
-      navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    // ==================== MOBILE NAVIGATION ====================
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
       });
+    });
 
-      // Close mobile menu on link click
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navToggle.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
+    // ==================== SMOOTH SCROLL WITH OFFSET ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
 
-      // Scroll effects
-      window.addEventListener('scroll', () => {
-        // Header shadow
-        header.classList.toggle('scrolled', window.scrollY > 50);
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-        // Back to top button
-        backToTop.classList.toggle('visible', window.scrollY > 500);
-
-        // Update active nav link
-        updateActiveNavLink();
-      });
-
-      // Back to top
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      // Search functionality
-      searchBtn.addEventListener('click', performSearch);
-      searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch();
-      });
-
-      // Filter selects
-      locationFilter.addEventListener('change', performSearch);
-      categoryFilter.addEventListener('change', performSearch);
-
-      // Filter tags
-      filterTags.forEach(tag => {
-        tag.addEventListener('click', () => {
-          filterTags.forEach(t => t.classList.remove('active'));
-          tag.classList.add('active');
-          currentFilter = tag.dataset.filter;
-          performSearch();
-        });
-      });
-
-      // Active nav links on click
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function () {
-          document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
-    }
-
-    function updateActiveNavLink() {
-      const sections = ['home', 'jobs', 'about'];
-      const scrollPos = window.scrollY + 100;
-
-      sections.forEach(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const top = element.offsetTop;
-          const height = element.offsetHeight;
-
-          if (scrollPos >= top && scrollPos < top + height) {
-            document.querySelectorAll('.nav-links a').forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === `#${section}`) {
-                link.classList.add('active');
-              }
-            });
-          }
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       });
-    }
+    });
 
-    // ==================== JOBS RENDERING ====================
-    function renderJobs(jobs) {
-      if (jobs.length === 0) {
-        jobsGrid.innerHTML = '';
-        noResults.style.display = 'block';
-        resultsCount.textContent = '0';
+    // ==================== RADIO OPTION STYLING ====================
+    const applicationRadios = document.querySelectorAll('input[name="applicationType"]');
+
+    applicationRadios.forEach(radio => {
+      radio.addEventListener('change', function () {
+        // Remove active class from all options
+        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('active'));
+        // Add active class to selected option
+        this.closest('.radio-option').classList.add('active');
+      });
+    });
+
+    // ==================== AUTO-SELECT SERVICE FROM BUTTONS ====================
+    document.querySelectorAll('a[href="#contact"]').forEach(btn => {
+      btn.addEventListener("click", function (e) {
+        const type = this.dataset.type;
+
+        setTimeout(() => {
+          if (type === "job") {
+            const jobRadio = document.querySelector('input[name="applicationType"][value="job"]');
+            if (jobRadio) {
+              jobRadio.checked = true;
+              jobRadio.dispatchEvent(new Event('change'));
+            }
+          } else if (type === "pf") {
+            const pfRadio = document.querySelector('input[name="applicationType"][value="pf"]');
+            if (pfRadio) {
+              pfRadio.checked = true;
+              pfRadio.dispatchEvent(new Event('change'));
+            }
+          }
+        }, 100);
+      });
+    });
+
+    // ==================== FORM SUBMISSION ====================
+    contactForm.addEventListener('submit', function (e) {
+
+      // Validate phone number BEFORE submission
+      const phone = document.getElementById('phone').value;
+      if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+        e.preventDefault(); // block only if invalid
+        showToast('Please enter a valid 10-digit phone number', 'error');
         return;
       }
 
-      noResults.style.display = 'none';
-      resultsCount.textContent = jobs.length;
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
 
-      jobsGrid.innerHTML = jobs.map((job, index) => `
-        <article class="job-poster-card" data-job-id="${job.id}" style="animation-delay: ${index * 0.1}s">
-          <div class="card-badges">
-            <div>
-              ${job.urgent ? '<span class="urgent-badge">🔥 Urgent</span>' : ''}
-              ${job.new ? '<span class="new-badge">✨ New</span>' : ''}
-            </div>
-            <button class="bookmark-btn ${bookmarkedJobs.includes(job.id) ? 'active' : ''}" 
-                    onclick="toggleBookmark(${job.id})" 
-                    aria-label="Bookmark job">
-              ${bookmarkedJobs.includes(job.id) ? '❤️' : '🤍'}
-            </button>
-          </div>
-          
-          <div class="poster-image-wrap">
-            <img src="${job.image}" alt="${job.position} at ${job.company}" class="poster-image" 
-                 onerror="this.src='https://via.placeholder.com/800x600/0b63ce/ffffff?text=${encodeURIComponent(job.company)}'">
-            <div class="image-overlay"></div>
-          </div>
-          
-          <div class="job-poster-content">
-            <div class="company-row">
-              <div class="company-logo">${job.companyLogo}</div>
-              <div class="company-info">
-                <div class="company-name">${job.company}</div>
-                <div class="job-location">📍 ${job.location}</div>
-              </div>
-            </div>
-            
-            <h3 class="job-position">${job.position}</h3>
-            
-            <div class="job-meta">
-              <span class="meta-tag">💼 ${job.experience}</span>
-              <span class="meta-tag">⏰ ${job.type}</span>
-              <span class="meta-tag">🏷️ ${job.category}</span>
-            </div>
-            
-            <div class="salary-badge">💰 ${job.salary}</div>
-            
-            <div class="job-details">
-              <div class="job-details-inner">
-                <div class="job-details-content">
-                  <div class="full-description">${job.description}</div>
-                  <ul class="job-highlights">
-                    ${job.highlights.map(h => `<li>${h}</li>`).join('')}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            <div class="poster-actions">
-              <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(`Hi! I'm interested in the ${job.position} position at ${job.company}. Please share more details.`)}" 
-                 target="_blank" 
-                 class="action-btn btn-whatsapp">
-                💬 WhatsApp
-              </a>
-              <a href="tel:${CONFIG.phoneNumber}" class="action-btn btn-call">
-                📞 Call Now
-              </a>
-              <button class="action-btn btn-share" onclick="shareJob(${job.id})">
-                📤
-              </button>
-            </div>
-            
-            <button class="toggle-button" onclick="toggleJobDetails(this)">
-              View Details <span class="icon">⬇️</span>
-            </button>
-          </div>
-        </article>
-      `).join('');
-    }
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳</span> Sending...';
 
-    // ==================== JOB INTERACTIONS ====================
-    function toggleJobDetails(button) {
-      const card = button.closest('.job-poster-card');
-      const isCurrentlyOpen = card.classList.contains('show-more');
+      // Allow form to submit normally to FormSubmit ✅
 
-      // Close ALL cards first
-      document.querySelectorAll('.job-poster-card').forEach(c => {
-        c.classList.remove('show-more');
-        const btn = c.querySelector('.toggle-button');
-        if (btn) {
-          btn.innerHTML = 'View Details <span class="icon">⬇️</span>';
-        }
-      });
+      // Optional: Reset UI after submit (FormSubmit will redirect)
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 3000);
+    });
 
-      // If the clicked card was closed, open it
-      if (!isCurrentlyOpen) {
-        card.classList.add('show-more');
-        button.innerHTML = 'Hide Details <span class="icon">⬆️</span>';
-
-        // Smooth scroll to the card
-        setTimeout(() => {
-          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
-    }
-
-    function toggleBookmark(jobId) {
-      const index = bookmarkedJobs.indexOf(jobId);
-
-      if (index > -1) {
-        bookmarkedJobs.splice(index, 1);
-        showToast('Job removed from bookmarks', 'info');
-      } else {
-        bookmarkedJobs.push(jobId);
-        showToast('Job bookmarked! ❤️', 'success');
-      }
-
-      localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs));
-
-      // Update button state
-      const btn = document.querySelector(`[data-job-id="${jobId}"] .bookmark-btn`);
-      if (btn) {
-        btn.classList.toggle('active');
-        btn.textContent = bookmarkedJobs.includes(jobId) ? '❤️' : '🤍';
-      }
-    }
-
-    async function shareJob(jobId) {
-      const job = jobsData.find(j => j.id === jobId);
-      if (!job) return;
-
-      const shareData = {
-        title: `${job.position} at ${job.company}`,
-        text: `Check out this job opportunity: ${job.position} at ${job.company} - ${job.salary}`,
-        url: window.location.href
-      };
-
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-          showToast('Thanks for sharing! 🎉', 'success');
-        } else {
-          // Fallback: Copy to clipboard
-          await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`);
-          showToast('Link copied to clipboard! 📋', 'success');
-        }
-      } catch (err) {
-        console.log('Share failed:', err);
-      }
-    }
-
-    // ==================== SEARCH & FILTER ====================
-    function performSearch() {
-      const searchTerm = searchInput.value.toLowerCase().trim();
-      const location = locationFilter.value.toLowerCase();
-      const category = categoryFilter.value.toLowerCase();
-
-      let filtered = jobsData.filter(job => {
-        // Strip HTML tags for search
-        const plainDescription = job.description.replace(/<[^>]*>/g, '').toLowerCase();
-
-        const matchesSearch = !searchTerm ||
-          job.position.toLowerCase().includes(searchTerm) ||
-          job.company.toLowerCase().includes(searchTerm) ||
-          job.location.toLowerCase().includes(searchTerm) ||
-          plainDescription.includes(searchTerm);
-
-        const matchesLocation = !location || job.location.toLowerCase().includes(location);
-        const matchesCategory = !category || job.category === category;
-
-        let matchesFilter = true;
-        if (currentFilter === 'urgent') matchesFilter = job.urgent;
-        else if (currentFilter === 'new') matchesFilter = job.new;
-        else if (currentFilter !== 'all') matchesFilter = job.category === currentFilter;
-
-        return matchesSearch && matchesLocation && matchesCategory && matchesFilter;
-      });
-
-      renderJobs(filtered);
-    }
-
-    // ==================== STATS ANIMATION ====================
-    function animateStats() {
-      const stats = document.querySelectorAll('.stat-number');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const target = parseInt(entry.target.dataset.count);
-            animateNumber(entry.target, target);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      stats.forEach(stat => observer.observe(stat));
-    }
-
-    function animateNumber(element, target) {
-      const duration = 2000;
-      const start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target.toLocaleString() + '+';
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current).toLocaleString();
-        }
-      }, 16);
-    }
 
     // ==================== TOAST NOTIFICATIONS ====================
     function showToast(message, type = 'success') {
@@ -2620,109 +2516,74 @@ B2B SALES!</h4>
 
       toastContainer.appendChild(toast);
 
-      // Auto remove after 4 seconds
+      // Auto remove after 5 seconds
       setTimeout(() => {
-        toast.style.animation = 'slide-in 0.3s ease reverse';
+        toast.style.animation = 'slideIn 0.3s ease reverse';
         setTimeout(() => toast.remove(), 300);
-      }, 4000);
+      }, 5000);
     }
 
-    // ==================== UTILITY FUNCTIONS ====================
-    // Expose functions to global scope for onclick handlers
-    window.toggleJobDetails = toggleJobDetails;
-    window.toggleBookmark = toggleBookmark;
-    window.shareJob = shareJob;
+    // ==================== FOUNDER SLIDER ====================
+    let currentFounder = 0;
+    const totalFounders = 2;
+    let founderAutoSlide;
 
-    // Close modal
-    closeModal.addEventListener('click', closeLiveModal);
-    imageModal.addEventListener('click', (e) => {
-      if (e.target === imageModal) closeLiveModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLiveModal();
-    });
-
-    function closeLiveModal() {
-      imageModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    /* ================= LIVE IMAGE MODAL FUNCTION ================= */
-
-    const imageModal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const closeModal = document.getElementById('closeModal');
-
-    function openLiveImage(src) {
-      modalImage.src = src;
-      imageModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    function slideFounder(direction) {
+      currentFounder += direction;
+      if (currentFounder < 0) currentFounder = totalFounders - 1;
+      else if (currentFounder >= totalFounders) currentFounder = 0;
+      updateFounderSlider();
     }
 
-    // Close button
-    closeModal.addEventListener('click', closeLiveModal);
-
-    // Click outside image
-    imageModal.addEventListener('click', (e) => {
-      if (e.target === imageModal) closeLiveModal();
-    });
-
-    // ESC key close
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLiveModal();
-    });
-
-    function closeLiveModal() {
-      imageModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    // ===== LIVE IMAGE MODAL (FINAL FIX) =====
-    function openLiveImage(src) {
-      const modal = document.getElementById('imageModal');
-      const img = document.getElementById('modalImage');
-
-      img.src = src;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    function goToFounder(index) {
+      currentFounder = index;
+      updateFounderSlider();
     }
 
+    function updateFounderSlider() {
+      const track = document.querySelector('.founder-track');
+      if (track) {
+        track.style.transform = `translateX(-${currentFounder * 100}%)`;
+      }
+
+      const dots = document.querySelectorAll('.founder-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentFounder);
+      });
+    }
+
+    function startFounderAutoSlide() {
+      founderAutoSlide = setInterval(() => slideFounder(1), 6000);
+    }
+
+    function stopFounderAutoSlide() {
+      clearInterval(founderAutoSlide);
+    }
+
+    // ==================== INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('imageModal');
-      const closeBtn = document.getElementById('closeModal');
+      // Set current year
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-      // ❌ Close button (STOP bubbling)
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      // Start founder auto-slide
+      startFounderAutoSlide();
 
-      // Background close
-      modal.addEventListener('click', () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-
-      // Prevent image click from closing
-      document.getElementById('modalImage').addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-
-      // ESC key close
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
+      // Pause slider on hover
+      const sliderWrapper = document.querySelector('.founder-slider-wrapper');
+      if (sliderWrapper) {
+        sliderWrapper.addEventListener('mouseenter', stopFounderAutoSlide);
+        sliderWrapper.addEventListener('mouseleave', startFounderAutoSlide);
+      }
     });
-    function closeLiveImage() {
-      const modal = document.getElementById('imageModal');
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  const words = ["KYC", "Transfer", "Grievance", "Withdrawal"];
+  let index = 0;
+  const textElement = document.getElementById("pfText");
 
-  </script>
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    textElement.textContent = words[index];
+  }, 3000); // slower transition
+
+</script>
 </body>
-
 </html>
