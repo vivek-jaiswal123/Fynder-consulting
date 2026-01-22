@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -1383,7 +1384,8 @@
     @media (max-width: 768px) {
 
       .nav-links,
-      .nav-actions .nav-cta {
+      .nav-actions .nav-cta,
+      .nav-actions .theme-toggle {
         display: none;
       }
 
@@ -1393,6 +1395,11 @@
 
       .mobile-menu {
         display: flex;
+      }
+
+      .mobile-theme-toggle {
+        display: flex;
+        margin-bottom: 0.5rem;
       }
 
       .jobs-hero h1 {
@@ -1749,6 +1756,9 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
+    <button class="theme-toggle mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle dark mode">
+      <span id="mobileThemeIcon">🌙</span>
+    </button>
     <a href="#home"><span>🏠</span> Home</a>
     <a href="#jobs"><span>💼</span> Jobs</a>
     <a href="#about"><span>ℹ️</span> About Us</a>
@@ -2239,6 +2249,8 @@ B2B SALES!</h4>
     const mobileMenu = document.getElementById('mobileMenu');
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const mobileThemeIcon = document.getElementById('mobileThemeIcon');
     const searchInput = document.getElementById('searchInput');
     const locationFilter = document.getElementById('locationFilter');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -2291,12 +2303,18 @@ B2B SALES!</h4>
 
     function updateThemeIcon(theme) {
       themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+      if (mobileThemeIcon) {
+        mobileThemeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+      }
     }
 
     // ==================== NAVIGATION ====================
     function setupEventListeners() {
       // Theme toggle
       themeToggle.addEventListener('click', toggleTheme);
+      if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+      }
 
       // Mobile menu
       navToggle.addEventListener('click', () => {
