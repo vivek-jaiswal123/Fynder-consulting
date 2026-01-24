@@ -204,14 +204,14 @@
       object-fit: contain;
     }
 
-    .logo-text {
+    /* .logo-text {
       font-size: 1.25rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-    }
+    } */
 
     .nav-links {
       display: flex;
@@ -1507,13 +1507,12 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .rupee {
+    /* .rupee {
       color: orange;
       -webkit-text-fill-color: orange;
       font-weight: 900;
       /* bold ₹ */
-    }
-
+  
     .logo-sub {
       font-size: 0.75rem;
       font-weight: 600;
@@ -1710,6 +1709,79 @@
     .view-image-btn:hover {
       transform: scale(1.03);
     }
+    /* ===== LOGO (SHARED) ===== */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Symbol */
+.logo-symbol {
+  position: relative;
+  width: 38px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* Blue dot */
+.symbol-dot {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: #1d4ed8;
+  border-radius: 50%;
+  left: 13px;
+  top: 7px;
+}
+
+/* Red slash */
+.symbol-bar {
+  position: absolute;
+  width: 8px;
+  height: 46px;
+  background: #e11d2e;
+  border-radius: 8px;
+  left: 34px;
+  top: 2px;
+  transform: rotate(28deg);
+  transform-origin: top right;
+}
+
+/* Text */
+.logo-text {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+
+/* Rupee */
+.rupee {
+  color: #e11d2e;
+  font-weight: 500;
+  font-size: 40px;
+  margin-left: -2px;
+  position: relative;
+  top: 1px;
+}
+
+/* Degree */
+.rupee-degree {
+  position: absolute;
+  top: -0.45em;     /* up */
+  right: -0.35em;   /* to the right of ₹ */
+  font-size: 0.65em;
+  color: #e11d2e;
+  font-weight: 900;
+  line-height: 1;
+}
+
   </style>
 </head>
 
@@ -1727,10 +1799,19 @@
   <header id="header">
     <div class="container">
       <nav class="nav">
-        <a href="index.html" class="logo-main" style="text-decoration: none;">
-          FYNDE<span class="rupee">₹</span>
-        </a>
+        <div class="logo-wrap">
+  <a href="#home" class="logo-link">
+    <span class="logo-symbol">
+      <span class="symbol-dot"></span>
+      <span class="symbol-bar"></span>
+    </span>
 
+   <span class="logo-text">
+  FYNDE<span class="rupee">₹<span class="rupee-degree">°</span></span>
+</span>
+
+  </a>
+</div>
 
 
         <div class="nav-links">
