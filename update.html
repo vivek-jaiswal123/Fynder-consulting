@@ -1794,6 +1794,511 @@
       line-height: 1;
     }
   </style>
+
+<style id="exact-live-job-render">
+.jobs-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+.jobs-grid .live-job-card {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.jobs-grid .live-job-card:hover {
+  transform: translateY(-8px) !important;
+}
+
+.jobs-grid .live-job-card img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+}
+
+.jobs-grid .live-job-content {
+  padding: 1rem !important;
+}
+
+.jobs-grid .live-job-content h3 {
+  font-size: 1.2rem !important;
+  margin: 0 0 0.6rem !important;
+}
+
+.jobs-grid .live-job-content p {
+  font-size: 0.9rem !important;
+  margin: 0.35rem 0 !important;
+}
+
+.jobs-grid .view-image-btn {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 0.8rem !important;
+  padding: 0.7rem 1rem !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: #2563eb !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 700px) {
+  .jobs-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+
+<style id="clean-home-search">
+/* ===== CLEANER HOME / HERO ===== */
+.jobs-hero {
+  min-height: 390px !important;
+  padding: 4rem 0 3rem !important;
+}
+
+.jobs-hero::before {
+  opacity: 0.12 !important;
+}
+
+.hero-content {
+  max-width: 760px !important;
+  margin: 0 auto !important;
+}
+
+.hero-badge {
+  padding: 0.45rem 0.85rem !important;
+  font-size: 0.78rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.jobs-hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3.4rem) !important;
+  line-height: 1.08 !important;
+  margin-bottom: 1rem !important;
+}
+
+.jobs-hero p {
+  max-width: 620px !important;
+  margin: 0 auto 1.5rem !important;
+  font-size: 1rem !important;
+}
+
+.hero-stats {
+  gap: 0.8rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.hero-stat {
+  padding: 0.8rem 1rem !important;
+  border-radius: 10px !important;
+  min-width: 105px !important;
+}
+
+.hero-stat strong {
+  font-size: 1.35rem !important;
+}
+
+/* ===== CLEANER SEARCH BAR ===== */
+.search-section {
+  padding: 1.5rem 0 2rem !important;
+  background: transparent !important;
+}
+
+.search-bar {
+  max-width: 850px !important;
+  margin: 0 auto !important;
+  padding: 0.45rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 5px 18px rgba(0,0,0,.10) !important;
+}
+
+.search-input-wrap {
+  min-height: 46px !important;
+}
+
+.search-input {
+  height: 46px !important;
+  font-size: 0.95rem !important;
+  padding: 0 1rem 0 2.6rem !important;
+}
+
+.search-icon {
+  left: 0.9rem !important;
+  font-size: 1rem !important;
+}
+
+.search-btn {
+  min-height: 46px !important;
+  padding: 0 1.2rem !important;
+  border-radius: 9px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Keep the job section visually closer to the search */
+.jobs-section {
+  padding-top: 1.5rem !important;
+}
+
+@media (max-width: 700px) {
+  .jobs-hero {
+    min-height: 340px !important;
+    padding: 3rem 0 2.5rem !important;
+  }
+
+  .hero-stats {
+    gap: 0.5rem !important;
+  }
+
+  .hero-stat {
+    padding: 0.65rem 0.7rem !important;
+    min-width: 90px !important;
+  }
+
+  .search-bar {
+    border-radius: 10px !important;
+  }
+}
+</style>
+
+
+<style id="final-clean-layout">
+/* =========================================================
+   FINAL CLEAN / PREMIUM JOB PAGE
+   Keep the existing functionality; simplify the visual hierarchy.
+   ========================================================= */
+
+:root {
+  --clean-blue: #0b63ce;
+  --clean-dark: #172033;
+}
+
+/* Header / navigation: less heavy */
+header, .header, .navbar {
+  box-shadow: 0 2px 12px rgba(0,0,0,.07) !important;
+}
+
+/* Hero: compact, simple, no excessive decoration */
+.jobs-hero {
+  min-height: 330px !important;
+  padding: 3.2rem 0 2.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.jobs-hero::before,
+.jobs-hero::after {
+  opacity: .04 !important;
+}
+
+.hero-content {
+  max-width: 680px !important;
+}
+
+.hero-badge {
+  margin-bottom: .8rem !important;
+  padding: .35rem .75rem !important;
+  font-size: .72rem !important;
+}
+
+.jobs-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  margin: 0 0 .8rem !important;
+  letter-spacing: -.5px !important;
+}
+
+.jobs-hero p {
+  max-width: 560px !important;
+  font-size: .95rem !important;
+  line-height: 1.55 !important;
+  margin: 0 auto 1.25rem !important;
+}
+
+.hero-stats {
+  margin-top: 1rem !important;
+  gap: .65rem !important;
+}
+
+.hero-stat {
+  min-width: 95px !important;
+  padding: .6rem .8rem !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+}
+
+.hero-stat strong {
+  font-size: 1.15rem !important;
+}
+
+/* Search: one clean compact bar */
+.search-section {
+  padding: 1.25rem 0 !important;
+}
+
+.search-section .container {
+  max-width: 1050px !important;
+}
+
+.search-bar {
+  max-width: 760px !important;
+  padding: .3rem !important;
+  border-radius: 10px !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,.08) !important;
+  border: 1px solid rgba(0,0,0,.06) !important;
+}
+
+.search-input-wrap {
+  min-height: 42px !important;
+}
+
+.search-input {
+  height: 42px !important;
+  font-size: .9rem !important;
+}
+
+.search-btn {
+  min-height: 42px !important;
+  padding: 0 1rem !important;
+  font-size: .85rem !important;
+}
+
+/* Results heading: simple */
+.jobs-section {
+  padding-top: 1rem !important;
+}
+
+.jobs-section .section-header,
+.jobs-header {
+  margin-bottom: 1.25rem !important;
+}
+
+.jobs-section h2,
+.jobs-section .section-title {
+  font-size: 1.65rem !important;
+  margin-bottom: .3rem !important;
+}
+
+/* Cards: keep the LIVE JOB look exactly */
+.jobs-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+.jobs-grid .live-job-card {
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12) !important;
+}
+
+/* Don't make View Image dominate the card */
+.jobs-grid .view-image-btn {
+  margin-top: .65rem !important;
+  padding: .62rem .9rem !important;
+  font-size: .85rem !important;
+}
+
+/* Remove unnecessary visual clutter if these old elements are present */
+.jobs-section .filter-row,
+.jobs-section .filter-buttons,
+.jobs-section .job-filters,
+.jobs-section .sort-controls {
+  margin-bottom: 1rem !important;
+}
+
+@media (max-width: 700px) {
+  .jobs-hero {
+    min-height: 300px !important;
+    padding: 2.5rem 1rem 2rem !important;
+  }
+
+  .jobs-hero h1 {
+    font-size: 2rem !important;
+  }
+
+  .jobs-hero p {
+    font-size: .9rem !important;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap !important;
+  }
+
+  .hero-stat {
+    min-width: 85px !important;
+  }
+
+  .search-section {
+    padding: 1rem .75rem !important;
+  }
+
+  .search-bar {
+    width: 100% !important;
+  }
+}
+</style>
+
+
+<style id="exact-headline-right-search">
+/* ===== ONLY HEADLINE + SEARCH ===== */
+.jobs-hero {
+  display: block !important;
+  min-height: 0 !important;
+  padding: 1.8rem 0 1.4rem !important;
+  background: var(--white) !important;
+  text-align: left !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.jobs-hero::before,
+.jobs-hero::after,
+.hero-badge,
+.jobs-hero p,
+.hero-stats,
+.stat-item {
+  display: none !important;
+}
+
+.jobs-hero .container {
+  position: relative !important;
+}
+
+.hero-content {
+  width: 100% !important;
+}
+
+.jobs-hero h1 {
+  margin: 0 !important;
+  text-align: left !important;
+  font-size: clamp(1.7rem, 3vw, 2.35rem) !important;
+  line-height: 1.2 !important;
+}
+
+/* Put ONLY the search bar on the right of the headline */
+body > .container:has(.search-section) {
+  position: absolute !important;
+  top: 108px !important;
+  right: max(24px, calc((100vw - 1200px) / 2 + 24px)) !important;
+  width: 350px !important;
+  max-width: 350px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+}
+
+.search-section {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.search-bar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.search-input-wrap {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.search-icon {
+  display: none !important;
+}
+
+.search-input {
+  width: 100% !important;
+  height: 40px !important;
+  padding: 0 .8rem !important;
+  border: 1px solid var(--border) !important;
+  border-right: 0 !important;
+  border-radius: 7px 0 0 7px !important;
+  background: var(--white) !important;
+  font-size: .88rem !important;
+  box-shadow: none !important;
+}
+
+.search-btn {
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 0 .85rem !important;
+  border-radius: 0 7px 7px 0 !important;
+  border: 1px solid var(--primary-blue) !important;
+  font-size: .82rem !important;
+  box-shadow: none !important;
+}
+
+/* REMOVE ALL CATEGORY / FILTER CONTROLS */
+.filter-select,
+.filter-tags,
+.filter-tag,
+.search-section .filter-row,
+.search-section .filter-buttons,
+.search-section .job-filters,
+.search-section .sort-controls {
+  display: none !important;
+}
+
+/* Keep results clean */
+.jobs-section {
+  padding-top: 1rem !important;
+}
+
+@media (max-width: 700px) {
+  body > .container:has(.search-section) {
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 1rem !important;
+    margin: 0 !important;
+  }
+
+  .search-section {
+    margin: 0 0 1rem !important;
+  }
+
+  .jobs-hero {
+    padding: 1.4rem 0 .8rem !important;
+  }
+}
+</style>
+
+
+<style id="headline-only-restore">
+.jobs-hero{
+  text-align:center !important;
+  padding:5.5rem 1.5rem 3.5rem !important;
+}
+.jobs-hero .hero-badge{display:inline-flex !important;}
+.jobs-hero p{
+  display:block !important;
+  max-width:760px !important;
+  margin:.75rem auto 0 !important;
+}
+.hero-stats{
+  display:flex !important;
+  justify-content:center !important;
+  gap:2.5rem !important;
+  margin-top:2rem !important;
+}
+.stat-item{display:block !important;}
+</style>
+
+<style>.hero-stats{display:none !important;}</style>
 </head>
 
 <body>
@@ -1867,19 +2372,6 @@
         <p>Discover immediate hiring opportunities with top companies. No registration fees, direct company hiring,
           multiple locations available.</p>
 
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number" data-count="500">0</span>
-            <span class="stat-label">Active Jobs</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="150">0</span>
-            <span class="stat-label">Companies</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="10000">0</span>
-            <span class="stat-label">Placements</span>
-          </div>
         </div>
       </div>
     </div>
@@ -2585,71 +3077,22 @@ B2B SALES!</h4>
       resultsCount.textContent = jobs.length;
 
       jobsGrid.innerHTML = jobs.map((job, index) => `
-        <article class="job-poster-card" data-job-id="${job.id}" style="animation-delay: ${index * 0.1}s">
-          <div class="card-badges">
-            <div>
-              ${job.urgent ? '<span class="urgent-badge">🔥 Urgent</span>' : ''}
-              ${job.new ? '<span class="new-badge">✨ New</span>' : ''}
-            </div>
-            <button class="bookmark-btn ${bookmarkedJobs.includes(job.id) ? 'active' : ''}" 
-                    onclick="toggleBookmark(${job.id})" 
-                    aria-label="Bookmark job">
-              ${bookmarkedJobs.includes(job.id) ? '❤️' : '🤍'}
-            </button>
-          </div>
-          
-          <div class="poster-image-wrap">
-            <img src="${job.image}" alt="${job.position} at ${job.company}" class="poster-image" 
-                 onerror="this.src='https://via.placeholder.com/800x600/0b63ce/ffffff?text=${encodeURIComponent(job.company)}'">
-            <div class="image-overlay"></div>
-          </div>
-          
-          <div class="job-poster-content">
-            <div class="company-row">
-              <div class="company-logo">${job.companyLogo}</div>
-              <div class="company-info">
-                <div class="company-name">${job.company}</div>
-                <div class="job-location">📍 ${job.location}</div>
-              </div>
-            </div>
-            
-            <h3 class="job-position">${job.position}</h3>
-            
-            <div class="job-meta">
-              <span class="meta-tag">💼 ${job.experience}</span>
-              <span class="meta-tag">⏰ ${job.type}</span>
-              <span class="meta-tag">🏷️ ${job.category}</span>
-            </div>
-            
-            <div class="salary-badge">💰 ${job.salary}</div>
-            
-            <div class="job-details">
-              <div class="job-details-inner">
-                <div class="job-details-content">
-                  <div class="full-description">${job.description}</div>
-                  <ul class="job-highlights">
-                    ${job.highlights.map(h => `<li>${h}</li>`).join('')}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            <div class="poster-actions">
-              <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(`Hi! I'm interested in the ${job.position} position at ${job.company}. Please share more details.`)}" 
-                 target="_blank" 
-                 class="action-btn btn-whatsapp">
-                💬 WhatsApp
-              </a>
-              <a href="tel:${CONFIG.phoneNumber}" class="action-btn btn-call">
-                📞 Call Now
-              </a>
-              <button class="action-btn btn-share" onclick="shareJob(${job.id})">
-                📤
-              </button>
-            </div>
-            
-            <button class="toggle-button" onclick="toggleJobDetails(this)">
-              View Details <span class="icon">⬇️</span>
+        <article class="live-job-card" data-job-id="${job.id}" style="animation-delay: ${index * 0.1}s">
+          <img
+            src="${job.image}"
+            alt="${job.position} at ${job.company}"
+            onerror="this.src='https://via.placeholder.com/800x600/0b63ce/ffffff?text=${encodeURIComponent(job.company)}'">
+
+          <div class="live-job-content">
+            <h3>${job.position}</h3>
+            <p>📍 ${job.location}</p>
+            <p>💰 ${job.salary}</p>
+
+            <button
+              class="view-image-btn"
+              type="button"
+              onclick="openLiveImage('${job.image}')">
+              View Image
             </button>
           </div>
         </article>
